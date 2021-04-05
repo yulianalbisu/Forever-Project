@@ -24,19 +24,26 @@ love nudge https://www.everythingemerson.com/2019/04/30/review-the-love-nudge-ap
 
 
 ### Roadmap
+[]
 
 #### MVP
-sign in user
-receive remainder(from form filed at the beginning)
-write memories
-upload picture
-milestone prices
+1. Sign up
+1. Register user2
+2. File a form
+3. Interchange answers
+..*Suggest answers, send to other user
+5. Get tips
+..*from list built up
+
 
 #### 2.0
-share pictures
-share restaurants 
-like a picture
-find hobbies
+1. share pictures
+2. share restaurants
+..*suggest restaurants in area 
+3. like a picture
+4. find hobbies to share around area
+5. night out 
+..*nanny finder in area
 
 #### 3.0
 find nanny site(buttons to connect to annoter website)
