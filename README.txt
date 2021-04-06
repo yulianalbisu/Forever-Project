@@ -30,25 +30,25 @@ love nudge https://www.everythingemerson.com/2019/04/30/review-the-love-nudge-ap
 1. Sign up
 1. Register user2
 2. File a form
-3. Interchange answers
+3. Sign In
+4. Interchange answers
 ..*Suggest answers, send to other user
-5. Get tips
-..*from list built up
-
+5. Make wishes
+6. Share wishes
 
 #### 2.0
-1. share pictures
-2. share restaurants
-..*suggest restaurants in area 
-3. like a picture
-4. find hobbies to share around area
-5. night out 
-..*nanny finder in area
+1. Share pictures
+2. Upload pictures
+2. Share places
+..*suggest places in area 
+3. Like a picture
+4. Find hobbies to share around area
+6. Get tips (categorized)
 
 #### 3.0
-find nanny site(buttons to connect to annoter website)
-set remainders add calendar and share calendar
-goal together (how is the pace of this goal)
+1. Find nanny site(buttons to connect to annoter website)
+2. Set remainders add calendar and share calendar
+3. goal together (how is the pace of this goal)
 
 
 ### Notes
