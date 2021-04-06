@@ -1,4 +1,10 @@
+"""Models for forever app."""
 
+from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
+
+
+db = SQLAlchemy()
 
 
 class Users(db.Model):
@@ -14,8 +20,12 @@ class Users(db.Model):
     link_id = db.Column(db.Integer,
                         db.ForeignKey('link.link_id'),
                         nullable=False)
+    
 
-    link = db.relationship('Link', backref='users')
+    link = db.relationship('Link')
+    answers = db.relationship('Answers') ##this relationship is with my primary key, connected by name?
+
+    def __repr__(self):
 
 class Link(db.Model):
 
@@ -25,20 +35,24 @@ class Link(db.Model):
     user1_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False) #will get personal info?
     user2_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
     date_rel = db.Column(db.DateTime) #should be a date
-    users = db.relationship('Users', backref='link')
 
-    users = db.relationship('Users', backref='user1_id')
-    users = db.relationship('Users', backref='user2_id')
-    answers = db.relationship('Answers', backref='user1_id')
-    answers = db.relationship('Answers', backref='user2_id')
+    
+    users = db.relationship('Users')
+    answers = db.relationship('Answers')
+
+    def __repr__(self):
+
 class Questions(db.Model):
 
     __tablename__ = 'questions'
 
     question_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     question = db.Column(db.String)
+    
+    answers = db.relationship('Answers')
 
-    answers = db.relationship('Answers', backref='questions')
+    def __repr__(self):
+
 
 class Answers(db.Model):
 
@@ -46,6 +60,12 @@ class Answers(db.Model):
 
     answer_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     question_id = db.Column(db.Integer, db.ForeignKey('questions.question_id'))
-    answer1 = db.Column(db.String, db.ForeignKey('link.user1_id'))
+    answer1 = db.Column(db.String, db.ForeignKey('link.user1_id')) ## 2 items, same foreign key
     answer2 = db.Column(db.String, db.ForeignKey('link.user2_id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
 
+questions = db.relationship('Questions')
+link = db.relationship('Link') ## should I create 2 relationship since same table?
+users = db.relationship('Users')
+
+def __repr__(self):
