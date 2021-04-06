@@ -8,7 +8,7 @@ db = SQLAlchemy()
 
 
 class Users(db.Model):
-    """The users"""
+    """The users data"""
 
     __tablename__ = 'users'
 
@@ -28,6 +28,7 @@ class Users(db.Model):
     def __repr__(self):
 
 class Link(db.Model):
+    """Link a code to connect couple"""
 
     __tablename__ = 'link'
 
@@ -43,6 +44,7 @@ class Link(db.Model):
     def __repr__(self):
 
 class Questions(db.Model):
+    """Form for user to answer"""
 
     __tablename__ = 'questions'
 
@@ -55,6 +57,7 @@ class Questions(db.Model):
 
 
 class Answers(db.Model):
+    """Answer from question's form"""
 
     __tablename__ = 'answers'
 
