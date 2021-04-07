@@ -8,14 +8,14 @@ db = SQLAlchemy()
 
 
 class User(db.Model):
-    """The users data"""
+    """The user's data"""
 
     __tablename__ = 'users'
 
     user_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    email = db.Column(db.String, unique=True)
-    password = db.Column(db.String)
-    name = db.Column(db.String(20))
+    email = db.Column(db.String, nullable=False, unique=True)
+    password = db.Column(db.String, nullable=False)
+    name = db.Column(db.String(20), nullable=False)
     gender = db.Column(db.String(20))
     
     
@@ -24,10 +24,10 @@ class User(db.Model):
     answers = db.relationship('Answer') ##this relationship is with my primary key, connected by name?
 
     def __repr__(self):
-        return f'<User user_id={self.user_id} email={self.email}>'
+        return f'<User user_id={self.user_id} email={self.email} name={self.name}>'
 
 class Link(db.Model):
-    """Link a code to connect couple"""
+    """Link a code to connect users"""
 
     __tablename__ = 'links'
 
@@ -41,7 +41,7 @@ class Link(db.Model):
     answers = db.relationship('Answer')
 
     def __repr__(self):
-        return f'<Link link_id={self.link_id}>'
+        return f'<Link link_id={self.link_id} user2_id={self.user2_id} date_rel={self.date_rel}>'
 
 class Question(db.Model):
     """Form for user to answer"""
@@ -58,7 +58,7 @@ class Question(db.Model):
 
 
 class Answer(db.Model):
-    """Answer from question's form"""
+    """Answer from users in question's form"""
 
     __tablename__ = 'answers'
 
