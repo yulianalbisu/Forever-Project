@@ -13,10 +13,11 @@ class User(db.Model):
     __tablename__ = 'users'
 
     user_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    name = db.Column(db.String(20), nullable=False)
-    gender = db.Column(db.String(20))
     email = db.Column(db.String, nullable=False, unique=True)
     password = db.Column(db.String, nullable=False)
+    name = db.Column(db.String(20), nullable=False)
+    gender = db.Column(db.String(20))
+    
     link_id = db.Column(db.Integer,
                         db.ForeignKey('links.link_id'),
                         nullable=False)
@@ -76,7 +77,7 @@ class Answer(db.Model):
         return f'<Answer answer_id={self.answer_id} answer={self.answer}>'
 
 
-def connect_to_db(flask_app, db_uri='postgresql:///my_forever', echo=False):
+def connect_to_db(flask_app, db_uri='postgresql:///forever', echo=False):
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
     flask_app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
