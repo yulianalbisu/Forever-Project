@@ -13,17 +13,14 @@ class User(db.Model):
     __tablename__ = 'users'
 
     user_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    email = db.Column(db.String, nullable=False, unique=True)
-    password = db.Column(db.String, nullable=False)
-    name = db.Column(db.String(20), nullable=False)
+    email = db.Column(db.String, unique=True)
+    password = db.Column(db.String)
+    name = db.Column(db.String(20))
     gender = db.Column(db.String(20))
     
-    link_id = db.Column(db.Integer,
-                        db.ForeignKey('links.link_id'),
-                        nullable=False)
     
 
-    link = db.relationship('Link')
+    links = db.relationship('Link')
     answers = db.relationship('Answer') ##this relationship is with my primary key, connected by name?
 
     def __repr__(self):
@@ -35,8 +32,8 @@ class Link(db.Model):
     __tablename__ = 'links'
 
     link_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    user1_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False) #will get personal info?
-    user2_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
+    user1_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False) #user1 should connect by link to user2
+    user2_id = db.Column(db.Integer)
     date_rel = db.Column(db.DateTime) #should be a date
 
     
@@ -69,9 +66,11 @@ class Answer(db.Model):
     question_id = db.Column(db.Integer, db.ForeignKey('questions.question_id'))
     answer = db.Column(db.String ) ## 2 items, same foreign key
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+    link_id = db.Column(db.Integer, db.ForeignKey('links.link_id'))
 
     questions = db.relationship('Question')
     users = db.relationship('User')
+    links = db.relationship('Link')
 
     def __repr__(self):
         return f'<Answer answer_id={self.answer_id} answer={self.answer}>'
