@@ -15,7 +15,7 @@ class User(db.Model):
     user_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     name = db.Column(db.String(20), nullable=False)
     gender = db.Column(db.String(20))
-    phone = db.Column(db.Integer, nullable=False, unique=True)
+    email = db.Column(db.String, nullable=False, unique=True)
     password = db.Column(db.String, nullable=False)
     link_id = db.Column(db.Integer,
                         db.ForeignKey('links.link_id'),
@@ -25,7 +25,8 @@ class User(db.Model):
     link = db.relationship('Link')
     answers = db.relationship('Answer') ##this relationship is with my primary key, connected by name?
 
-    #def __repr__(self):
+    def __repr__(self):
+        return f'<User user_id={self.user_id} email={self.email}>'
 
 class Link(db.Model):
     """Link a code to connect couple"""
@@ -41,7 +42,8 @@ class Link(db.Model):
     users = db.relationship('User')
     answers = db.relationship('Answer')
 
-    #def __repr__(self):
+    def __repr__(self):
+        return f'<Link link_id={self.link_id}>'
 
 class Question(db.Model):
     """Form for user to answer"""
@@ -53,7 +55,8 @@ class Question(db.Model):
     
     answers = db.relationship('Answer')
 
-    #def __repr__(self):
+    def __repr__(self):
+        return f'<Question question_id={self.question_id} question={self.question}>'
 
 
 class Answer(db.Model):
@@ -69,7 +72,9 @@ class Answer(db.Model):
     questions = db.relationship('Question')
     users = db.relationship('User')
 
-    #def __repr__(self):
+    def __repr__(self):
+        return f'<Answer answer_id={self.answer_id} answer={self.answer}>'
+
 
 def connect_to_db(flask_app, db_uri='postgresql:///my_forever', echo=False):
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
