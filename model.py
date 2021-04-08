@@ -18,9 +18,6 @@ class User(db.Model):
     name = db.Column(db.String(20), nullable=False)
     gender = db.Column(db.String(20))
     
-    
-
-    links = db.relationship('Link')
     answers = db.relationship('Answer') ##this relationship is with my primary key, connected by name?
 
     def __repr__(self):
@@ -32,10 +29,10 @@ class Link(db.Model):
     __tablename__ = 'links'
 
     link_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    date_rel = db.Column(db.DateTime) #should be a date
-    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-    
-    answers = db.relationship('Answer') #this is extra?
+    date_rel = db.Column(db.DateTime, nullable=True) #should be a date
+    user_id1 = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+    user_id2 = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+
 
     def __repr__(self):
         return f'<Link link_id={self.link_id} date_rel={self.date_rel}>'
@@ -63,11 +60,11 @@ class Answer(db.Model):
     question_id = db.Column(db.Integer, db.ForeignKey('questions.question_id'))
     answer = db.Column(db.String ) ## 2 items, same foreign key
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-    link_id = db.Column(db.Integer, db.ForeignKey('links.link_id'))
+    
 
-    questions = db.relationship('Question')
-    users = db.relationship('User')
-    links = db.relationship('Link') # if we have userID this is extra?
+    question = db.relationship('Question')
+    user = db.relationship('User')
+    
 
     def __repr__(self):
         return f'<Answer answer_id={self.answer_id} answer={self.answer}>'
