@@ -32,17 +32,12 @@ class Link(db.Model):
     __tablename__ = 'links'
 
     link_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    user1_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False) #user1 should connect by link to user2
-    user2_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
     date_rel = db.Column(db.DateTime) #should be a date
-
-    
-    user_1 = db.relationship('User', foreign_keys=[user1_id])
-    user_2 = db.relationship('User', foreign_keys=[user2_id])
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     answers = db.relationship('Answer')
 
     def __repr__(self):
-        return f'<Link link_id={self.link_id} name2={self.name2} date_rel={self.date_rel}>'
+        return f'<Link link_id={self.link_id} date_rel={self.date_rel}>'
 
 class Question(db.Model):
     """Form for user to answer"""
