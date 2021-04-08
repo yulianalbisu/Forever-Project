@@ -34,7 +34,8 @@ class Link(db.Model):
     link_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     date_rel = db.Column(db.DateTime) #should be a date
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-    answers = db.relationship('Answer')
+    
+    answers = db.relationship('Answer') #this is extra?
 
     def __repr__(self):
         return f'<Link link_id={self.link_id} date_rel={self.date_rel}>'
@@ -66,7 +67,7 @@ class Answer(db.Model):
 
     questions = db.relationship('Question')
     users = db.relationship('User')
-    links = db.relationship('Link')
+    links = db.relationship('Link') # if we have userID this is extra?
 
     def __repr__(self):
         return f'<Answer answer_id={self.answer_id} answer={self.answer}>'
