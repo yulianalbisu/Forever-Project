@@ -79,7 +79,7 @@ class Wish(db.Model):
         return f'<Wish wish={self.wish} user_id={self.user_id}>'
 
 
-def connect_to_db(flask_app, db_uri='postgresql:///forever', echo=True):
+def connect_to_db(flask_app, db_uri='postgresql:///forever', echo=False): #i change echo to false
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
     flask_app.config['SQLALCHEMY_ECHO'] = echo
     flask_app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False

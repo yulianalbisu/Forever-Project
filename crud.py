@@ -16,10 +16,10 @@ def create_user(email, password, name, gender):
     return user
 
 
-def  create_link(date_rel, user_id1, user_id2):
+def  create_link(user_id1, user_id2):
     """Create a link to connect user1 and user2"""
 
-    link = Link(date_rel=date_rel, user_id1=user_id1, user_id2=user_id2)
+    link = Link(user_id1=user_id1, user_id2=user_id2)
 
     db.session.add(link)
     db.session.commit()
@@ -27,10 +27,10 @@ def  create_link(date_rel, user_id1, user_id2):
     return link
 
 
-def create_question(question, answers):
+def create_question(question):
     """Create a question"""
 
-    question = Question(question=question, answers=answers)
+    question = Question(question=question)
 
     db.session.add(question)
     db.session.commit()
