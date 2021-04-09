@@ -3,8 +3,9 @@
 from model import db, User, Link, Question, Answer, Wish, connect_to_db
 
 
+
 def create_user(email, password, name, gender):
-    """Create a new user id1"""
+    """Create a new user"""
 
     user = User(email=email, password=password, name=name, gender=gender)
 

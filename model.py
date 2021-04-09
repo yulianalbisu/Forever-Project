@@ -1,6 +1,7 @@
 """Models for forever app."""
 
 from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 
 
 
@@ -86,6 +87,7 @@ def connect_to_db(flask_app, db_uri='postgresql:///forever', echo=True):
 
     db.app = flask_app
     db.init_app(flask_app)
+    db.drop_all()
     db.create_all()
 
 
