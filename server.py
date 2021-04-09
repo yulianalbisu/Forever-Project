@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 #comming soon, functions and routes!
 
-@app.route('/register, methods=['POST'])
+@app.route('/register', methods=['POST'])
 def register_user():
     email = request.form['email']
     password= request.form['password']

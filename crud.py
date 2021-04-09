@@ -1,38 +1,60 @@
 """CRUD operations"""
 
-from model import db, User, Link, Question, Answer, connect_to_db
+from model import db, User, Link, Question, Answer, Wish, connect_to_db
 
 
-def create_user(email, password):
+def create_user(email, password, name, gender):
+    """Create a new user id1"""
 
-    new_user = User(email=email, password=password)
+    user = User(email=email, password=password, name=name, gender=gender)
 
-    db.session.add(new_user)
+    db.session.add(user)
     db.session.commit()
 
-    return new_user
-
-def  create_link(user_id1, user_id2, date):
-link = Link(link_id=link_id, user=user_id1, user=user_id2, date_rel=date_rel)
-
-db.session.add(link)
-db.session.commit()
+    return user
 
 
-def create_question(question_id, question, answer):
+def  create_link(date_rel, user_id1, user_id2):
+    """Create a link to connect user1 and user2"""
+
+    link = Link(date_rel=date_rel, user_id1=user_id1, user_id2=user_id2)
+
+    db.session.add(link)
+    db.session.commit()
+
+    return link
+
+
+def create_question(question, answers):
+    """Create a question"""
+
+    question = Question(question=question, answers=answers)
+
+    db.session.add(question)
+    db.session.commit()
+
+    return question
+
+
+def create_answer(question_id, answer, user_id):
     """Create and return an answer"""
 
-question = Question(question_id=question_id, question=question, answers=answer)
+    answer = Answer(question_id=question_id, answer=answer, user_id=user_id)
 
-db.session.add(question)
-db.session.commit()
+    db.session.add(answer)
+    db.session.commit()
 
-def create_answer(answer_id, question, answer, user, link)
+    return answer
 
-answer = Answer(answer_id=answer_id, question=question, answer=answer, user=user, link=link)
+def create_wishes(wish, user_id):
+    """Create and return a wish from user"""
 
-db.session.add(answer)
-db.session.commit()
+    wish = Wish(wish=wish, user_id=user_id)
+
+    db.session.add(wish)
+    db.session.commit()
+
+    return wish
 
 
 if __name__ == '__main__':

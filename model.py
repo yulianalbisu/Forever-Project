@@ -1,7 +1,8 @@
 """Models for forever app."""
 
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
+
+
 
 
 db = SQLAlchemy()
@@ -17,11 +18,9 @@ class User(db.Model):
     password = db.Column(db.String, nullable=False)
     name = db.Column(db.String(20), nullable=False)
     gender = db.Column(db.String(20))
-    
-    answers = db.relationship('Answer') ##this relationship is with my primary key, connected by name?
 
     def __repr__(self):
-        return f'<User user_id={self.user_id} email={self.email} name={self.name}>'
+        return f'<User user_id={self.user_id} email={self.email}  password={self.password} name={self.name} gender={self.gender}>'
 
 class Link(db.Model):
     """Link a code to connect users"""
@@ -29,7 +28,7 @@ class Link(db.Model):
     __tablename__ = 'links'
 
     link_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    date_rel = db.Column(db.DateTime, nullable=True) #should be a date
+    date_rel = db.Column(db.DateTime, default=datetime.now()) #anniversary
     user_id1 = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     user_id2 = db.Column(db.Integer, db.ForeignKey('users.user_id'))
 
@@ -60,22 +59,35 @@ class Answer(db.Model):
     question_id = db.Column(db.Integer, db.ForeignKey('questions.question_id'))
     answer = db.Column(db.String ) ## 2 items, same foreign key
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-    
-
-    question = db.relationship('Question')
-    user = db.relationship('User')
-    
 
     def __repr__(self):
-        return f'<Answer answer_id={self.answer_id} answer={self.answer}>'
+        return f'<Answer answer_id={self.answer_id} answer={self.answer}>'  
+
+class Wish(db.Model):
+    """Wishes from users"""
+
+    __tablename__ = 'wishes'
+
+    wish_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    wish = db.Column(db.String )
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+    
 
 
-def connect_to_db(flask_app, db_uri='postgresql:///forever', echo=False):
+    def __repr__(self):
+        return f'<Wish wish={self.wish} user_id={self.user_id}>'
+
+
+def connect_to_db(flask_app, db_uri='postgresql:///forever', echo=True):
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
+    flask_app.config['SQLALCHEMY_ECHO'] = echo
     flask_app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    
 
     db.app = flask_app
     db.init_app(flask_app)
+    db.create_all()
+
 
     print('Connected to the db!')
 
@@ -87,4 +99,4 @@ if __name__ == '__main__':
     # too annoying; this will tell SQLAlchemy not to print out every
     # query it executes.
 
-    connect_to_db(app, echo=False)
+    connect_to_db(app)
