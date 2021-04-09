@@ -9,6 +9,7 @@ def create_user(email, password, name, gender):
 
     user = User(email=email, password=password, name=name, gender=gender)
 
+    
     db.session.add(user)
     db.session.commit()
 
