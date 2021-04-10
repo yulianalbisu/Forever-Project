@@ -1,10 +1,33 @@
 """Server for forever app."""
 
-from flask import Flask
+from flask import (Flask, render_template, request, flash, session,
+                   redirect)
+from model import connect_to_db
+import crud
+from jinja2 import StrictUndefined
 
 app = Flask(__name__)
+app.secret_key = "dev"
+app.jija_env.undefined = StrictUndefined
 
 #comming soon, functions and routes!
+
+@app.route('/')
+def homepage():
+    """View homepage"""
+
+
+    return render_template('homepage.html')
+
+@app.route('/questions')
+def all_questions():
+    """View all questions"""
+
+    questions = crud.get_questions()
+
+    return render_template('all_questions.html', questions=questions)
+
+
 
 @app.route('/register', methods=['POST'])
 def register_user():
@@ -17,7 +40,7 @@ def register_user():
     else:
         create_user(email, password)
 
-        return redirect('/login-form')
+        #return redirect('/login-form')
 
 
 

@@ -37,6 +37,11 @@ def create_question(question):
 
     return question
 
+def get_questions():
+    """Return all questions"""
+
+    return Question.query.all()
+
 
 def create_answer(question_id, answer, user_id):
     """Create and return an answer"""
