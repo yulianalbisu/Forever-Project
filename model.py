@@ -30,12 +30,11 @@ class Link(db.Model):
 
     link_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     anniversary = db.Column(db.DateTime, default=datetime.now()) #anniversary
-    user_id1 = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-    user_id2 = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+    user_id = db.relationship('User', backref='links')
 
 
     def __repr__(self):
-        return f'<Link link_id={self.link_id} anniversary={self.anniversary}>'
+        return f'<Link link_id={self.link_id} anniversary={self.anniversary} user_id2{self.user_id2}>'
 
 class Question(db.Model):
     """Form for user to answer"""
@@ -44,8 +43,7 @@ class Question(db.Model):
 
     question_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     question = db.Column(db.String)
-    
-    answers = db.relationship('Answer')
+    icon = db.Column(db.String)
 
     def __repr__(self):
         return f'<Question question_id={self.question_id} question={self.question}>'
@@ -57,26 +55,13 @@ class Answer(db.Model):
     __tablename__ = 'answers'
 
     answer_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    question_id = db.Column(db.Integer, db.ForeignKey('questions.question_id'))
-    answer = db.Column(db.String ) ## 2 items, same foreign key
-    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+    answer = db.Column(db.String)
+    question_id = db.relationship('Question', backref='answers')
+    wish = db.Column(db.Integer)
+    user_id = db.relationship('User', backref= 'answers')
 
     def __repr__(self):
         return f'<Answer answer_id={self.answer_id} answer={self.answer}>'  
-
-class Wish(db.Model):
-    """Wishes from users"""
-
-    __tablename__ = 'wishes'
-
-    wish_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    wish = db.Column(db.String )
-    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-    
-
-
-    def __repr__(self):
-        return f'<Wish wish={self.wish} user_id={self.user_id}>'
 
 
 def connect_to_db(flask_app, db_uri='postgresql:///forever', echo=False): #i change echo to false
@@ -87,8 +72,8 @@ def connect_to_db(flask_app, db_uri='postgresql:///forever', echo=False): #i cha
 
     db.app = flask_app
     db.init_app(flask_app)
-    db.drop_all()
-    db.create_all()
+    #db.drop_all()
+    #db.create_all()
 
 
     print('Connected to the db!')

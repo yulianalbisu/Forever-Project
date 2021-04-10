@@ -1,6 +1,6 @@
 """CRUD operations"""
 
-from model import db, User, Link, Question, Answer, Wish, connect_to_db
+from model import db, User, Link, Question, Answer, connect_to_db
 
 
 
@@ -46,22 +46,14 @@ def get_questions():
 def create_answer(question_id, answer, user_id):
     """Create and return an answer"""
 
-    answer = Answer(question_id=question_id, answer=answer, user_id=user_id)
+    answer = Answer(answer_id=answer_id, answer=answer, question_id=question_id, wish=wish, user_id=user_id)
+
 
     db.session.add(answer)
     db.session.commit()
 
     return answer
 
-def create_wishes(wish, user_id):
-    """Create and return a wish from user"""
-
-    wish = Wish(wish=wish, user_id=user_id)
-
-    db.session.add(wish)
-    db.session.commit()
-
-    return wish
 
 
 if __name__ == '__main__':

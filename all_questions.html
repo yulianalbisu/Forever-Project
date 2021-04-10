@@ -1,7 +1,14 @@
 {% extends 'base.html' %}
-{% block title %}All Movies{% endblock %}
+{% block body%}
+    <h1>My Questions</h1>
 
-{% block body %} 
-{% for question in questions %} 
-    <p>{{ question }}</p>
-{% endblock  body %}
+    <ul>
+        {% for question in questions %}
+        <li>
+            <a href="/questions/{{ questions.question_id }}">
+                {{ questions.question }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
