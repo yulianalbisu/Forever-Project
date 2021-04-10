@@ -30,42 +30,29 @@ questions_in_db = []
 for question in question_data:
     question = (question['question'])
     
-
     db_question = crud.create_question(question)
         
     questions_in_db.append(db_question)
 
-
+genders = ['woman', 'man', 'no answer']
    # user = User.query.options(db.joinedload('links')).all())
-for n in range(10):
+for user in range(10):
     email = fake.email()
     password = fake.password()
     name = fake.name()
-    gender = fake.text()
+    gender = choice(genders)
 
-    user = crud.create_user(email, password, name, gender)
-
-users = User.query.all() 
-    #creating a link to get 2 users synchronized 
-crud.create_link(users[0].user_id1, users[1].user_id2)
-crud.create_link(users[2].user_id1, users[3].user_id2)
-crud.create_link(users[4].user_id1, users[5].user_id2)
-crud.create_link(users[6].user_id1, users[7].user_id2)
-crud.create_link(users[8].user_id1, users[9].user_id2)
-crud.create_link(users[10].user_id1, users[11].user_id2)
-    
+user = crud.create_user(email, password, name, gender)
 
     #creating an answer from users
 for _ in range(10):
     random_question = choice(questions_in_db)
     answer = fake.text() #check if will work with input since user has to answer.
-    user = user
-    
+
     crud.create_answer(user, random_question, answer)
 
 for w in range(10):
     wish = fake.text()
-    user = user
     
     crud.create_wishes(wish, user)
 

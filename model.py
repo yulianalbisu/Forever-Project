@@ -29,13 +29,13 @@ class Link(db.Model):
     __tablename__ = 'links'
 
     link_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    date_rel = db.Column(db.DateTime, default=datetime.now()) #anniversary
+    anniversary = db.Column(db.DateTime, default=datetime.now()) #anniversary
     user_id1 = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     user_id2 = db.Column(db.Integer, db.ForeignKey('users.user_id'))
 
 
     def __repr__(self):
-        return f'<Link link_id={self.link_id} date_rel={self.date_rel}>'
+        return f'<Link link_id={self.link_id} anniversary={self.anniversary}>'
 
 class Question(db.Model):
     """Form for user to answer"""
