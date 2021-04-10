@@ -8,7 +8,7 @@ from jinja2 import StrictUndefined
 
 app = Flask(__name__)
 app.secret_key = "dev"
-app.jija_env.undefined = StrictUndefined
+app.jinja_env.undefined = StrictUndefined
 
 #comming soon, functions and routes!
 
@@ -27,7 +27,13 @@ def all_questions():
 
     return render_template('all_questions.html', questions=questions)
 
+@app.route('/questions/<question_id>')
+def show_question(question_id):
+    """Show details of the question"""
 
+    question = crud.get_question_by_id(question_id)
+
+    return render_template('question_details.html', question=question)
 
 @app.route('/register', methods=['POST'])
 def register_user():
