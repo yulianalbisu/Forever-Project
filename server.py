@@ -35,18 +35,34 @@ def show_question(question_id):
 
     return render_template('question_details.html', question=question)
 
+@app.route('/users')
+def all_users():
+    """View all users"""
+
+    users = crud.get_users()
+
+    return render_template('all_users.html', users=users)
+
+@app.route('/users/<user_id>')
+def show_user(user_id):
+    """Show details on a particular user"""
+
+    user = crud.get_user_by_id(user_id)
+
+    return render_template('user_details.html', user=user)
+
 @app.route('/register', methods=['POST'])
 def register_user():
     email = request.form['email']
     password= request.form['password']
 
-    user = get_user_by_email(email)
+    user = crud.get_user_by_email(email)
     if user:
         return 'This user already exist.'
     else:
-        create_user(email, password)
+        crud.create_user(email, password)
 
-        #return redirect('/login-form')
+        return redirect('/login-form')
 
 
 

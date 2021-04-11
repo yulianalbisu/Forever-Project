@@ -15,6 +15,21 @@ def create_user(email, password, name, gender):
 
     return user
 
+def get_users():
+    """Return all users"""
+
+    return User.query.all()
+
+def get_user_by_email(email):
+    """Return a user by email"""
+
+    return User.query.get(email)
+
+def get_user_by_id(user_id):
+    """Return a user by ID"""
+
+    return User.query.get(user_id)
+
 
 def  create_link(link_id, anniversary):
     """Create a link to connect user1 and user2"""
@@ -42,7 +57,7 @@ def get_questions():
 
     return Question.query.all()
 
-def get_question_by_id(movie_id):
+def get_question_by_id(question_id):
     """Return a question by primary key"""
 
     return Question.query.get(question_id)
