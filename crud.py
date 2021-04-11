@@ -42,6 +42,11 @@ def get_questions():
 
     return Question.query.all()
 
+def get_question_by_id(movie_id):
+    """Return a question by primary key"""
+
+    return Question.query.get(question_id)
+
 
 def create_answer(user, question, answer, wish):
     """Create and return an answer"""
