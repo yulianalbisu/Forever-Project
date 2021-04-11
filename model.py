@@ -20,6 +20,8 @@ class User(db.Model):
     name = db.Column(db.String(20), nullable=False)
     gender = db.Column(db.String(20))
 
+    answer = db.relationship('Answer', backref= 'users')
+
     def __repr__(self):
         return f'<User user_id={self.user_id} email={self.email}  password={self.password} name={self.name} gender={self.gender}>'
 
@@ -30,11 +32,12 @@ class Link(db.Model):
 
     link_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     anniversary = db.Column(db.DateTime, default=datetime.now()) #anniversary
-    user_id = db.relationship('User', backref='links')
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+    user = db.relationship('User', backref='links')
 
 
     def __repr__(self):
-        return f'<Link link_id={self.link_id} anniversary={self.anniversary} user_id2{self.user_id2}>'
+        return f'<Link link_id={self.link_id} anniversary={self.anniversary}>'
 
 class Question(db.Model):
     """Form for user to answer"""
@@ -43,7 +46,8 @@ class Question(db.Model):
 
     question_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     question = db.Column(db.String)
-    icon = db.Column(db.String)
+    description = db.Column(db.Text)
+    answer = db.relationship('Answer', backref='questions')
 
     def __repr__(self):
         return f'<Question question_id={self.question_id} question={self.question}>'
@@ -56,12 +60,13 @@ class Answer(db.Model):
 
     answer_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     answer = db.Column(db.String)
-    question_id = db.relationship('Question', backref='answers')
     wish = db.Column(db.Integer)
-    user_id = db.relationship('User', backref= 'answers')
+    question_id = db.Column(db.Integer, db.ForeignKey('questions.question_id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+    
 
     def __repr__(self):
-        return f'<Answer answer_id={self.answer_id} answer={self.answer}>'  
+        return f'<Answer answer_id={self.answer_id} answer={self.answer} wish={self.wish}>'  
 
 
 def connect_to_db(flask_app, db_uri='postgresql:///forever', echo=False): #i change echo to false

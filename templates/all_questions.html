@@ -5,8 +5,8 @@
     <ul>
         {% for question in questions %}
         <li>
-            <a href="/questions/{{ questions.question_id }}">
-                {{ questions.question }}
+            <a href="/questions/{{ question.question_id }}">
+                {{ question.question }} 
             </a>
         </li>
         {% endfor %}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ question.question }} - Details{% endblock %}
+
+{% block body %}
+<h1>Aqui ira un espacio de boton</h1>
+
+<p>
+  {{ question.description }}
+</p>
+
+<img src="{{ movie.poster_path }}">
+{% endblock %}

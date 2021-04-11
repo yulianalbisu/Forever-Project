@@ -28,33 +28,37 @@ with open('data/questions.json') as f:
 
 questions_in_db = []
 for question in question_data:
-    question = (question['question'])
+    question, description = (question['question'],
+                            question['description'])
     
-    db_question = crud.create_question(question)
+    db_question = crud.create_question(question, description)
         
     questions_in_db.append(db_question)
 
+
 genders = ['woman', 'man', 'no answer']
-   # user = User.query.options(db.joinedload('links')).all())
 for user in range(10):
     email = fake.email()
     password = fake.password()
     name = fake.name()
     gender = choice(genders)
 
-user = crud.create_user(email, password, name, gender)
+    user = crud.create_user(email, password, name, gender)
 
     #creating an answer from users
-for _ in range(10):
-    random_question = choice(questions_in_db)
-    answer = fake.text() #check if will work with input since user has to answer.
+    for _ in range(10):
+        random_question = questions_in_db
+        answer = fake.text() #check if will work with input since user has to answer.
+        wish = fake.sentence()
 
-    crud.create_answer(user, random_question, answer)
+        crud.create_answer(user, random_question, answer, wish)
 
-for w in range(10):
-    wish = fake.text()
-    
-    crud.create_wishes(wish, user)
+    for link in range(10):
+        link = link_id
+        anniversary = date.today()
+
+        crud.create_link(user, link, anniversary)
+
 
 
 
