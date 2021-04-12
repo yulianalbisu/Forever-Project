@@ -4,10 +4,10 @@ from model import db, User, Link, Question, Answer, connect_to_db
 
 
 
-def create_user(email, password, name, gender):
+def create_user(email, password, name):
     """Create a new user"""
 
-    user = User(email=email, password=password, name=name, gender=gender)
+    user = User(email=email, password=password, name=name)
 
     
     db.session.add(user)
@@ -20,26 +20,15 @@ def get_users():
 
     return User.query.all()
 
-def get_user_by_email(email):
-    """Return a user by email"""
-
-    return User.query.get(email)
-
 def get_user_by_id(user_id):
     """Return a user by ID"""
 
     return User.query.get(user_id)
 
+def get_user_by_email(email):
+    """Return a user by email"""
 
-def  create_link(link_id, anniversary):
-    """Create a link to connect user1 and user2"""
-
-    link = Link(link_id=link_id, anniversary=anniversary, user=user)
-
-    db.session.add(link)
-    db.session.commit()
-
-    return link
+    return User.query.filter(User.email == email).first()
 
 
 def create_question(question, description):
@@ -61,6 +50,20 @@ def get_question_by_id(question_id):
     """Return a question by primary key"""
 
     return Question.query.get(question_id)
+
+
+def  create_link(link_id, anniversary):
+    """Create a link to connect user1 and user2"""
+
+    link = Link(link_id=link_id, anniversary=anniversary, user=user)
+
+    db.session.add(link)
+    db.session.commit()
+
+    return link
+
+
+
 
 
 def create_answer(user, question, answer, wish):
