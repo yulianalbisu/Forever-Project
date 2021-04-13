@@ -10,9 +10,11 @@ app = Flask(__name__)
 app.secret_key = "dev"
 app.jinja_env.undefined = StrictUndefined
 
+
+
 #comming soon, functions and routes!
 
-@app.route('/')
+@app.route('/') #changed route '/' for '/homepage'
 def homepage():
     """View homepage"""
 
@@ -51,7 +53,7 @@ def show_user(user_id):
 
     return render_template('user_details.html', user=user)
 
-@app.route('/users', methods=['POST'])
+@app.route('/login', methods=['POST'])
 def register_user():
     """Create a new user"""
 
@@ -61,28 +63,33 @@ def register_user():
 
     user = crud.get_user_by_email(email)
 
-    if user:
-        flash('Hello! this account already exist')
+    if 'user' in session:
+        user =  session.get('name')
+        password = session.get('password')
+        flash('Hello! welcome back!')
+        return render_template('/homepage.html')
     else:
         crud.create_user(email, password, name)
-        flash('Account created! Welcome, please log in')
+        flash('Account created! Welcome, please sign in')
 
-        return redirect('/')
+        return redirect('/login')
 
-@app.route('/log in', methods=['POST'])
-def log_in_submission():
-    """Log in existent user"""
+@app.route('/login', methods=['GET'])
+def show_login():
+    """Show login form"""
 
-    user = crud.get_user_by_email(email)
-
-    if user:
+    return render_template("handle_login.html")
 
 
 
+     
 
 
 
 
-    if __name__ == '__main__':
+
+
+
+if __name__ == '__main__':
     connect_to_db(app)
     app.run(host='0.0.0.0', debug=True)

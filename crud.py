@@ -30,6 +30,11 @@ def get_user_by_email(email):
 
     return User.query.filter(User.email == email).first()
 
+def get_user_by_password(password):
+    """Return a user by password"""
+
+    return User.query.filter(User.password == password).first()
+
 
 def create_question(question, description):
     """Create a question"""
