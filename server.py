@@ -13,8 +13,13 @@ app.jinja_env.undefined = StrictUndefined
 
 
 #comming soon, functions and routes!
+@app.route('/') #contains the route I want to form to be
+def sign_in(): 
+    """Sign in before welcome page"""
 
-@app.route('/') #changed html for welcome instead of homepage!
+    return render_template('homepage.html') #contains the form I want to see
+
+@app.route('/welcome') #changed html for welcome instead of homepage!
 def homepage():
     """View homepage"""
 
@@ -53,8 +58,8 @@ def show_user(user_id):
 
     return render_template('user_details.html', user=user)
 
-@app.route('/users', methods=['POST'])
-def register_user(): #route is users
+@app.route('/users', methods=['POST']) #will add to this route the new user
+def register_user(): 
     """Create a new user"""
 
 
@@ -69,16 +74,18 @@ def register_user(): #route is users
         crud.create_user(email, password, name) #from crud
         flash('Account created! Please log in')
 
-    return redirect('/')
+    return redirect('/') #redirect if user refuse to sign in
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    """User can login"""
+    if request.method == 'POST':
+        session['email'] = request.form['email']
+        session['password'] = request.form['password']
+        return redirect('/')
+    else:
 
-#@app.route('/login', methods=['GET'])
-def show_login():
-    """Show login form"""
-
-    database = crud.create_user(email, password, name)
-
-    return render_template("login.html")
+    return render_template('welcome.html')
 
 
 
