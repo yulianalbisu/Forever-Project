@@ -14,12 +14,12 @@ app.jinja_env.undefined = StrictUndefined
 
 #comming soon, functions and routes!
 
-@app.route('/') #changed route '/' for '/homepage'
+@app.route('/') #changed html for welcome instead of homepage!
 def homepage():
     """View homepage"""
 
 
-    return render_template('homepage.html')
+    return render_template('welcome.html')
 
 @app.route('/questions')
 def all_questions():
@@ -53,32 +53,32 @@ def show_user(user_id):
 
     return render_template('user_details.html', user=user)
 
-@app.route('/login', methods=['POST'])
-def register_user():
+@app.route('/users', methods=['POST'])
+def register_user(): #route is users
     """Create a new user"""
 
-    email = request.form['email']
-    password= request.form['password']
-    name = request.form['name']
 
-    user = crud.get_user_by_email(email)
+    email = request.form.get('email')
+    password= request.form.get('password')
+    name = request.form.get('name')
 
-    if 'user' in session:
-        user =  session.get('name')
-        password = session.get('password')
-        flash('Hello! welcome back!')
-        return render_template('/homepage.html')
+    user = crud.get_user_by_email(email) #in crud 
+    if user:
+        flash('Cannot create an account')
     else:
-        crud.create_user(email, password, name)
-        flash('Account created! Welcome, please sign in')
+        crud.create_user(email, password, name) #from crud
+        flash('Account created! Please log in')
 
-        return redirect('/login')
+    return redirect('/')
 
-@app.route('/login', methods=['GET'])
+
+#@app.route('/login', methods=['GET'])
 def show_login():
     """Show login form"""
 
-    return render_template("handle_login.html")
+    database = crud.create_user(email, password, name)
+
+    return render_template("login.html")
 
 
 
