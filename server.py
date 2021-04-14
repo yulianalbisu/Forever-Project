@@ -17,8 +17,19 @@ app.jinja_env.undefined = StrictUndefined
 def sign_in(): 
     """Sign in before welcome page"""
 
-
     return render_template('homepage.html') #contains the form I want to see
+
+@app.route('/new-user')
+def create_an_account():
+    """Create a new user account"""
+
+    return render_template('create_account.html')
+
+@app.route('/login')
+def display_login_form():
+    """Display the form for loggin in"""
+
+    return render_template('handle_login.html')
 
 @app.route('/welcome') #changed html for welcome instead of homepage!
 def homepage():
@@ -68,7 +79,11 @@ def register_user():
     password= request.form.get('password')
     name = request.form.get('name')
 
+    
+
     user = crud.get_user_by_email(email) #in crud 
+    session['users'] = user
+
     if user:
         if user.password == password:
             flash('Welcome!')
@@ -76,7 +91,7 @@ def register_user():
         else:
             flash('Wrong password')
             return redirect('/') #login form
-    else:
+    else: #this for create account only
         crud.create_user(email, password, name) #from crud
         flash('Account created! Get your personal link') #when new user directly to get
 
@@ -85,18 +100,56 @@ def register_user():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    """User can login"""
+    """Existent user can login"""
+
+
+    email = request.form.get('email')
+    password= request.form.get('password')
+
+
+    user = crud.get_user_by_email(email) #in crud 
+    session['users'] = user
+
+    if user:
+        if user.password == password:
+            flash('Welcome!')
+            return redirect('/welcome')
+        else:
+            flash('Wrong password')
+            return redirect('/') #login form
 
     
-    return render_template('handle_login.html')
+    
+
 
 @app.route('/link')
 def show_links():
     """Show link"""
 
-    link = crud.get_links()
+    link = crud.get_user_by_id(user_id)
 
     return render_template('show_link.html', link=link)
+
+
+@app.route('/link', methods=['POST'])
+def create_new_link():
+    """Create a new link for user"""
+
+    name = request.form.get('name')
+    anniversary = request.form.get('anniversary') #if user in users has the same????
+
+    partner = crud.get_user_by_id(user_id) #come from somewhere else
+
+    if partner:  #I can see users if i write email
+        crud.create_link(anniversary, session['user'].user_id)
+        flash('Welcome!')#somehow I DO NOT HOW TO CREATE LINK!
+        return render_template('welcome.html')
+    if partner not in session:
+        flash('Need a Link')
+        return redirect('/link') #link form
+    else:
+        flash('Welcome! Please Log In!') #when new user directly to get
+        return redirect('/login') 
 
 @app.route('/link/<link_id>')
 def getting_link_id(link_id):
@@ -105,30 +158,6 @@ def getting_link_id(link_id):
     link_id = crud.get_user_by_id(user_id)
    
     return render_template('link_details.html', link_id=link_id)
-
-@app.route('/link', methods=['POST'])
-def create_new_link():
-    """Create a new link for user"""
-
-    email = request.form.get('email')
-    name = request.form.get('name')
-
-    user = crud.get_user_by_email(email) #in crud 
-    if user:
-        if user.email == email: #I can see users if i write email
-            crud.create_link(link_id, anniversary)
-            flash('Welcome!')#somehow I DO NOT HOW TO CREATE LINK!
-            return render_template('show_link.html')
-        else:
-            flash('Need a Link')
-            return redirect('/link') #link form
-    else:
-        crud.create_link(link_id, anniversary) #from crud
-        flash('Here is your link!') #when new user directly to get
-
-        return redirect('/welcome') 
-
-
 
 
      

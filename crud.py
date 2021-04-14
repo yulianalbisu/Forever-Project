@@ -36,24 +36,30 @@ def get_user_by_name(name):
 
     return User.query.filter(User.name == name).first()
 
+def get_anniversary(anniversary):
+    """Return the date of anniversary"""
+
+    return Link.query.filter(Link.anniversary == anniversary).first()
+
 def get_links():
     """Show the link"""
 
     return Link.query.all()
 
-def get_user_link(link_id):
-    """Return a link for user"""
 
-    return User.query.get(link_id)
-
-def create_link(link_id, anniversary)
+def create_link(link_id, anniversary):
     """Creates a link for users"""
 
-    link = LInk(link_id=link_id, anniversary=anniversary)
+    link = Link(anniversary=anniversary, user_id=user_id)
 
     
     db.session.add(link)
     db.session.commit()
+
+def get_user_link(link_id):
+    """Return a link for user"""
+
+    return User.query.get(link_id)
 
 
 def get_user_by_password(password):
