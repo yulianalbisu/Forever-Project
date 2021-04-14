@@ -19,7 +19,7 @@ class User(db.Model):
     password = db.Column(db.String, nullable=False)
     name = db.Column(db.String(20), nullable=False)
     gender = db.Column(db.String(20))
-
+    link_id = db.relationship('Link', backref='users')
     answer = db.relationship('Answer', backref= 'users')
 
     def __repr__(self):
@@ -33,7 +33,7 @@ class Link(db.Model):
     link_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     anniversary = db.Column(db.DateTime, default=datetime.now()) #anniversary
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-    user = db.relationship('User', backref='links')
+    
 
 
     def __repr__(self):

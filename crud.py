@@ -31,6 +31,31 @@ def get_user_by_email(email):
 
     return User.query.filter(User.email == email).first()
 
+def get_user_by_name(name):
+    """Returns the name of the user"""
+
+    return User.query.filter(User.name == name).first()
+
+def get_links():
+    """Show the link"""
+
+    return Link.query.all()
+
+def get_user_link(link_id):
+    """Return a link for user"""
+
+    return User.query.get(link_id)
+
+def create_link(link_id, anniversary)
+    """Creates a link for users"""
+
+    link = LInk(link_id=link_id, anniversary=anniversary)
+
+    
+    db.session.add(link)
+    db.session.commit()
+
+
 def get_user_by_password(password):
     """Return a user by password"""
 
@@ -56,20 +81,6 @@ def get_question_by_id(question_id):
     """Return a question by primary key"""
 
     return Question.query.get(question_id)
-
-
-def  create_link(link_id, anniversary):
-    """Create a link to connect user1 and user2"""
-
-    link = Link(link_id=link_id, anniversary=anniversary, user=user)
-
-    db.session.add(link)
-    db.session.commit()
-
-    return link
-
-
-
 
 
 def create_answer(user, question, answer, wish):

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}My Link{% endblock %}
+{% block body%}
+    <h1>My Link What??</h1>
+
+    <h2>Create My Link</h2>
+
+<form action="/link" method="POST">
+  <p>
+    Email <input type="text" name="email">
+  </p>
+  <p>
+    Username <input type="text" name="name">
+  </p>
+
+  <p>
+    <input type="submit">
+  </p>
+</form>
+
+{% endblock %}
