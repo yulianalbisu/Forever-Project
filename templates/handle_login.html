@@ -1,18 +1,14 @@
 {% extends 'base.html' %}
-{% block title %}My Forever{% endblock %}
+<!-- {% block title %}My Forever{% endblock %} -->
 
 {% block body %}
-<h1>Welcome back!</h1>
-<ul>
-  <li><a href="/link">My Link</a></li>
-</ul>
+<h1>Welcome!</h1>
 
-
-  <form action="/login" method="POST"></form>
-    <p>Email<input type="text" name="email">
-      <p>Password<input type="password" name="password">
-    <p><input type=submit value=Login>
+<form action="/handle_login" method="POST">
+  <p>Email<input type="text" name="email"> </p>
+  <p>Password<input type="password" name="password"> </p>
+  <p><input type=submit> </p>
 </form>
 
 
-  {% endblock %}
+{% endblock %}

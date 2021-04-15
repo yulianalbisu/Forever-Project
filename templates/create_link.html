@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+<!-- {% block title %}My Forever{% endblock %} -->
+
+{% block body %}
+<h1>Connect Us!</h1>
+
+<form action="/link" method="POST">
+  <p>Anniversary<input type="date" name="anniversary"> </p>
+  <p><input type=submit> </p>
+</form>
+
+
+{% endblock %}
