@@ -18,12 +18,10 @@ class User(db.Model):
     email = db.Column(db.String, nullable=False, unique=True)
     password = db.Column(db.String, nullable=False)
     name = db.Column(db.String(20), nullable=False)
-    gender = db.Column(db.String(20))
-    link_id = db.relationship('Link', backref='users')
-    answer = db.relationship('Answer', backref= 'users')
+    nickname = db.Column(db.String(20))
 
     def __repr__(self):
-        return f'<User user_id={self.user_id} email={self.email}  password={self.password} name={self.name} gender={self.gender}>'
+        return f'<User user_id={self.user_id} email={self.email}  password={self.password} name={self.name} nickname={self.nickname}>'
 
 class Link(db.Model):
     """Link a code to connect users"""
@@ -31,13 +29,12 @@ class Link(db.Model):
     __tablename__ = 'links'
 
     link_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    user_id1 = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+    partner = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     anniversary = db.Column(db.DateTime, default=datetime.now()) #anniversary
-    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-    
-
 
     def __repr__(self):
-        return f'<Link link_id={self.link_id} anniversary={self.anniversary}>'
+        return f'<Link link_id={self.link_id} anniversary={self.anniversary} user_id={self.user_id}>'
 
 class Question(db.Model):
     """Form for user to answer"""
@@ -46,8 +43,9 @@ class Question(db.Model):
 
     question_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     question = db.Column(db.String)
+    category = db.Column(db.Text)
     description = db.Column(db.Text)
-    answer = db.relationship('Answer', backref='questions')
+
 
     def __repr__(self):
         return f'<Question question_id={self.question_id} question={self.question}>'
@@ -63,6 +61,9 @@ class Answer(db.Model):
     wish = db.Column(db.Integer)
     question_id = db.Column(db.Integer, db.ForeignKey('questions.question_id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+
+    user = db.relationship("User", backref='answers')
+    question = db.relationship("Question", backref='answers')
     
 
     def __repr__(self):

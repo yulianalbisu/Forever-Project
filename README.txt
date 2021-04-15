@@ -28,15 +28,16 @@ love nudge https://www.everythingemerson.com/2019/04/30/review-the-love-nudge-ap
 
 #### MVP
 1. Sign up
-1. Register user2
-2. File a form
-3. Sign In
-4. Interchange answers
+2. Sign In
+3. Register user2
+4. File a form
+5. Interchange answers
 ..*Suggest answers, send to other user
-5. Make wishes
-6. Share wishes
+
 
 #### 2.0
+5. Make wishes
+6. Share wishes
 1. Share pictures
 2. Upload pictures
 2. Share places

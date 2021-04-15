@@ -41,25 +41,27 @@ def get_anniversary(anniversary):
 
     return Link.query.filter(Link.anniversary == anniversary).first()
 
-def get_links():
-    """Show the link"""
+def get_link_by_id(link_id):
+    """Return link_id, no join table"""
 
-    return Link.query.all()
+    return Link.query.get(link_id)
 
-
-def create_link(link_id, anniversary):
+def create_link(anniversary, user_id):
     """Creates a link for users"""
 
-    link = Link(anniversary=anniversary, user_id=user_id)
+    link = Link(anniversary=anniversary, user_id1=user_id)
 
     
     db.session.add(link)
     db.session.commit()
+    return link
 
-def get_user_link(link_id):
-    """Return a link for user"""
+def get_link_id(user_id):
+    """get a link and can be share with user"""
 
-    return User.query.get(link_id)
+    #joining table users and links
+
+    return db.session.query(Link).filter_by(user_id1=user_id).first()
 
 
 def get_user_by_password(password):
@@ -68,10 +70,10 @@ def get_user_by_password(password):
     return User.query.filter(User.password == password).first()
 
 
-def create_question(question, description):
+def create_question(question, description, category):
     """Create a question"""
 
-    question = Question(question=question, description=description)
+    question = Question(question=question, description=description, category=category)
 
     db.session.add(question)
     db.session.commit()

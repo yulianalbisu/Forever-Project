@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
-<!-- {% block title %}My Forever{% endblock %} -->
+{% block body%}
+    <h1>My link Connection</h1>
 
-{% block body %}
-<h1>Connect Us!</h1>
-
-<form action="/link" method="POST">
-  <p>Anniversary<input type="date" name="anniversary"> </p>
-  <p><input type=submit> </p>
-</form>
-
-
+    <ul>
+        {% for link in links %}
+        <li>
+            <a href="/links/{{ link.link_id }}">
+                {{ link.link_id }} 
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
 {% endblock %}
