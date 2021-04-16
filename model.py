@@ -1,7 +1,8 @@
 """Models for forever app."""
 
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
+from sqlalchemy import and_
+from datetime import datetime, date
 
 
 
@@ -20,6 +21,13 @@ class User(db.Model):
     name = db.Column(db.String(20), nullable=False)
     nickname = db.Column(db.String(20))
 
+    partner = db.relationship('User', 
+                                    secondary='links', 
+                                    primaryjoin=('User.user_id==Link.user_id1'), 
+                                    secondaryjoin=('User.user_id==Link.partner'))
+
+ 
+
     def __repr__(self):
         return f'<User user_id={self.user_id} email={self.email}  password={self.password} name={self.name} nickname={self.nickname}>'
 
@@ -31,10 +39,12 @@ class Link(db.Model):
     link_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     user_id1 = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     partner = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-    anniversary = db.Column(db.DateTime, default=datetime.now()) #anniversary
+    anniversary = db.Column(db.Date, default=date.today()) #anniversary
 
-    def __repr__(self):
-        return f'<Link link_id={self.link_id} anniversary={self.anniversary} user_id={self.user_id}>'
+    #partner1 = db.relationship('User', foreign_keys=[user_id1]) RETURN ONLY USER NOT PARTNER
+    #partner2 = db.relationship('User', foreign_keys=[partner])
+    # def __repr__(self):
+    #     return f'<Link link_id={self.link_id} anniversary={self.anniversary}>'
 
 class Question(db.Model):
     """Form for user to answer"""

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}My Forever{% endblock %}
+
+{% block body %}
+  <h1>Hello !</h1>
+
+
+  
+  <h2>Let's sign you up!</h2>
+
+  <form action="/connecting" method="POST">
+    <p>
+      Email <input type="text" name="email">
+    </p>
+
+    <p>
+      Password <input type="password" name="password">
+    </p>
+
+    <p>
+      Username <input type="text" name="name">
+    </p>
+
+    <p>
+        Link ID <input type="number" name="link_id">
+    </p>
+
+    <p>
+      Anniversary<input type="date" name="anniversary"> </p>
+    <p>
+
+      <input type="submit">
+    </p>
+  </form>
+   
+
+
+{% endblock %}

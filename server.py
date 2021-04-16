@@ -2,9 +2,10 @@
 
 from flask import (Flask, render_template, request, flash, session,
                    redirect)
-from model import connect_to_db
 import crud
 from jinja2 import StrictUndefined
+import model
+from datetime import datetime, date
 
 app = Flask(__name__)
 app.secret_key = "dev"
@@ -39,13 +40,13 @@ def welcome_users():
     return render_template('welcome.html')
 
 
-@app.route('/users')
-def all_users():
-    """View all users"""
+# @app.route('/users')
+# def all_users():
+#     """View all users"""
 
-    users = crud.get_users()
+#     users = crud.get_users()
 
-    return render_template('all_users.html', users=users)
+#     return render_template('all_users.html', users=users)
 
 @app.route('/users/<user_id>')
 def show_user(user_id):
@@ -53,8 +54,17 @@ def show_user(user_id):
     # check if user_id passed in is user_id in session
     if 'user_id' in session:
         user = crud.get_user_by_id(user_id) #this may be user_id
-        link = crud.get_link_id(user_id)
-        return render_template('user_details.html', user=user, link=link)
+        links = crud.get_links()
+        print(links)
+        print(user_id)
+
+        for id, partner1, partner2 in links:
+            if partner1 == user.user_id or partner2 == user.user_id:
+                link = model.db.session.query(model.Link).get(id)
+                return render_template('user_details.html', user=user, link=link)
+            else:
+                flash('No links found for you..')
+                return redirect('/new-user')
     else:
         flash('Something went wrong')
         return redirect('/')
@@ -105,32 +115,67 @@ def login():
 
 #CREATE LINK, RETURN LINK TO USER, PLACE LINK TO VALIDATE
 
-@app.route('/handle_links')
-def handle_links():
-    """User will get a link, to connect partner"""
+#WORK IN LINKS FORM, SHOW AND A WAY TO SIGN IN USER2
+
+# @app.route('/links')
+# def handle_links():
+#     """Verifiying if user has link, redirect '/welcome'"""
+
+#     user = crud.get_user_by_id(user_id) #this may be user_id
+#     link = crud.get_link_id(user_id)    
+
+#     return render_template('user_details.html', user=user, link=link)
+
+
+@app.route('/connecting')
+def connecting_partner():
+
+
+    return render_template('connecting_form.html')
+
+@app.route('/connecting', methods=['POST'])
+def register_partner():
+    """Create partner from user_id1"""
+
+    email = request.form.get('email')
+    password= request.form.get('password')
+    name = request.form.get('name')
+    link_id = request.form.get('link_id')
+    link_id = int(link_id)
+    anniversary = request.form.get('anniversary')
+    anniversary = datetime.strptime(anniversary, '%Y-%m-%d').strftime("%Y-%m-%d")
+  
+    user = crud.get_user_by_email(email) #in crud 
+
+    if user:
+        flash('Welcome!')
+        # need to check if user is in session first, if not, redirect to /login
+        return redirect(f'/users/{user.user_id}')
+        
+    else: #this for create account only
+        new_user = crud.create_user(email, password, name)
+        flash('Account created! Please log in') #when new user directly to get
+
+        link = crud.get_link_by_link_id(link_id)
+     
+        if link: 
+            if anniversary == link.anniversary.strftime("%Y-%m-%d"):
+                updated_link = model.Link.query.filter_by(link_id=link_id).update({'partner': new_user.user_id})
+                model.db.session.commit()
+                return redirect('/login')
+            else:
+                flash('Remember your anniversary...')
+                return redirect('/connecting')
+        else:
+            flash('Cannot find your partner')
+            return redirect('/connecting')
 
 
 
 
-@app.route('/links')
-def get_links():
-    """Verifiying if user has link, redirect '/welcome'"""
 
 
-    link = crud.get_link_by_id(link_id)
-
-    return render_template('create_link.html', link_id=link_id)
-
-
-
-@app.route('/links/<link_id>')
-def show_link(link_id):
-    """Show details on a particular user"""
-
-    link = crud.get_link_by_id(link_id) #this may be user_id
-
-    return render_template('link_details.html', link=link)
- 
+    
 @app.route('/questions')
 def all_questions():
     """View all questions"""
@@ -156,5 +201,5 @@ def show_question(question_id):
 
 
 if __name__ == '__main__':
-    connect_to_db(app)
+    model.connect_to_db(app)
     app.run(host='0.0.0.0', debug=True)
