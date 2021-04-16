@@ -85,10 +85,10 @@ def get_user_by_password(password):
     return User.query.filter(User.password == password).first()
 
 
-def create_question(question, description, category):
+def create_question(category, question, description):
     """Create a question"""
 
-    question = Question(question=question, description=description, category=category)
+    question = Question(category=category, question=question, description=description)
 
     db.session.add(question)
     db.session.commit()

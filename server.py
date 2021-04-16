@@ -112,21 +112,6 @@ def login():
         return redirect('/login') #login form
 
 
-
-#CREATE LINK, RETURN LINK TO USER, PLACE LINK TO VALIDATE
-
-#WORK IN LINKS FORM, SHOW AND A WAY TO SIGN IN USER2
-
-# @app.route('/links')
-# def handle_links():
-#     """Verifiying if user has link, redirect '/welcome'"""
-
-#     user = crud.get_user_by_id(user_id) #this may be user_id
-#     link = crud.get_link_id(user_id)    
-
-#     return render_template('user_details.html', user=user, link=link)
-
-
 @app.route('/connecting')
 def connecting_partner():
 
@@ -169,11 +154,6 @@ def register_partner():
         else:
             flash('Cannot find your partner')
             return redirect('/connecting')
-
-
-
-
-
 
     
 @app.route('/questions')

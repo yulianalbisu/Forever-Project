@@ -7,7 +7,6 @@ from faker import Faker
 from random import choice, randint
 from datetime import datetime
 
-#today = date.today()
 
 import crud
 import model
@@ -28,10 +27,11 @@ with open('data/questions.json') as f:
 
 questions_in_db = []
 for question in question_data:
-    question, description = (question['question'],
+    question, description = (question['category'],
+                            question['question'],
                             question['description'])
     
-    db_question = crud.create_question(question, description)
+    db_question = crud.create_question(category, question, description)
         
     questions_in_db.append(db_question)
 
