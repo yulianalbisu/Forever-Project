@@ -53,8 +53,8 @@ class Question(db.Model):
 
     question_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     question = db.Column(db.String)
-    category = db.Column(db.Text)
-    description = db.Column(db.Text)
+    category = db.Column(db.String)
+    description = db.Column(db.String)
 
 
     def __repr__(self):

@@ -18,7 +18,7 @@ def homepage():
     """Show homepage with options to login and create an account"""
 
 
-    return render_template('homepage.html') #contains the form I want to see
+    return render_template('homepage.html') #contains the form I want to see /homepage.html
 
 @app.route('/new-user')
 def create_an_account():
@@ -55,8 +55,8 @@ def show_user(user_id):
     if 'user_id' in session:
         user = crud.get_user_by_id(user_id) #this may be user_id
         links = crud.get_links()
-        print(links)
-        print(user_id)
+        #print(links)
+        #print(user_id)
 
         for id, partner1, partner2 in links:
             if partner1 == user.user_id or partner2 == user.user_id:
@@ -91,7 +91,7 @@ def register_user():
         new_link = crud.create_link(anniversary, new_user.user_id) #from crud
         flash('Account created! Please log in') #when new user directly to get
 
-        return redirect('/login') #it has WELCOME route, but I need it to log in first!! 
+        return redirect('/login') #/loginit has WELCOME route, but I need it to log in first!! 
                                 #redirect if user refuse to sign in
 
 @app.route('/handle_login', methods=['POST'])
@@ -155,7 +155,7 @@ def register_partner():
             flash('Cannot find your partner')
             return redirect('/connecting')
 
-    
+
 @app.route('/questions')
 def all_questions():
     """View all questions"""

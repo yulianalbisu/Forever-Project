@@ -100,6 +100,37 @@ def get_questions():
 
     return Question.query.all()
 
+def question_category_personal():
+    """Return questions by category personal"""
+
+    category_personal = db.session.query(Question).filter_by(category='personal').all()
+    
+
+    db.session.add(category_personal)
+    db.session.commit()
+
+    return category_personal
+
+def question_category_love():
+    """Return questions by category love"""
+
+    category_love = db.session.query(Question).filter_by(category='love language').all()
+    
+    db.session.add(category_love)
+    db.session.commit()
+
+    return category_love
+
+def question_category_family():
+    """Return questions by category family"""
+
+    category_family = db.session.query(Question).filter_by(category='family').all()
+
+    db.session.add(category_family)
+    db.session.commit()
+
+    return category_family
+
 def get_question_by_id(question_id):
     """Return a question by primary key"""
 

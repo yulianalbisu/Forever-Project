@@ -1,7 +1,14 @@
-{% extends 'base.html' %}
-{% block title %}My Forever{% endblock %}
+<!doctype html>
+<html>
+  <head>
+  
+    <link rel="stylesheet"
+          href="/static/plantilla.css"
+  
 
-{% block body %}
+  <div class="login-page">
+  <div class="form">
+  
   <h1>Hello !</h1>
 
 
@@ -9,30 +16,24 @@
   <h2>Let's sign you up!</h2>
 
   <form action="/connecting" method="POST">
-    <p>
-      Email <input type="text" name="email">
-    </p>
+    <form class="register-form">
+      <input type="text" name="email" placeholder="email">
 
-    <p>
-      Password <input type="password" name="password">
-    </p>
-
-    <p>
-      Username <input type="text" name="name">
-    </p>
-
-    <p>
-        Link ID <input type="number" name="link_id">
-    </p>
-
-    <p>
-      Anniversary<input type="date" name="anniversary"> </p>
-    <p>
+      <input type="password" name="password" placeholder="password">
+    
+      <input type="text" name="name" placeholder="name">
+  
+      <input type="number" name="link_id" placeholder="link number">
+    
+      <input type="date" name="anniversary" placeholder="anniversary"> 
+    
 
       <input type="submit">
-    </p>
+
+    </form>
   </form>
+  </div>
+  </div>
+</head>
+  </html>
    
-
-
-{% endblock %}

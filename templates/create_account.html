@@ -1,31 +1,35 @@
-{% extends 'base.html' %}
-{% block title %}My Forever{% endblock %}
+<!doctype html>
+<html>
+  
+  
+    <link rel="stylesheet"
+          href="/static/plantilla.css"
 
-{% block body %}
+    
+
+  <div class="login-page">
+    <div class="form">
+  
   <h1>Hello New User!</h1>
   
   <h2>Create an Account</h2>
 
   <form action="/users" method="POST">
-    <p>
-      Email <input type="text" name="email">
-    </p>
+    <form class="register-form">
+    <input type="text" name="email" placeholder="email"/>
 
-    <p>
-      Password <input type="password" name="password">
-    </p>
+    <input type="password" name="password" placeholder="password"/>
+    
+    <input type="text" name="name" placeholder="name"/>
 
-    <p>
-      Username <input type="text" name="name">
-    </p>
-
-    <p>
-      Anniversary<input type="date" name="anniversary"> </p>
-    <p>
-      <input type="submit">
-    </p>
+    <input type="date" name="anniversary" placeholder="anniversary">
+    
+    <input type="submit">
+    
+  
   </form>
-   
 
-
-{% endblock %}
+    </form>
+  </div>
+</div>
+</html>

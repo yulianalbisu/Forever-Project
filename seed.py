@@ -27,7 +27,7 @@ with open('data/questions.json') as f:
 
 questions_in_db = []
 for question in question_data:
-    question, description = (question['category'],
+    category, question, description = (question['category'],
                             question['question'],
                             question['description'])
     
@@ -43,7 +43,7 @@ for user in range(10):
     name = fake.name()
     gender = choice(genders)
 
-    user = crud.create_user(email, password, name, gender)
+    user = crud.create_user(email, password, name)
 
     #creating an answer from users
     for _ in range(10):
