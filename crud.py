@@ -160,6 +160,11 @@ def get_answer():
     
     return answers
 
+def get_answer_by_id(answer_id):
+    """Return answers by primary key"""
+
+    return Answer.query.get(answer_id)
+
 def get_wish(user, wish):
     """Get wish from user_id"""
 

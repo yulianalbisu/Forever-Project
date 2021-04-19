@@ -36,20 +36,21 @@ love nudge https://www.everythingemerson.com/2019/04/30/review-the-love-nudge-ap
 
 
 #### 2.0
-5. Make wishes
-6. Share wishes
-1. Share pictures
-2. Upload pictures
-2. Share places
-..*suggest places in area 
-3. Like a picture
-4. Find hobbies to share around area
-6. Get tips (categorized)
+6. Make wishes
+7. Share wishes (checkbox)
+9. Compared how much users know about each other, DOM manipulation
+10. Get brownie points
+11. Upload pictures
 
 #### 3.0
-1. Find nanny site(buttons to connect to annoter website)
-2. Set remainders add calendar and share calendar
-3. goal together (how is the pace of this goal)
+12. Share places
+..*suggest places in area 
+13. Like a picture
+14. Find hobbies to share around area
+15. Get tips (categorized)
+16. Find nanny site(buttons to connect to annoter website)
+17. Set remainders add calendar and share calendar
+18. goal together (how is the pace of this goal)
 
 
 ### Notes

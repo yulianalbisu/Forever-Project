@@ -194,8 +194,15 @@ def show_question(question_id):
 
     return render_template('question_details.html', question=question)
 
+@app.route('/handle_answers/<answer_id>')
+def show_answer(answer_id):
+    """Show details of the question"""
 
-     
+    if 'answer_id' in session:
+        answer = crud.get_answer_by_id(answer_id)
+
+    return render_template('answer_details.html', answer=answer)
+    
 
 
 
