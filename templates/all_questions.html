@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block body%}
     <h1>My Questions</h1>
-
+    <form action="/handle_answers" method="POST">
     <ul>
         {% for question in questions %}
         <li>
@@ -10,13 +10,14 @@
             </a>
         </li>
             <li>
-            <input type="text" name="answer" placeholder="write here">
-        
+            <input type="text" name="answer" placeholder="answer here">  
+            <input type="hidden" name="question_id" value="{{ question.question_id }}">
     </li>
         {% endfor %}
         <li>
-            <input type="text" name="wish" placeholder="I wish "
+            <input type="text" name="wish" placeholder="I wish ">
         </li>
         <input type="submit">
     </ul>
+</form>
 {% endblock %}

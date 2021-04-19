@@ -40,14 +40,6 @@ def welcome_users():
     return render_template('welcome.html')
 
 
-# @app.route('/users')
-# def all_users():
-#     """View all users"""
-
-#     users = crud.get_users()
-
-#     return render_template('all_users.html', users=users)
-
 @app.route('/users/<user_id>')
 def show_user(user_id):
     """Show details on a particular user"""
@@ -163,18 +155,36 @@ def all_questions():
 
     
     questions = crud.get_questions()
-    
+
     return render_template('all_questions.html', questions=questions)
 
     
 
-@app.route('/answers/<answer_id>')
-def answers():
+@app.route('/handle_answers', methods=['POST'])
+def register_answers():
     """Create answers"""
 
-    return render_template('answer_details.html', answer=answer_id)
+    answer = request.form.get("answer")
+    wish = request.form.get("wish")  
+    question_id = request.form.get("question_id")
+    print("\n"* 2, "*" * 5, answer)
 
+    user = crud.get_user_by_id(session['user_id'])
+    question = crud.get_question_by_id(question_id)
+    
 
+    if answer:
+        answer = crud.create_answer(user, question, answer)
+        return render_template('answer_details.html', answer=answer)
+    else:
+        return redirect('/welcome')
+    if wish:
+        wish = crud.create_wish(user, wish)
+        flash('You have a wish!')
+        return render_template('my_wishes.html', wish=wish)
+    if answer and wish:
+        flash("Let's check your answers")
+        return redirect('/welcome')
 
 @app.route('/questions/<question_id>')
 def show_question(question_id):

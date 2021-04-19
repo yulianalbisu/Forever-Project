@@ -100,6 +100,11 @@ def get_questions():
 
     return Question.query.all()
 
+def get_question_by_question(question):
+    """Show all questions by question"""
+
+    return Question.query.filter(Question.question == question) #just made this to get the question printed in html
+
 def question_category_personal():
     """Return questions by category personal"""
 
@@ -140,8 +145,12 @@ def get_question_by_id(question_id):
 def create_answer(user, question, answer):
     """Create and return an answer"""
 
+    answer = Answer(user=user, question=question, answer=answer)
 
-    return Answer.query.join(Question).filter_by(user_id=user_id).group_by(Question.category==category).all()
+    db.session.add(answer)
+    db.session.commit()
+
+    return answer
 
 
 def get_answer():
@@ -154,7 +163,9 @@ def get_answer():
 def get_wish(user, wish):
     """Get wish from user_id"""
 
-    wish = Answer(user=user, )
+    wish = Answer(user=user, wish=wish)
+
+    return wish
 
 
 if __name__ == '__main__':
