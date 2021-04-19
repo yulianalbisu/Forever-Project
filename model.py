@@ -68,7 +68,7 @@ class Answer(db.Model):
 
     answer_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     answer = db.Column(db.String)
-    wish = db.Column(db.Integer)
+    wish = db.Column(db.String)
     question_id = db.Column(db.Integer, db.ForeignKey('questions.question_id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
 

@@ -39,3 +39,19 @@ LOGIN EXTENDS
 
 
 {% endblock %}
+
+ANSWERS WORKING 
+
+{% extends 'base.html' %}
+
+{% block title %}{{ answer.answer }} - Details{% endblock %}
+
+{% block body %}
+<h1>Aqui ira un espacio de boton</h1>
+<h2>{{ answer.answer_id }}</h2>
+<block>
+  {{ answer.answer }}
+</block>
+
+<img src="En llaves va a aparecer algo">
+{% endblock %}

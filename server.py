@@ -167,7 +167,7 @@ def register_answers():
     answer = request.form.get("answer")
     wish = request.form.get("wish")  
     question_id = request.form.get("question_id")
-    print("\n"* 2, "*" * 5, answer)
+    print("\n"* 2, "*" * 5, wish)
 
     user = crud.get_user_by_id(session['user_id'])
     question = crud.get_question_by_id(question_id)
@@ -176,8 +176,7 @@ def register_answers():
     if answer:
         answer = crud.create_answer(user, question, answer)
         return render_template('answer_details.html', answer=answer)
-    else:
-        return redirect('/welcome')
+    
     if wish:
         wish = crud.create_wish(user, wish)
         flash('You have a wish!')

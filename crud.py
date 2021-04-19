@@ -165,10 +165,10 @@ def get_answer_by_id(answer_id):
 
     return Answer.query.get(answer_id)
 
-def get_wish(user, wish):
+def get_wish(wish):
     """Get wish from user_id"""
 
-    wish = Answer(user=user, wish=wish)
+    wish = Answer(wish=wish)
 
     return wish
 
