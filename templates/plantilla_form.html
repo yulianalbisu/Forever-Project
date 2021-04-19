@@ -19,3 +19,23 @@ HOMEPAGE HTML
 </head>
 </html>
 
+LOGIN EXTENDS 
+
+{% extends 'base.html' %}
+<!-- {% block title %}My Forever{% endblock %} -->
+
+{% block body %}
+<h1>Welcome!</h1>
+<ul>
+  <li><a href="/connecting">My Connection Link</a></li>
+</ul>
+
+<form action="/handle_login" method="POST">
+  <p>Email<input type="text" name="email"> </p>
+  <p>Password<input type="password" name="password"> </p>
+  <p>Anniversary<input type="date" name="anniversary"> </p>
+  <p><input type=submit> </p>
+</form>
+
+
+{% endblock %}

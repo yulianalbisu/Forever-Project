@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block body%}
+    <h1>My Questions</h1>
+
+    <ul>
+        {% for question in questions %}
+        <li>
+            <a href="/questions/{{ question.category }}">
+                {{ question.category }} 
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

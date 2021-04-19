@@ -36,12 +36,12 @@ for question in question_data:
     questions_in_db.append(db_question)
 
 
-genders = ['woman', 'man', 'no answer']
+
 for user in range(10):
     email = fake.email()
     password = fake.password()
     name = fake.name()
-    gender = choice(genders)
+    
 
     user = crud.create_user(email, password, name)
 
@@ -51,7 +51,7 @@ for user in range(10):
         answer = fake.text() #check if will work with input since user has to answer.
         wish = fake.sentence()
 
-        crud.create_answer(user, random_question, answer, wish)
+        crud.create_answer(user, db_question, answer, wish)
 
     for link in range(10):
         link = link_id

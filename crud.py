@@ -137,17 +137,24 @@ def get_question_by_id(question_id):
     return Question.query.get(question_id)
 
 
-def create_answer(user, question, answer, wish):
+def create_answer(user, question, answer):
     """Create and return an answer"""
 
-    answer = Answer(user=user, question=question, answer=answer, wish=wish)
+
+    return Answer.query.join(Question).filter_by(user_id=user_id).group_by(Question.category==category).all()
 
 
-    db.session.add(answer)
-    db.session.commit()
+def get_answer():
+    """Get answers from user"""
 
-    return answer
+    answers = db.session.query(User.name, Question.question, Answer.answer).all()
+    
+    return answers
 
+def get_wish(user, wish):
+    """Get wish from user_id"""
+
+    wish = Answer(user=user, )
 
 
 if __name__ == '__main__':

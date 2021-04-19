@@ -64,6 +64,7 @@ def show_user(user_id):
                 return render_template('user_details.html', user=user, link=link)
             else:
                 flash('No links found for you..')
+                print('ESTOY AQUI Y NO PASE IF STATEMENT 1!!!!!!')
                 return redirect('/new-user')
     else:
         flash('Something went wrong')
@@ -160,9 +161,20 @@ def register_partner():
 def all_questions():
     """View all questions"""
 
+    
     questions = crud.get_questions()
-
+    
     return render_template('all_questions.html', questions=questions)
+
+    
+
+@app.route('/answers/<answer_id>')
+def answers():
+    """Create answers"""
+
+    return render_template('answer_details.html', answer=answer_id)
+
+
 
 @app.route('/questions/<question_id>')
 def show_question(question_id):
