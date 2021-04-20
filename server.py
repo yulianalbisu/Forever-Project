@@ -164,13 +164,34 @@ def all_questions():
 def register_answers():
     """Create answers"""
 
-    answer = request.form.get("answer")
+    """
+    get all question from db, variable named all_qs
+
+    for every question in all_qs
+        to get the user's answer, use request.form.get(question.id) # notice that we don't have "quotes" around question)
+        print the answer to the question
+    """
+    user = crud.get_user_by_id(session['user_id'])
+    all_questions = crud.get_questions()
+
+    for question in all_questions:
+        # print(question)
+        answer=request.form.get(f"answer_to_{question.question_id}")
+        print(answer)
+        if answer:
+            answer_obj= crud.create_answer(user, question, answer)
+            print(answer_obj)
+        # make a sqlalchemy answer object using the answer
+        # ..and your crud function to create answer obect/rows
+
+    answer = request.form.get("")
     wish = request.form.get("wish")  
     question_id = request.form.get("question_id")
-    print("\n"* 2, "*" * 5, wish)
+    print("\n"* 2, "*" * 5, answer)
 
     user = crud.get_user_by_id(session['user_id'])
     question = crud.get_question_by_id(question_id)
+    answers = crud.get_answer_by_id(session['user_id'])
     
 
     if answer:
@@ -178,7 +199,7 @@ def register_answers():
         return render_template('answer_details.html', answer=answer)
     
     if wish:
-        wish = crud.create_wish(user, wish)
+        wish = crud.get_wish(wish)
         flash('You have a wish!')
         return render_template('my_wishes.html', wish=wish)
     if answer and wish:

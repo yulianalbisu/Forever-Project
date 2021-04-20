@@ -160,15 +160,15 @@ def get_answer():
     
     return answers
 
-def get_answer_by_id(answer_id):
+def get_answer_by_id(user_id):
     """Return answers by primary key"""
 
-    return Answer.query.get(answer_id)
+    return db.session.query(Answer).filter_by(user_id=user_id).all()
 
 def get_wish(wish):
     """Get wish from user_id"""
 
-    wish = Answer(wish=wish)
+    wish = db.session.query(Answer.wish).all()
 
     return wish
 

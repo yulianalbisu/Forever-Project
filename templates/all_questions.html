@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block body%}
     <h1>My Questions</h1>
-    <form action="/handle_answers" method="POST">
+    <form id="cuestionary" action="/handle_answers" method="POST">
     <ul>
         {% for question in questions %}
         <li>
@@ -10,8 +10,8 @@
             </a>
         </li>
             <li>
-            <input type="text" name="answer" placeholder="answer here">  
-            <input type="hidden" name="question_id" value="{{ question.question_id }}">
+            <label for="{{question.question_id}}" name="question">{{question.question}}</label>
+            <input type="text" name="answer_to_{{question.question_id}}" name="answer"placeholder="answer here">  
     </li>
         {% endfor %}
         <li>
