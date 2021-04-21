@@ -36,8 +36,10 @@ def display_login_form():
 def welcome_users():
     """After login options to see another user, with same link key"""
 
+    if 'user_id' in session:
+        user=crud.get_user_by_id(session['user_id'])
 
-    return render_template('welcome.html')
+    return render_template('welcome.html', user=user)
 
 
 @app.route('/users/<user_id>')
@@ -207,7 +209,11 @@ def show_question(question_id):
 def register_wishes():
     """Create wishes"""
 
-    
+
+
+    return render_template('my_wishes.html', user=user, wish=wish)
+
+
 
 @app.route('/handle_answers/<answer_id>')
 def show_answer(answer_id):

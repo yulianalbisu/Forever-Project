@@ -4,10 +4,15 @@
 
 {% block body %}
 <h1>I really wish you could do this:</h1>
+<form id="wishes" action="/wish" method="POST" enctype="multipart/form-data">
+<li>
+  <input type="text" name="wish" placeholder="I wish ">
+</li>
+<input type="submit">
+</form>
+
 <h2>{{ answer.wish }}</h2>
-<block>
-  {{ answer.wish }}
-</block>
+
 
 <img src="En llaves va a aparecer algo">
 {% endblock %}
