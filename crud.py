@@ -139,13 +139,13 @@ def question_category_family():
 def get_question_by_id(question_id):
     """Return a question by primary key"""
 
-    return Question.query.get(question_id)
+    return Question.query.filter_by(question_id=question_id)
 
 
-def create_answer(user, question, answer):
+def create_answer(user_id, question_id, answer):
     """Create and return an answer"""
 
-    answer = Answer(user=user, question=question, answer=answer)
+    answer = Answer(user_id=user_id, question_id=question_id, answer=answer)
 
     db.session.add(answer)
     db.session.commit()
@@ -168,7 +168,7 @@ def get_answer_by_id(user_id):
 def get_wish(wish):
     """Get wish from user_id"""
 
-    wish = db.session.query(Answer.wish).all()
+    wish = db.session.query(Answer.wis).all()
 
     return wish
 

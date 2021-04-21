@@ -55,3 +55,31 @@ ANSWERS WORKING
 
 <img src="En llaves va a aparecer algo">
 {% endblock %}
+
+ALL_QUESTIONS.HTML
+{% extends 'base.html' %}
+{% block body%}
+    <h1>My Questions</h1>
+    <form action="/handle_answers" method="POST">
+    <ul>
+        {% for question in questions %}
+        <li>
+            <a href="/questions/{{ question.question_id }}">
+                {{ question.question }} 
+            </a>
+        </li>
+            <li>
+            <label for="{{question.question_id}}" name="question">{{question.question}}</label>
+            <input type="text" name="answer_to_{{question.question_id}}" name="answer"placeholder="answer here">  
+    </li>
+        {% endfor %}
+        <li>
+            <input type="text" name="wish" placeholder="I wish ">
+        </li>
+        <input type="submit">
+    </ul>
+</form>
+{% endblock %}
+
+SERVER.PY /handle_answers
+

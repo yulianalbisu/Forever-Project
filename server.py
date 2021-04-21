@@ -164,6 +164,7 @@ def all_questions():
 def register_answers():
     """Create answers"""
 
+    
     """
     get all question from db, variable named all_qs
 
@@ -171,40 +172,24 @@ def register_answers():
         to get the user's answer, use request.form.get(question.id) # notice that we don't have "quotes" around question)
         print the answer to the question
     """
-    user = crud.get_user_by_id(session['user_id'])
-    all_questions = crud.get_questions()
 
-    for question in all_questions:
-        # print(question)
-        answer=request.form.get(f"answer_to_{question.question_id}")
-        print(answer)
-        if answer:
-            answer_obj= crud.create_answer(user, question, answer)
-            print(answer_obj)
-        # make a sqlalchemy answer object using the answer
-        # ..and your crud function to create answer obect/rows
-
-    answer = request.form.get("")
-    wish = request.form.get("wish")  
+    user_id = session.get("user_id")
     question_id = request.form.get("question_id")
-    print("\n"* 2, "*" * 5, answer)
+    answer = request.form.get("answer")
 
-    user = crud.get_user_by_id(session['user_id'])
-    question = crud.get_question_by_id(question_id)
-    answers = crud.get_answer_by_id(session['user_id'])
+
+    question = crud.get_question_by_id("question_id")
+
+    add_answer = crud.create_answer(user_id=user_id, question_id=question_id, answer=answer)
+    
+    
+    flash("Your answer has been added")
+    print('add_answer*************')
+    return redirect('/handle_answers/{answer_id}')
     
 
-    if answer:
-        answer = crud.create_answer(user, question, answer)
-        return render_template('answer_details.html', answer=answer)
     
-    if wish:
-        wish = crud.get_wish(wish)
-        flash('You have a wish!')
-        return render_template('my_wishes.html', wish=wish)
-    if answer and wish:
-        flash("Let's check your answers")
-        return redirect('/welcome')
+
 
 @app.route('/questions/<question_id>')
 def show_question(question_id):
@@ -218,8 +203,8 @@ def show_question(question_id):
 def show_answer(answer_id):
     """Show details of the question"""
 
-    if 'answer_id' in session:
-        answer = crud.get_answer_by_id(answer_id)
+    #question = crud.get_question_by_id(question_id)
+    answer = crud.get_answer_by_id(answer_id)
 
     return render_template('answer_details.html', answer=answer)
     

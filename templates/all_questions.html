@@ -1,16 +1,17 @@
 {% extends 'base.html' %}
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 {% block body%}
     <h1>My Questions</h1>
     <form id="cuestionary" action="/handle_answers" method="POST">
     <ul>
         {% for question in questions %}
-        <li>
+        <!-- <li>
             <a href="/questions/{{ question.question_id }}">
                 {{ question.question }} 
             </a>
-        </li>
+        </li> -->
             <li>
-            <label for="{{question.question_id}}" name="question">{{question.question}}</label>
+            <a href="/questions/{{question.question_id}}" name="question">{{question.question}}</a>
             <input type="text" name="answer_to_{{question.question_id}}" name="answer"placeholder="answer here">  
     </li>
         {% endfor %}
@@ -20,4 +21,6 @@
         <input type="submit">
     </ul>
 </form>
+<h1>Im using JavaScript!!!</h1>
+<script> src="/my_forever/templates/cuestionary_form.js"</script>
 {% endblock %}
