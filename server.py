@@ -57,7 +57,7 @@ def show_user(user_id):
             else:
                 flash('No links found for you..')
                 print('ESTOY AQUI Y NO PASE IF STATEMENT 1!!!!!!')
-                return redirect('/new-user')
+                return redirect('/connecting')
     else:
         flash('Something went wrong')
         return redirect('/')
@@ -152,13 +152,14 @@ def register_partner():
 @app.route('/questions')
 def all_questions():
     """View all questions"""
+    if 'user_id' in session:
+        user = crud.get_user_by_id(session['user_id'])
+        questions = crud.get_questions()
+        # question = crud.get_question_by_id(question_id)
+        return render_template('all_questions.html', questions=questions)
 
-    
-    questions = crud.get_questions()
-
-    return render_template('all_questions.html', questions=questions)
-
-    
+    else:
+        return redirect('/login')   
 
 @app.route('/handle_answers', methods=['POST'])
 def register_answers():
@@ -171,32 +172,27 @@ def register_answers():
     # show user answers but place wish in other side (wish.html)
     # user has to be able to come back anytime to answer more questions or make more wishes
     # user will need a button that contains answers - wishes - respond questions or modificate
-
-    
-    """
-    get all question from db, variable named all_qs
-
-    for every question in all_qs
-        to get the user's answer, use request.form.get(question.id) # notice that we don't have "quotes" around question)
-        print the answer to the question
-    """
     # qids = request.form.getlist('question_id')
+    
     for i, qid in enumerate(request.form.getlist('question_id')):
         answer = request.form.getlist('answer')[i]
         user_id = session.get("user_id")
         # question = crud.get_question_by_id(qid)
 
-        if answer != '':
-            print(qid, request.form.getlist('answer')[i])
-            add_answer = crud.create_answer(user_id, qid, answer)
-            print(add_answer)
-
+        if answer:
+            print(qid, answer)
+            a = model.Answer.query.filter_by(user_id=user_id, question_id=qid).first()
+            print(a)
+            if not a:
+                new_answer = crud.create_answer(user_id, qid, answer)
+                print(new_answer)
+            else:
+                updated_ans = model.Answer.query.filter_by(answer_id=a.answer_id).update({'answer': answer})
+                print(updated_ans)
     flash("Your answers have been added")
+    return redirect('/questions')
     
-    #return redirect('/handle_answers/{answer_id}')
-    
-    return redirect(f'/users/{user_id}')
-    
+    #return redirect('/handle_answers/{answer_id}')  
 
 
 @app.route('/questions/<question_id>')
@@ -206,6 +202,12 @@ def show_question(question_id):
     question = crud.get_question_by_id(question_id)
 
     return render_template('question_details.html', question=question)
+
+@app.route('/wish', methods=['POST'])
+def register_wishes():
+    """Create wishes"""
+
+    
 
 @app.route('/handle_answers/<answer_id>')
 def show_answer(answer_id):
