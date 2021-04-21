@@ -163,6 +163,14 @@ def all_questions():
 @app.route('/handle_answers', methods=['POST'])
 def register_answers():
     """Create answers"""
+    # get answers belonged to a question from user 
+    # once got them, create each answer, corresponded to user_id, question_id, answer_id
+    # show user the answers collected
+    # if user has answer and wish
+    # collect answer and wish
+    # show user answers but place wish in other side (wish.html)
+    # user has to be able to come back anytime to answer more questions or make more wishes
+    # user will need a button that contains answers - wishes - respond questions or modificate
 
     
     """
@@ -172,22 +180,22 @@ def register_answers():
         to get the user's answer, use request.form.get(question.id) # notice that we don't have "quotes" around question)
         print the answer to the question
     """
+    # qids = request.form.getlist('question_id')
+    for i, qid in enumerate(request.form.getlist('question_id')):
+        answer = request.form.getlist('answer')[i]
+        user_id = session.get("user_id")
+        # question = crud.get_question_by_id(qid)
 
-    user_id = session.get("user_id")
-    question_id = request.form.get("question_id")
-    answer = request.form.get("answer")
+        if answer != '':
+            print(qid, request.form.getlist('answer')[i])
+            add_answer = crud.create_answer(user_id, qid, answer)
+            print(add_answer)
 
-
-    question = crud.get_question_by_id("question_id")
-
-    add_answer = crud.create_answer(user_id=user_id, question_id=question_id, answer=answer)
+    flash("Your answers have been added")
     
+    #return redirect('/handle_answers/{answer_id}')
     
-    flash("Your answer has been added")
-    print('add_answer*************')
-    return redirect('/handle_answers/{answer_id}')
-    
-
+    return redirect(f'/users/{user_id}')
     
 
 
@@ -203,7 +211,7 @@ def show_question(question_id):
 def show_answer(answer_id):
     """Show details of the question"""
 
-    #question = crud.get_question_by_id(question_id)
+    question = crud.get_question_by_id(question_id)
     answer = crud.get_answer_by_id(answer_id)
 
     return render_template('answer_details.html', answer=answer)
