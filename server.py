@@ -56,10 +56,7 @@ def show_user(user_id):
             if partner1 == user.user_id or partner2 == user.user_id:
                 link = model.db.session.query(model.Link).get(id)
                 return render_template('user_details.html', user=user, link=link)
-            else:
-                flash('No links found for you..')
-                print('ESTOY AQUI Y NO PASE IF STATEMENT 1!!!!!!')
-                return redirect('/connecting')
+    
     else:
         flash('Something went wrong')
         return redirect('/')
@@ -100,7 +97,7 @@ def login():
 
     if user and user.password == password:
         session['user_id'] = user.user_id
-        flash('Welcome! Get a link')
+        flash(f'Welcome! Here is your link:{link.link_id}')
         return redirect(f'/users/{user.user_id}') 
     else:
         flash('Wrong password')
@@ -175,11 +172,12 @@ def register_answers():
     # user has to be able to come back anytime to answer more questions or make more wishes
     # user will need a button that contains answers - wishes - respond questions or modificate
     # qids = request.form.getlist('question_id')
-    
+    #cuestions = crud.get_question_by_id(question_id)
+
     for i, qid in enumerate(request.form.getlist('question_id')):
         answer = request.form.getlist('answer')[i]
         user_id = session.get("user_id")
-        # question = crud.get_question_by_id(qid)
+        question = crud.get_question_by_id(qid)
 
         if answer:
             print(qid, answer)
@@ -192,7 +190,7 @@ def register_answers():
                 updated_ans = model.Answer.query.filter_by(answer_id=a.answer_id).update({'answer': answer})
                 print(updated_ans)
     flash("Your answers have been added")
-    return redirect('/questions')
+    return render_template('answer_details.html', a=a, user_id=user_id)  #change /questions for render template
     
     #return redirect('/handle_answers/{answer_id}')  
 
@@ -201,6 +199,7 @@ def register_answers():
 def show_question(question_id):
     """Show details of the question"""
 
+    
     question = crud.get_question_by_id(question_id)
 
     return render_template('question_details.html', question=question)
@@ -208,6 +207,8 @@ def show_question(question_id):
 @app.route('/wish')
 def wishes_form():
     """Form to get wishes data"""
+
+    wishes = request.args.get('wish')
 
     return render_template('my_wishes.html')
 
@@ -224,6 +225,7 @@ def register_wishes():
         wish = crud.create_wish(wish)
         flash('You have made a wish!')
         return render_template('show_wishes.html', wish=wish)
+
 
 
 

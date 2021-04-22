@@ -10,15 +10,15 @@
                 {{ question.question }} 
             </a>
         </li> -->
-            <li>{{question.question_id}}) {{question.question}}</li>
-            <input type="text" name="question_id" value={{question.question_id}} hidden>
-            <input type="text" name="answer" placeholder='answer here'>  
-    
+        <p>{{question.question_id}}) {{question.question}}</p>
+        <input type="text" name="question_id" value={{question.question_id}} hidden>
+        <ul>
+        <input type="text" name="answer" placeholder='answer here'>  
+        </ul>
         {% endfor %}
-        <li>
-            <input type="text" name="wish" placeholder="I wish ">
-        </li>
+        <p>
         <input type="submit">
-    </ul>
+        </p>
+    
 </form>
 {% endblock %}
