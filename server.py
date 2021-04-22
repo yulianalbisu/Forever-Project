@@ -194,15 +194,24 @@ def register_answers():
                 updated_ans = model.Answer.query.filter_by(answer_id=a.answer_id).update({'answer': answer})
                 print(updated_ans)
     flash("Your answers have been added")
-    return render_template('answer_details.html', answers=answers, answer=answer,a=a, user_id=user_id)  #change /questions for render template
+    return render_template('answer_details.html', answers=answers, answer=answer, a=a, user_id=user_id)  #change /questions for render template
     
     #return redirect('/handle_answers/{answer_id}')  
 
-@app.route('/answers')
+@app.route('/answers/<answer_id>')
 def show_answers():
     """Show the answers from user"""
 
-    return render_template('answer_details.html')
+    answer = crud.get_answer_by_id(session['user_id'])
+    all_answers = []
+
+    for ans in all_answers:
+        question_answer = crud.get_question_text_by_id(question=answers.question_id)
+        answer_text = ans.answer
+        all_answers.append([answer_text, question_answer])
+
+    return render_template('answer_details.html', all_answers=all_answers)
+
 
 
 @app.route('/questions/<question_id>')
