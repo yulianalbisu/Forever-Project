@@ -205,13 +205,25 @@ def show_question(question_id):
 
     return render_template('question_details.html', question=question)
 
+@app.route('/wish')
+def wishes_form():
+    """Form to get wishes data"""
+
+    return render_template('my_wishes.html')
+
 @app.route('/wish', methods=['POST'])
 def register_wishes():
     """Create wishes"""
 
+    
+    wish = request.form.get("wish")
+    print('*******', wish, '******')
 
-
-    return render_template('my_wishes.html', user=user, wish=wish)
+    
+    if wish:
+        wish = crud.create_wish(wish)
+        flash('You have made a wish!')
+        return render_template('show_wishes.html', wish=wish)
 
 
 

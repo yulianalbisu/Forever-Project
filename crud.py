@@ -165,10 +165,13 @@ def get_answer_by_id(user_id):
 
     return db.session.query(Answer).filter_by(user_id=user_id).all()
 
-def get_wish(wish):
-    """Get wish from user_id"""
+def create_wish(wish):
+    """Create a wish"""
 
-    wish = db.session.query(Answer.wis).all()
+    wish = Answer(wish=wish)
+
+    db.session.add(wish)
+    db.session.commit()
 
     return wish
 

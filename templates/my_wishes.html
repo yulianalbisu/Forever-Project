@@ -1,17 +1,20 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ answer.answer }} - Details{% endblock %}
+{% block title %}Details{% endblock %}
 
 {% block body %}
-<h1>I really wish you could do this:</h1>
+<h1>I wish for</h1>
+<h2>It would be nice if:</h2>
+
 <form id="wishes" action="/wish" method="POST" enctype="multipart/form-data">
 <li>
-  <input type="text" name="wish" placeholder="I wish ">
+  <input type="text" name="wish" placeholder="write wish here">
 </li>
+<p>
 <input type="submit">
+</p>
 </form>
 
-<h2>{{ answer.wish }}</h2>
 
 
 <img src="En llaves va a aparecer algo">

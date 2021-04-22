@@ -2,14 +2,22 @@
 {% block title %}My Forever{% endblock %}
 
 {% block body %}
-  <h1>Welcome!</h1>
-  
 
+<h1>Welcome!</h1>
+  
+<ol>
   <h2>Navigation</h2>
-  <ul>
-    <li><a href="/questions">My Questions</a></li>
-    <li><a href="/users/{{user.user_id}}">My Profile</a></li>
-  </ul>
+</ol>
+  <ol>
+    <a href="/wish">My Wishes</a>
+  </ol>
+
+  <ol>
+    <a href="/questions">My Questions</a>
+  </ol>
+  <ol>
+    <a href="/users/{{user.user_id}}">My Profile</a></li>
+  </ol>
 
 
   {% endblock %}
