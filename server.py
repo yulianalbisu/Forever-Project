@@ -173,11 +173,15 @@ def register_answers():
     # user will need a button that contains answers - wishes - respond questions or modificate
     # qids = request.form.getlist('question_id')
     #cuestions = crud.get_question_by_id(question_id)
-
+    answers = [] 
     for i, qid in enumerate(request.form.getlist('question_id')):
         answer = request.form.getlist('answer')[i]
+       
         user_id = session.get("user_id")
-        question = crud.get_question_by_id(qid)
+        question = crud.get_question_by_id(qid) #getting all my question info
+        q_text = crud.get_question_text_by_id(qid) #only getting the question text info
+        answers.append([q_text, answer]) #this is line 9 in answer_details.html
+        
 
         if answer:
             print(qid, answer)
@@ -190,9 +194,15 @@ def register_answers():
                 updated_ans = model.Answer.query.filter_by(answer_id=a.answer_id).update({'answer': answer})
                 print(updated_ans)
     flash("Your answers have been added")
-    return render_template('answer_details.html', a=a, user_id=user_id)  #change /questions for render template
+    return render_template('answer_details.html', answers=answers, answer=answer,a=a, user_id=user_id)  #change /questions for render template
     
     #return redirect('/handle_answers/{answer_id}')  
+
+@app.route('/answers')
+def show_answers():
+    """Show the answers from user"""
+
+    return render_template('answer_details.html')
 
 
 @app.route('/questions/<question_id>')
@@ -247,3 +257,4 @@ def show_answer(answer_id):
 if __name__ == '__main__':
     model.connect_to_db(app)
     app.run(host='0.0.0.0', debug=True)
+

@@ -141,6 +141,9 @@ def get_question_by_id(question_id):
 
     return Question.query.filter_by(question_id=question_id)
 
+def get_question_text_by_id(question_id):
+    question = Question.query.get(question_id)
+    return question.question
 
 def create_answer(user_id, question_id, answer):
     """Create and return an answer"""

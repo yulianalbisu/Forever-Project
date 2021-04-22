@@ -1,10 +1,18 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ a.answer }} - Details{% endblock %}
+{% block title %}- Details{% endblock %}
 
 {% block body %}
-<h1>this is my answer</h1>
-<h2>{{ a.answer }}</h2>
+<h1>My answers</h1>
+<p>
+{% for ans in answers %}
+
+{{ans[0]}}: <li>{{ans[1].capitalize()}}</li> <br>
+
+{% endfor %}
+</p>
+
+
 
 
 <img src="En llaves va a aparecer algo">
