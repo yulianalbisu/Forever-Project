@@ -97,7 +97,6 @@ def login():
 
     if user and user.password == password:
         session['user_id'] = user.user_id
-        flash(f'Welcome! Here is your link:{link.link_id}')
         return redirect(f'/users/{user.user_id}') 
     else:
         flash('Wrong password')
@@ -151,12 +150,17 @@ def register_partner():
 @app.route('/questions')
 def all_questions():
     """View all questions"""
+
     if 'user_id' in session:
         user = crud.get_user_by_id(session['user_id'])
         questions = crud.get_questions()
-        # question = crud.get_question_by_id(question_id)
-        return render_template('all_questions.html', questions=questions)
 
+        answers = [(answer.question_id, answer.answer) for answer in user.answers]
+        answers.sort(key=lambda x:x[0])
+        print(answers)
+        print([q.question_id for q in questions])
+        return render_template('all_questions.html', questions=questions, answers=answers)
+    
     else:
         return redirect('/login')   
 
@@ -241,21 +245,18 @@ def register_wishes():
 
     
     if wish:
-        wish = crud.create_wish(wish)
-        flash('You have made a wish!')
+        wishes = crud.create_wish(wish)
+        wish = crud.get_wish(wish)
         return render_template('show_wishes.html', wish=wish)
 
+@app.route('/view-wishes')
+def view_user_wishes():
+    """User can view wishes"""
+
+    return render_template('show_wishes.html')
 
 
 
-@app.route('/handle_answers/<answer_id>')
-def show_answer(answer_id):
-    """Show details of the question"""
-
-    question = crud.get_question_by_id(question_id)
-    answer = crud.get_answer_by_id(answer_id)
-
-    return render_template('answer_details.html', answer=answer)
     
 
 

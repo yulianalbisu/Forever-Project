@@ -7,7 +7,7 @@
 <p>
 {% for ans in answers %}
 
-<ul>{{ans[0]}}: </ul><li>{{ans[1].capitalize()}} <br>
+<ul>{{ans[0]}}: </ul><li>{{ans[1].capitalize()|default('None')}} <br>
 
 {% endfor %}
 </p>

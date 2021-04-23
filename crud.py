@@ -178,6 +178,11 @@ def create_wish(wish):
 
     return wish
 
+def get_wish(wish):
+    """Get wish from user"""
+
+    return db.session.query(Answer).filter_by(wish=wish).first()
+
 
 if __name__ == '__main__':
     from server import app

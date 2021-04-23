@@ -5,15 +5,11 @@
     <form id="cuestionary" action="/handle_answers" method="POST" enctype="multipart/form-data">
     <ul>
         {% for question in questions %}
-        <!-- <li>
-            <a href="/questions/{{ question.question_id }}">
-                {{ question.question }} 
-            </a>
-        </li> -->
+        
         <p>{{question.question_id}}) {{question.question}}</p>
         <input type="text" name="question_id" value={{question.question_id}} hidden>
         <ul>
-        <input type="text" name="answer" placeholder='answer here'>  
+        <input type="text" name="answer" placeholder="answer here">  
         </ul>
         {% endfor %}
         <p>
