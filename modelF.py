@@ -65,3 +65,36 @@ def show_answers():
 
 
 return render_template('answer_details.html', answers=answers, answer=answer, a=a, user_id=user_id)
+
+
+WISHES WORKING BUT CANT SEE them
+
+@app.route('/wish')
+def wishes_form():
+    """Form to get wishes data"""
+
+    wishes = request.args.get('wish')
+
+    return render_template('my_wishes.html')
+
+@app.route('/wish', methods=['POST'])
+def register_wishes():
+    """Create wishes"""
+
+    
+    wish = request.form.get("wish")
+    print('*******', wish, '******')
+
+    if wish:
+        wishes = crud.create_wish(wish)
+        wish = crud.get_wish(wish)
+        return render_template('show_wishes.html', wish=wish)
+
+@app.route('/view-wishes')
+def view_user_wishes(wish):
+    """User can view wishes"""
+
+    wish = crud.get_wish(wish)
+
+
+    return render_template('show_wishes.html', wish=wish)

@@ -183,6 +183,7 @@ def get_wish(wish):
 
     return db.session.query(Answer).filter_by(wish=wish).first()
 
+    
 
 if __name__ == '__main__':
     from server import app
