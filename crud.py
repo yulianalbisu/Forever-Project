@@ -183,7 +183,12 @@ def get_wish(wish):
 
     return db.session.query(Answer).filter_by(wish=wish).first()
 
-    
+def get_wish_by_user():
+    """Get wish from user"""
+
+    wishes = db.session.query(Answer.wish).all()
+
+    return wishes
 
 if __name__ == '__main__':
     from server import app
