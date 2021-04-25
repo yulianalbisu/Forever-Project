@@ -239,16 +239,18 @@ def register_wishes():
     print('*******', wish, '******')
     user = crud.get_user_by_id(session['user_id'])
 
+    
     if wish:
-        wish = crud.create_wish(wish)
+        wish = crud.create_wish(wish, user)
         return render_template('show_wishes.html', wish=wish, user=user)
 
 @app.route('/wishes')
 def view_user_wishes():
     """User can view wishes"""
 
-    wishes = crud.get_wish_by_user()
+    
     user = crud.get_user_by_id(session['user_id'])
+    wishes = crud.get_wish_by_user()
     print('******',wishes,'*****')
 
 

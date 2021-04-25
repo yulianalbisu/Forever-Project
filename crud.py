@@ -179,17 +179,17 @@ def get_answers_answered():
     
     return answers
 
-def create_wish(wish):
+def create_wish(wish,user):
     """Create a wish"""
 
-    wish = Answer(wish=wish)
+    wish = Answer(wish=wish, user=user)
 
     db.session.add(wish)
     db.session.commit()
 
     return wish
 
-def get_wish(wish):
+def get_wish():
     """Get wish from user"""
 
     return db.session.query(Answer).filter_by(wish=wish).first()
