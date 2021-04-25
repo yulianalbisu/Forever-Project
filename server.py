@@ -199,22 +199,18 @@ def register_answers():
                 print(updated_ans)
     flash("Your answers have been added")
     return render_template('answer_details.html', answers=answers, answer=answer, a=a, user_id=user_id)  #change /questions for render template
-    
-    #return redirect('/handle_answers/{answer_id}')  
+     
 
-@app.route('/answers/<answer_id>')
+@app.route('/show_answers')
 def show_answers():
     """Show the answers from user"""
 
-    answer = crud.get_answer_by_id(session['user_id'])
-    all_answers = []
+    answers = crud.get_answers_answered()
+    user = crud.get_user_by_id(session['user_id'])
+    print('****', answers, '******')
 
-    for ans in all_answers:
-        question_answer = crud.get_question_text_by_id(question=answers.question_id)
-        answer_text = ans.answer
-        all_answers.append([answer_text, question_answer])
 
-    return render_template('answer_details.html', all_answers=all_answers)
+    return render_template('showing_answers.html', answers=answers, user=user)
 
 
 

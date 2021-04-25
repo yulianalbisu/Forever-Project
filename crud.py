@@ -142,7 +142,10 @@ def get_question_by_id(question_id):
     return Question.query.filter_by(question_id=question_id)
 
 def get_question_text_by_id(question_id):
+    """Get only the text of the questions"""
+
     question = Question.query.get(question_id)
+
     return question.question
 
 def create_answer(user_id, question_id, answer):
@@ -167,6 +170,14 @@ def get_answer_by_id(user_id):
     """Return answers by primary key"""
 
     return db.session.query(Answer).filter_by(user_id=user_id).all()
+
+
+def get_answers_answered():
+    """Return only answers answered"""
+
+    answers = db.session.query(Question.question, Answer.answer).filter(Answer.answer_id==Question.question_id).all()
+    
+    return answers
 
 def create_wish(wish):
     """Create a wish"""

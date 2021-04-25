@@ -1,0 +1,24 @@
+
+
+{% block title %}- My Answers{% endblock %}
+
+{% block body %}
+<body>
+
+<h1>My answers</h1>
+<ol>
+  <a href="/welcome">Go back to My Forever</a>
+</ol>
+
+<a href="/show_answers"></a>
+
+<p>
+{% for answer in answers %}
+
+<ul>{{ answer.question }} </ul><ul>{{ answer.answer.capitalize() }}<br> </ul><br>
+
+{% endfor %}
+</p>
+<img src="En llaves va a aparecer algo">
+</body>
+{% endblock %}
