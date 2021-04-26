@@ -156,7 +156,7 @@ def all_questions():
         questions = crud.get_questions()
 
         answers = [(answer.question_id, answer.answer) for answer in user.answers]
-        answers.sort(key=lambda x:x[0])
+        #answers.sort(key=lambda x:x[0])
         print(answers)
         print([q.question_id for q in questions])
         return render_template('all_questions.html', questions=questions, answers=answers)
@@ -197,6 +197,7 @@ def register_answers():
             else:
                 updated_ans = model.Answer.query.filter_by(answer_id=a.answer_id).update({'answer': answer})
                 print(updated_ans)
+                
     flash("Your answers have been added")
     return render_template('answer_details.html', answers=answers, answer=answer, a=a, user_id=user_id)  #change /questions for render template
      
@@ -250,7 +251,7 @@ def view_user_wishes():
 
     
     user = crud.get_user_by_id(session['user_id'])
-    wishes = crud.get_wish_by_user()
+    wishes = crud.get_wish()
     print('******',wishes,'*****')
 
 

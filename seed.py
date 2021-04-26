@@ -51,8 +51,9 @@ for user in range(10):
         answer = fake.text() #check if will work with input since user has to answer.
         wish = fake.sentence()
 
-        crud.create_answer(user, db_question, answer, wish)
-
+        crud.create_answer(user, db_question, answer)
+        crud.create_wish(user, wish)
+        
     for link in range(10):
         link = link_id
         anniversary = date.today()
