@@ -2,6 +2,8 @@
 
 from flask import (Flask, render_template, request, flash, session,
                    redirect)
+
+
 import crud
 from jinja2 import StrictUndefined
 import model
@@ -197,7 +199,7 @@ def register_answers():
             else:
                 updated_ans = model.Answer.query.filter_by(answer_id=a.answer_id).update({'answer': answer})
                 print(updated_ans)
-                
+
     flash("Your answers have been added")
     return render_template('answer_details.html', answers=answers, answer=answer, a=a, user_id=user_id)  #change /questions for render template
      
@@ -206,8 +208,9 @@ def register_answers():
 def show_answers():
     """Show the answers from user"""
 
-    answers = crud.get_answers_answered()
+    
     user = crud.get_user_by_id(session['user_id'])
+    answers = crud.get_answers_answered(user.user_id)
     print('****', answers, '******')
 
 
@@ -251,18 +254,40 @@ def view_user_wishes():
 
     
     user = crud.get_user_by_id(session['user_id'])
-    wishes = crud.get_wish()
+    wishes = crud.get_wish(user.user_id)
     print('******',wishes,'*****')
 
 
     return render_template('all_wishes.html', wishes=wishes, user=user)
 
+@app.route('/wishes_partner')
+def view_partner_wishes():
+    """ View partner wishes """
 
+    #user in session has to be able to view wishes from partner NOT in session
+    #get partner_id via link
+    # if users share links: user can view partner info and partner can view user info
 
+    user = crud.get_user_by_id(session['user_id'])
+    #link = crud.get_link_by_user_id(user.user_id)
     
 
+    if user:
+        partner = crud.get_partner_by_user()
+        print('*********', partner, '**********')
+        partner_wishes = crud.get_partner_wishes(partner)
+        flash("Take a look at partner's wish")
+        return render_template('partner_wishes.html', user=user, partner=partner, partner_wishes=partner_wishes)
+    
+@app.route('/logout')
+def logout():
+    """Log out user in session"""
+
+    del session['user_id']
+    flash("You have been logged out")
 
 
+    return redirect('/')
 
 
 

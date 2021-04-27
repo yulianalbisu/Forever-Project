@@ -169,7 +169,7 @@ def get_answer_by_id(user_id):
     return db.session.query(Answer).filter_by(user_id=user_id).all()
 
 
-def get_answers_answered():
+def get_answers_answered(user_id):
     """Return only answers answered"""
 
     ans = db.session.query(Question.question, Answer.answer).filter(Answer.answer_id==Question.question_id)
@@ -190,16 +190,31 @@ def create_wish(wish,user):
     return wish
 
 
-def get_wish():
+def get_wish(user_id):
     """Get wish from user"""
 
     ans = db.session.query(Answer)
+    wish = ans.filter(Answer.wish.isnot(None)).filter_by(user_id=user_id)
+
+    return wish.all()
+
+def get_partner_by_user():
+
+    partners= db.session.query(Link.user_id1, Link.partner)
+    #partner = ln.filter(Link).filter_by(partner=partner)
+
+    return partners.first()
+
+
+def get_partner_wishes(partner):
+    """Get partner via link_id"""
+
+    ans = db.session.query(Answer, Link)
     wish = ans.filter(Answer.wish.isnot(None))
 
     return wish.all()
 
-
-
+    
 if __name__ == '__main__':
     from server import app
     connect_to_db(app)

@@ -2,7 +2,7 @@
 {% block title %}All Wishes{% endblock %}
 
 {% block body %} 
-<h1>All Wishes {{ user.name.capitalize() }}</h1>
+<h1>All Wishes {{ partner }}</h1>
 <a href="/wishes"></a>
 <p class="message"><ul><a href="/welcome">Take me to My Forever</ul></a></p>
 {% for wish in wishes %}
@@ -14,5 +14,3 @@
 {% endfor %}
 
 {% endblock body %}
-
- 
