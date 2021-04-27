@@ -196,23 +196,36 @@ def get_wish(user_id):
     ans = db.session.query(Answer)
     wish = ans.filter(Answer.wish.isnot(None)).filter_by(user_id=user_id)
 
-    return wish.all()
+    return wish.first()
 
-def get_partner_by_user():
+def get_partner_by_user(user_id):
+    """Returns partner"""
+
+    partner1= db.session.query(Link).filter(Link.partner==User.user_id).first()
+    
+
+    return partner1.user_id1
+
+def get_user_by_partner(user_id):
+    """returns user_id1"""
+
+    partner2= db.session.query(Link).filter(Link.user_id1==User.user_id).first()
+
+    return partner2.partner
+
+def get_both_partners_id():
 
     partners= db.session.query(Link.user_id1, Link.partner)
-    #partner = ln.filter(Link).filter_by(partner=partner)
-
+    
     return partners.first()
-
 
 def get_partner_wishes(partner):
     """Get partner via link_id"""
 
     ans = db.session.query(Answer, Link)
-    wish = ans.filter(Answer.wish.isnot(None))
+    wish_partner = ans.filter(Answer.wish.isnot(None))
 
-    return wish.all()
+    return wish_partner.all()
 
     
 if __name__ == '__main__':

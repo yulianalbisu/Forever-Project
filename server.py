@@ -267,18 +267,28 @@ def view_partner_wishes():
     #user in session has to be able to view wishes from partner NOT in session
     #get partner_id via link
     # if users share links: user can view partner info and partner can view user info
+    # PROBLEM: giving me the first info, not the actual
 
     user = crud.get_user_by_id(session['user_id'])
     #link = crud.get_link_by_user_id(user.user_id)
-    
+    print('******', user.user_id, '********')
 
     if user:
-        partner = crud.get_partner_by_user()
-        print('*********', partner, '**********')
+        partner = crud.get_partner_by_user(user.user_id) #partner and user id, now if partner or user== show other partner wishes.
+        print('*********', partner, '**********') #3
+        user_by_partner = crud.get_user_by_partner(user.user_id) #2
+        print('*********', user_by_partner, '**********')
+        user != partner
         partner_wishes = crud.get_partner_wishes(partner)
         flash("Take a look at partner's wish")
         return render_template('partner_wishes.html', user=user, partner=partner, partner_wishes=partner_wishes)
-    
+    #if user:
+        #user == partner
+        #user_wishes = crud.get_wish(user.user_id)
+        #flash("These are your wishes")
+        #return render_template('all_wishes.html', user=user, user_wishes=user_wishes)
+
+
 @app.route('/logout')
 def logout():
     """Log out user in session"""

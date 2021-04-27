@@ -98,3 +98,22 @@ def view_user_wishes(wish):
 
 
     return render_template('show_wishes.html', wish=wish)
+
+CODE THAT RUIN MY CODE:
+
+if user:
+        partner1 = crud.get_partner_by_user()
+        ('*********', partner1, '***********') #partner and user id, now if partner or user== show other partner wishes.
+        partner2 = crud.get_user_by_partner()
+        ('*********', partner2, '***********')
+        wishes = crud.get_partner_wishes(partner1)
+        if partner1: 
+            return render_template('partner_wishes.html', user=user, partner=partner1)
+        elif partner2:
+            return render_template('partner_wishes.html', user=user, partner=partner2)
+        else:
+            flash("You don't have a partner yet.")
+            return redirect('/connecting')
+    else:
+        flash('Please log in or register for an account.')
+        return redirect('/login')
