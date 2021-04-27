@@ -274,19 +274,23 @@ def view_partner_wishes():
     print('******', user.user_id, '********')
 
     if user:
-        partner = crud.get_partner_by_user(user.user_id) #partner and user id, now if partner or user== show other partner wishes.
-        print('*********', partner, '**********') #3
-        user_by_partner = crud.get_user_by_partner(user.user_id) #2
-        print('*********', user_by_partner, '**********')
-        user != partner
-        partner_wishes = crud.get_partner_wishes(partner)
-        flash("Take a look at partner's wish")
-        return render_template('partner_wishes.html', user=user, partner=partner, partner_wishes=partner_wishes)
-    #if user:
-        #user == partner
-        #user_wishes = crud.get_wish(user.user_id)
-        #flash("These are your wishes")
-        #return render_template('all_wishes.html', user=user, user_wishes=user_wishes)
+        partner1 = crud.get_partner_by_user(user.user_id) #partner and user id, now if partner or user== show other partner wishes.
+        print('*********', partner1, '**********') #3
+        partner2= crud.get_user_by_partner(user.user_id) #2
+        print('*********', partner2, '**********')
+        #user != partner1
+        partner1_wishes = crud.get_userid1_wishes(partner1)
+        print('********', partner1_wishes, '********')
+        partner2_wishes = crud.get_partner_wishes(partner2)
+        print('********', partner2_wishes, '********')
+
+        if partner1:
+            return render_template('partner_wishes.html', user=user, partner1=partner1, partner1_wishes=partner1_wishes)
+        elif partner2:
+            partner2_wishes = crud.get_partner_wishes(partner2)
+            return render_template('partner2_wishes.html', user=user, partner2=partner2, partner2_wishes=partner2_wishes)
+        
+    
 
 
 @app.route('/logout')

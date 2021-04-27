@@ -117,3 +117,16 @@ if user:
     else:
         flash('Please log in or register for an account.')
         return redirect('/login')
+
+CODE WORKING WITH WRONG USERS:
+
+if user:
+        partner1 = crud.get_partner_by_user(user.user_id) #partner and user id, now if partner or user== show other partner wishes.
+        print('*********', partner1, '**********') #3
+        partner2= crud.get_user_by_partner(user.user_id) #2
+        print('*********', partner2, '**********')
+        user != partner1
+        partner1_wishes = crud.get_partner_wishes(partner1)
+        print('********', partner1_wishes, '********')
+        flash("Take a look at partner's wish")
+        return render_template('partner_wishes.html', user=user, partner=partner1, partner1_wishes=partner1_wishes)
