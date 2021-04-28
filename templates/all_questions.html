@@ -9,7 +9,7 @@
         <p>{{q.question_id}}) {{q.question}}</p>
         <input type="text" name="question_id" value={{q.question_id}} hidden>
         <ul>
-        <input type="text" name="answer" placeholder={{ ph[q.question_id] }}>  
+        <input type="text" name="answer" placeholder="{{ ph[q.question_id] }}">  
         </ul>
         {% endfor %}
         <p>
