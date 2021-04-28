@@ -136,7 +136,10 @@ def question_category_family():
 def get_question_by_id(question_id):
     """Return a question by primary key"""
 
-    return Question.query.filter_by(question_id=question_id)
+    return Question.query.filter_by(question_id=question_id).first()
+
+def get_qtext_by_qid(qid):
+    return db.session.query(Question.question_id, Question.question).filter_by(question_id=qid).first()
 
 def get_question_text_by_id(question_id):
     """Get only the text of the questions"""

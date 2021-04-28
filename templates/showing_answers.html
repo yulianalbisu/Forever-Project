@@ -15,10 +15,10 @@
 <p>
 {% for answer in answers %}
 
-<ul>{{ answer.question }} </ul><ul>{{ answer.answer.capitalize() }}<br> </ul><br>
+<ul>{{ answer[1] }} </ul><ul>{{ answer[2] }}<br></ul><br>
 
 {% endfor %}
 </p>
 <img src="En llaves va a aparecer algo">
-</body>
+</body> 
 {% endblock %}

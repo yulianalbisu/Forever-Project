@@ -157,11 +157,17 @@ def all_questions():
         user = crud.get_user_by_id(session['user_id'])
         questions = crud.get_questions()
 
-        answers = [(answer.question_id, answer.answer) for answer in user.answers]
-        #answers.sort(key=lambda x:x[0])
-        print(answers)
-        print([q.question_id for q in questions])
-        return render_template('all_questions.html', questions=questions, answers=answers)
+        # answers = [(answer.question_id, answer.answer) for answer in user.answers]
+        answers = {answer.question_id: answer.answer for answer in user.answers if answer.answer}
+        # print(answers, '************************')
+        # print([q.question_id for q in questions])
+
+        ph = {}
+        for q in range(1, len(questions) + 1):
+            if answers.get(q): ph[q] = answers[q]
+            else: ph[q] = ''
+
+        return render_template('all_questions.html', questions=questions, answers=answers, ph=ph)
     
     else:
         return redirect('/login')   
@@ -179,6 +185,7 @@ def register_answers():
     # user will need a button that contains answers - wishes - respond questions or modificate
     # qids = request.form.getlist('question_id')
     #cuestions = crud.get_question_by_id(question_id)
+    user = crud.get_user_by_id(session['user_id'])
     answers = [] 
     for i, qid in enumerate(request.form.getlist('question_id')):
         answer = request.form.getlist('answer')[i]
@@ -192,16 +199,18 @@ def register_answers():
         if answer:
             print(qid, answer)
             a = model.Answer.query.filter_by(user_id=user_id, question_id=qid).first()
-            print(a)
             if not a:
                 new_answer = crud.create_answer(user_id, qid, answer)
-                print(new_answer)
+                print(new_answer, '*************new answer**************')
             else:
                 updated_ans = model.Answer.query.filter_by(answer_id=a.answer_id).update({'answer': answer})
-                print(updated_ans)
+                print(updated_ans, '**********updated answer*************')
+                model.db.session.commit()
 
     flash("Your answers have been added")
-    return render_template('answer_details.html', answers=answers, answer=answer, a=a, user_id=user_id)  #change /questions for render template
+    
+
+    return redirect('/show_answers') #change /questions for render template
      
 
 @app.route('/show_answers')
@@ -210,11 +219,16 @@ def show_answers():
 
     
     user = crud.get_user_by_id(session['user_id'])
-    answers = crud.get_answers_answered(user.user_id)
+    qids = [answer.question_id for answer in user.answers]
+    answers = []
+    for a in user.answers:
+        q = crud.get_qtext_by_qid(a.question_id)
+        if q:
+            answers.append((q[0], q[1], a.answer))
     print('****', answers, '******')
 
 
-    return render_template('showing_answers.html', answers=answers, user=user)
+    return render_template('showing_answers.html', answers=sorted(answers), user=user)
 
 
 

@@ -4,12 +4,12 @@
     <h1>My Questions</h1>
     <form id="cuestionary" action="/handle_answers" method="POST" enctype="multipart/form-data">
     <ul>
-        {% for question in questions %}
+        {% for q in questions %}
         
-        <p>{{question.question_id}}) {{question.question}}</p>
-        <input type="text" name="question_id" value={{question.question_id}} hidden>
+        <p>{{q.question_id}}) {{q.question}}</p>
+        <input type="text" name="question_id" value={{q.question_id}} hidden>
         <ul>
-        <input type="text" name="answer" placeholder="answer here">  
+        <input type="text" name="answer" placeholder={{ ph[q.question_id] }}>  
         </ul>
         {% endfor %}
         <p>
