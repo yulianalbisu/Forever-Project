@@ -15,7 +15,7 @@
 <p>
 {% for answer in answers %}
 
-<ul>{{ answer[1] }} </ul><ul>{{ answer[2] }}<br></ul><br>
+<ul>{{ answer[1] }} </ul><ul>{{ answer[2].capitalize() }}<br></ul><br>
 
 {% endfor %}
 </p>

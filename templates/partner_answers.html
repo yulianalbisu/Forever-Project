@@ -2,7 +2,7 @@
 {% block title %}All Answers{% endblock %}
 
 {% block body %} 
-<h1>All Answers of {{ partner.name.title() }} !!!</h1>
+<h1>This is {{ partner.name.title() }} answers!!!</h1>
 
 <a href="/answers_partner"></a>
 
@@ -10,7 +10,7 @@
 
 {% for answer in answers %}
     
-<ul>{{ answer[1] }} </ul><ul>{{ answer[2] }}<br></ul><br>
+<ul>{{ answer[1] }} </ul><ul>{{ answer[2].capitalize() }}<br></ul><br>
 
 
 

@@ -116,17 +116,15 @@ def question_category_personal():
 def question_category_love():
     """Return questions by category love"""
 
-    category_love = db.session.query(Question).filter_by(category='love language').all()
+    category_love = db.session.query(Question).filter(Question.category=='love language').order_by(Question.description).all()
     
-    db.session.add(category_love)
-    db.session.commit()
 
     return category_love
 
 def question_category_family():
     """Return questions by category family"""
 
-    category_family = db.session.query(Question).filter_by(category='family').all()
+    category_family = db.session.query(Question).group_by(category='family').all()
 
     db.session.add(category_family)
     db.session.commit()

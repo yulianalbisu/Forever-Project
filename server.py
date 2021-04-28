@@ -150,6 +150,16 @@ def register_partner():
             flash('Cannot find your partner')
             return redirect('/connecting')
 
+@app.route('/tips')
+def tips_for_user():
+    """Getting some tips according to the questions"""
+
+    questions = crud.get_questions()
+    
+    
+
+    return render_template('tips.html', love=love, questions=questions)
+
 
 @app.route('/questions')
 def all_questions():
@@ -159,10 +169,9 @@ def all_questions():
         user = crud.get_user_by_id(session['user_id'])
         questions = crud.get_questions()
 
-        # answers = [(answer.question_id, answer.answer) for answer in user.answers]
+        
         answers = {answer.question_id: answer.answer for answer in user.answers if answer.answer}
-        # print(answers, '************************')
-        # print([q.question_id for q in questions])
+        
 
         ph = {}
         for q in range(1, len(questions) + 1):
