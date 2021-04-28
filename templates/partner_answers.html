@@ -2,16 +2,16 @@
 {% block title %}All Answers{% endblock %}
 
 {% block body %} 
-<h1>All Wishes Hello there {{ partner.name.title() }}!!!</h1>
+<h1>All Answers of {{ partner.name.title() }} !!!</h1>
 
 <a href="/answers_partner"></a>
 
 <p class="message"><ul><a href="/welcome">Take me to My Forever</ul></a></p>
 
-{% for answer in answers_p %}
+{% for answer in answers %}
     
+<ul>{{ answer[1] }} </ul><ul>{{ answer[2] }}<br></ul><br>
 
-<p>{{ answer.answer }} </p>
 
 
 {% endfor %}

@@ -71,6 +71,7 @@ def register_user():
     email = request.form.get('email')
     password= request.form.get('password')
     name = request.form.get('name')
+    nickname = request.form.get('nickname')
     anniversary = request.form.get('anniversary')
 
     user = crud.get_user_by_email(email) #in crud 
@@ -118,6 +119,7 @@ def register_partner():
     email = request.form.get('email')
     password= request.form.get('password')
     name = request.form.get('name')
+    nickname = request.form.get('nickname')
     link_id = request.form.get('link_id')
     link_id = int(link_id)
     anniversary = request.form.get('anniversary')
@@ -210,7 +212,7 @@ def register_answers():
     flash("Your answers have been added")
     
 
-    return redirect('/show_answers') #change /questions for render template
+    return redirect('/show_answers') 
      
 
 @app.route('/show_answers')
@@ -228,7 +230,7 @@ def show_answers():
     print('****', answers, '******')
 
 
-    return render_template('showing_answers.html', answers=sorted(answers), user=user)
+    return render_template('showing_answers.html', answers=answers, user=user)
 
 
 
@@ -267,7 +269,13 @@ def view_partner_answers():
     """User can view answers from partner"""
 
     user=crud.get_user_by_id(session['user_id'])
-    print('******', user.user_id, '********')
+    qids = [answer.question_id for answer in user.answers]
+    answers = []
+    for a in user.answers:
+        q = crud.get_qtext_by_qid(a.question_id)
+        if q:
+            answers.append((q[0], q[1], a.answer))
+    print('******', answers, '********')
 
     if user:
         partner_id = crud.get_partner_by_user(user.user_id)
@@ -276,9 +284,9 @@ def view_partner_answers():
         if partner_id:
             partner = crud.get_user_by_id(partner_id)
             print('********', partner, '********')
-            answers_p = crud.get_answers_answered(partner.user_id)
-            print('********', answers_p, '********')
-            return render_template('partner_answers.html', user=user, partner=partner, answers_p=answers_p)
+            #answers_p = crud.get_answers_answered(partner.user_id)
+            
+            return render_template('partner_answers.html', user=user, partner=partner, answers=answers)
         else:
             ("Your partner has not answered yet")   
             return redirect('/connecting')
@@ -307,7 +315,6 @@ def view_partner_wishes():
     """ View partner wishes """
 
     user = crud.get_user_by_id(session['user_id'])
-    #link = crud.get_link_by_user_id(user.user_id)
     print('******', user.user_id, '********')
 
     if user:
