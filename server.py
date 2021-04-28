@@ -254,12 +254,14 @@ def view_user_wishes():
 
     
     user = crud.get_user_by_id(session['user_id'])
-    wishes = crud.get_wish(user.user_id)
-    print('******',wishes,'*****')
+    answers = crud.get_wish(user.user_id)
 
-
-    return render_template('all_wishes.html', wishes=wishes, user=user)
-
+    if answers:
+        print('******',answers,'*****')
+        return render_template('all_wishes.html', answers=answers, user=user)
+    else:
+        flash('Make a wish.')
+        return redirect('/wish')
 @app.route('/wishes_partner')
 def view_partner_wishes():
     """ View partner wishes """
@@ -274,30 +276,31 @@ def view_partner_wishes():
     print('******', user.user_id, '********')
 
     if user:
-        partner1 = crud.get_partner_by_user(user.user_id) #partner and user id, now if partner or user== show other partner wishes.
-        print('*********', partner1, '**********') #3
-        partner2= crud.get_user_by_partner(user.user_id) #2
-        print('*********', partner2, '**********')
-        #user != partner1
-        partner1_wishes = crud.get_userid1_wishes(partner1)
-        print('********', partner1_wishes, '********')
-        partner2_wishes = crud.get_partner_wishes(partner2)
-        print('********', partner2_wishes, '********')
+        partnerid = crud.get_partner_by_user(user.user_id) #partner and user id, now if partner or user== show other partner wishes.
+        print('*********', partnerid, '**********') #3
 
-        if partner1:
-            return render_template('partner_wishes.html', user=user, partner1=partner1, partner1_wishes=partner1_wishes)
-        elif partner2:
-            partner2_wishes = crud.get_partner_wishes(partner2)
-            return render_template('partner2_wishes.html', user=user, partner2=partner2, partner2_wishes=partner2_wishes)
+        if partnerid:
+            partner = crud.get_user_by_id(partnerid)
+            print('********', partner, '********')  
+            answers = crud.get_wish(partner.user_id)
+            print('********', answers, '********')       
+            return render_template('partner_wishes.html', user=user, partner=partner, answers=answers)
         
-    
+        else:
+            flash("You don't have a partner yet.")
+            return redirect('/connecting')
+    else:
+        flash('Please log in or register for an account.')
+        return redirect('/login')
 
 
 @app.route('/logout')
 def logout():
     """Log out user in session"""
 
+    # session.clear()
     del session['user_id']
+    print(session)
     flash("You have been logged out")
 
 

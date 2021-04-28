@@ -5,10 +5,10 @@
 <h1>All Wishes {{ user.name.capitalize() }}</h1>
 <a href="/wishes"></a>
 <p class="message"><ul><a href="/welcome">Take me to My Forever</ul></a></p>
-{% for wish in wishes %}
+{% for answer in answers %}
     
 
-<p>{{ wish.wish.capitalize() }}</p>
+<p>{{ answer.wish }}</p>
 
 
 {% endfor %}
