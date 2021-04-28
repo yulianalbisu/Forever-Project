@@ -172,12 +172,7 @@ def get_answer_by_id(user_id):
 def get_answers_answered(user_id):
     """Return only answers answered"""
 
-    ans = db.session.query(Question.question, Answer.answer).filter(Answer.answer_id==Question.question_id)
-    #ansers = db.session.query(Question.question, Answer.answer).filter(Answer.answer_id==Question.question_id).all()
-    
-    answers = ans.filter(Answer.answer.isnot(None))
-
-    return answers.all()
+    return db.session.query(Answer.answer, Question.question).filter(Answer.answer_id==Question.question_id).filter(Answer.answer.isnot(None)).filter_by(user_id=user_id).all()
 
 def create_wish(wish,user):
     """Create a wish"""
@@ -205,13 +200,6 @@ def get_partner_by_user(user_id):
         return None
 
 
-# def get_user_by_partner(user_id):
-#     """Returns partner, partner2"""
-
-#     partner2 = db.session.query(Link).filter(Link.user_id1==User.user_id).first()
-    
-#     return partner2
-
 
 def get_user_wishes(user_id):
     """Getting partner1"""
@@ -219,14 +207,6 @@ def get_user_wishes(user_id):
     #wish_userid1 = db.session.query(Answer.wish, Link.user_id1).filter(Answer.wish.isnot(None)).first()
     return db.session.query(Answer.wish).filter_by(user_id=user_id).all()
 
-  
-
-# def get_partner_wishes(partner2):
-#     """Getting partner1"""
-
-#     wish_partner = db.session.query(Answer.wish, Link.partner).filter(Answer.wish.isnot(None)).first()
-    
-#     return wish_partner
 
 def get_both_partners_id():
     """Returns user's pairs"""

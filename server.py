@@ -248,6 +248,31 @@ def register_wishes():
         wish = crud.create_wish(wish, user)
         return render_template('show_wishes.html', wish=wish, user=user)
 
+@app.route('/answers_partner')
+def view_partner_answers():
+    """User can view answers from partner"""
+
+    user=crud.get_user_by_id(session['user_id'])
+    print('******', user.user_id, '********')
+
+    if user:
+        partner_id = crud.get_partner_by_user(user.user_id)
+        print('*********', partner_id, '**********')
+
+        if partner_id:
+            partner = crud.get_user_by_id(partner_id)
+            print('********', partner, '********')
+            answers_p = crud.get_answers_answered(partner.user_id)
+            print('********', answers_p, '********')
+            return render_template('partner_answers.html', user=user, partner=partner, answers_p=answers_p)
+        else:
+            ("Your partner has not answered yet")   
+            return redirect('/connecting')
+
+    else:
+        return redirect('/login')
+
+
 @app.route('/wishes')
 def view_user_wishes():
     """User can view wishes"""
@@ -262,14 +287,10 @@ def view_user_wishes():
     else:
         flash('Make a wish.')
         return redirect('/wish')
+
 @app.route('/wishes_partner')
 def view_partner_wishes():
     """ View partner wishes """
-
-    #user in session has to be able to view wishes from partner NOT in session
-    #get partner_id via link
-    # if users share links: user can view partner info and partner can view user info
-    # PROBLEM: giving me the first info, not the actual
 
     user = crud.get_user_by_id(session['user_id'])
     #link = crud.get_link_by_user_id(user.user_id)
