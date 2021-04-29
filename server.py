@@ -1,9 +1,9 @@
 """Server for forever app."""
 
 from flask import (Flask, render_template, request, flash, session,
-                   redirect)
+                   redirect, jsonify)
 
-
+import random
 import crud
 from jinja2 import StrictUndefined
 import model
@@ -153,8 +153,9 @@ def tips_for_user():
     """Getting some tips according to the questions"""
 
     questions = crud.get_questions()
+    #return a tip when user ask for it randomnly
     
-    
+
 
     return render_template('tips.html', questions=questions)
 
@@ -254,7 +255,7 @@ def register_wishes():
 
     
     wish = request.form.get("wish")
-    print('*******', wish, '******')
+   
     user = crud.get_user_by_id(session['user_id'])
 
     
@@ -292,6 +293,7 @@ def view_partner_answers():
     else:
         return redirect('/login')
 
+    return jsonify([answers, qids])
 
 @app.route('/wishes')
 def view_user_wishes():

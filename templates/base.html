@@ -7,9 +7,14 @@
     <title>
       {% block title %}{% endblock %}
     </title>
+
     {% block head %}{% endblock %}
   </head>
   <body>
+    {% if "user_id" in session %}
+      <a href="/logout">Logout</a>
+
+      {% endif %}
     {% for msg in get_flashed_messages() %}
       <p class="flash-msg">
         {{ msg }}
