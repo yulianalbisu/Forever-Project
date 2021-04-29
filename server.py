@@ -15,12 +15,12 @@ app.jinja_env.undefined = StrictUndefined
 
 
 
-@app.route('/') #contains the route I want to form to be
+@app.route('/') 
 def homepage(): 
     """Show homepage with options to login and create an account"""
 
 
-    return render_template('homepage.html') #contains the form I want to see /homepage.html
+    return render_template('homepage.html') 
 
 @app.route('/new-user')
 def create_an_account():
@@ -34,7 +34,7 @@ def display_login_form():
 
     return render_template('handle_login.html')
 
-@app.route('/welcome') #changed html for welcome instead of homepage!
+@app.route('/welcome') 
 def welcome_users():
     """After login options to see another user, with same link key"""
 
@@ -51,8 +51,7 @@ def show_user(user_id):
     if 'user_id' in session:
         user = crud.get_user_by_id(user_id) #this may be user_id
         links = crud.get_links()
-        #print(links)
-        #print(user_id)
+        
 
         for id, partner1, partner2 in links:
             if partner1 == user.user_id or partner2 == user.user_id:
@@ -83,11 +82,10 @@ def register_user():
         
     else: #this for create account only
         new_user = crud.create_user(email, password, name)
-        new_link = crud.create_link(anniversary, new_user.user_id) #from crud
-        flash('Account created! Please log in') #when new user directly to get
+        new_link = crud.create_link(anniversary, new_user.user_id) 
+        flash('Account created! Please log in') 
 
-        return redirect('/login') #/loginit has WELCOME route, but I need it to log in first!! 
-                                #redirect if user refuse to sign in
+        return redirect('/login') 
 
 @app.route('/handle_login', methods=['POST'])
 def login():
@@ -96,14 +94,14 @@ def login():
     email = request.form.get('email')
     password= request.form.get('password')
 
-    user = crud.get_user_by_email(email) #in crud 
+    user = crud.get_user_by_email(email) 
 
     if user and user.password == password:
         session['user_id'] = user.user_id
         return redirect(f'/users/{user.user_id}') 
     else:
         flash('Wrong password')
-        return redirect('/login') #login form
+        return redirect('/login') 
 
 
 @app.route('/connecting')
@@ -125,16 +123,16 @@ def register_partner():
     anniversary = request.form.get('anniversary')
     anniversary = datetime.strptime(anniversary, '%Y-%m-%d').strftime("%Y-%m-%d")
   
-    user = crud.get_user_by_email(email) #in crud 
+    user = crud.get_user_by_email(email) 
 
     if user:
         flash('Welcome!')
-        # need to check if user is in session first, if not, redirect to /login
+        
         return redirect(f'/users/{user.user_id}')
         
-    else: #this for create account only
+    else: 
         new_user = crud.create_user(email, password, name)
-        flash('Account created! Please log in') #when new user directly to get
+        flash('Account created! Please log in') 
 
         link = crud.get_link_by_link_id(link_id)
      
@@ -158,7 +156,7 @@ def tips_for_user():
     
     
 
-    return render_template('tips.html', love=love, questions=questions)
+    return render_template('tips.html', questions=questions)
 
 
 @app.route('/questions')
@@ -186,16 +184,7 @@ def all_questions():
 @app.route('/handle_answers', methods=['POST'])
 def register_answers():
     """Create answers"""
-    # get answers belonged to a question from user 
-    # once got them, create each answer, corresponded to user_id, question_id, answer_id
-    # show user the answers collected
-    # if user has answer and wish
-    # collect answer and wish
-    # show user answers but place wish in other side (wish.html)
-    # user has to be able to come back anytime to answer more questions or make more wishes
-    # user will need a button that contains answers - wishes - respond questions or modificate
-    # qids = request.form.getlist('question_id')
-    #cuestions = crud.get_question_by_id(question_id)
+    
     user = crud.get_user_by_id(session['user_id'])
     answers = [] 
     for i, qid in enumerate(request.form.getlist('question_id')):
@@ -212,10 +201,10 @@ def register_answers():
             a = model.Answer.query.filter_by(user_id=user_id, question_id=qid).first()
             if not a:
                 new_answer = crud.create_answer(user_id, qid, answer)
-                print(new_answer, '*************new answer**************')
+                
             else:
                 updated_ans = model.Answer.query.filter_by(answer_id=a.answer_id).update({'answer': answer})
-                print(updated_ans, '**********updated answer*************')
+                
                 model.db.session.commit()
 
     flash("Your answers have been added")
@@ -236,7 +225,7 @@ def show_answers():
         q = crud.get_qtext_by_qid(a.question_id)
         if q:
             answers.append((q[0], q[1], a.answer))
-    print('****', answers, '******')
+    
 
 
     return render_template('showing_answers.html', answers=answers, user=user)
@@ -278,24 +267,24 @@ def view_partner_answers():
     """User can view answers from partner"""
 
     user=crud.get_user_by_id(session['user_id'])
-    qids = [answer.question_id for answer in user.answers]
-    answers = []
-    for a in user.answers:
-        q = crud.get_qtext_by_qid(a.question_id)
-        if q:
-            answers.append((q[0], q[1], a.answer))
-    print('******', answers, '********')
+    
 
     if user:
         partner_id = crud.get_partner_by_user(user.user_id)
-        print('*********', partner_id, '**********')
+        
 
         if partner_id:
             partner = crud.get_user_by_id(partner_id)
-            print('********', partner, '********')
-            #answers_p = crud.get_answers_answered(partner.user_id)
+            
+            qids = [answer.question_id for answer in partner.answers]
+            answers = []
+            for a in partner.answers:
+                q = crud.get_qtext_by_qid(a.question_id)
+                if q:
+                    answers.append((q[0], q[1], a.answer))
             
             return render_template('partner_answers.html', user=user, partner=partner, answers=answers)
+
         else:
             ("Your partner has not answered yet")   
             return redirect('/connecting')
@@ -313,7 +302,7 @@ def view_user_wishes():
     answers = crud.get_wish(user.user_id)
 
     if answers:
-        print('******',answers,'*****')
+        
         return render_template('all_wishes.html', answers=answers, user=user)
     else:
         flash('Make a wish.')
@@ -324,17 +313,17 @@ def view_partner_wishes():
     """ View partner wishes """
 
     user = crud.get_user_by_id(session['user_id'])
-    print('******', user.user_id, '********')
+    
 
     if user:
         partnerid = crud.get_partner_by_user(user.user_id) #partner and user id, now if partner or user== show other partner wishes.
-        print('*********', partnerid, '**********') #3
+        
 
         if partnerid:
             partner = crud.get_user_by_id(partnerid)
-            print('********', partner, '********')  
+             
             answers = crud.get_wish(partner.user_id)
-            print('********', answers, '********')       
+                  
             return render_template('partner_wishes.html', user=user, partner=partner, answers=answers)
         
         else:
