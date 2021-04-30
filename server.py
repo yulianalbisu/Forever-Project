@@ -336,17 +336,27 @@ def view_partner_wishes():
         flash('Please log in or register for an account.')
         return redirect('/login')
 
-@app.route('/checked_wishes')
+@app.route('/checked_wishes', methods=['GET', 'POST'])
 def delete_wish_accomplished():
     """When user marks as done, wish is deleted"""
 
     partner_id = crud.get_partner_by_user(session['user_id'])
-
-    delete_wish = request.args.get("wish")
-    print('*******', wish, '********')
+    msg = "Brownie Points!!"
     
-    #delete_wish = Answer.query.filter(Answer.wishes_checked).delete()
+    checked_wish = request.form.get('checkbox')
+    #model.db.session.delete(checked_wish)
+    #model.db.session.commit()
+    print('*****', checked_wish, '********')
+    return redirect('/welcome')
+        
+
+    #if checked_wish:
+        #model.db.session.delete(checked_wish)
+        #model.db.session.commit()
+
         #return redirect('/welcome')
+
+
 
 @app.route('/logout')
 def logout():
