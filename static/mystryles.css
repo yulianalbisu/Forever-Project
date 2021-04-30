@@ -1,0 +1,40 @@
+.container-fluid{
+    columns: -12px;
+    columns: md -6px;
+    columns: lg -3px;
+} /* } no white space */
+.uneven-container{
+    columns: -12px;
+    columns: -3px;
+    columns: -2px;
+} 
+.row{
+
+}
+.small-column{
+    columns: -3px;
+
+}
+.large-column{
+    columns: -9px;
+}
+.xl-column{
+    columns: -12px;
+}
+.medium-column{
+    columns: -6px;
+}
+.xs-column{
+    columns: -1px;
+}
+.center{
+    columns: -6px;
+    offset: -6px;
+}
+.left{
+    columns: -1px;
+    offset: -1px;
+}
+.heart{
+<i class="fad fa-heart"></i>
+}

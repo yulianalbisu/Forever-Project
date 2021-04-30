@@ -325,7 +325,8 @@ def view_partner_wishes():
             partner = crud.get_user_by_id(partnerid)
              
             answers = crud.get_wish(partner.user_id)
-                  
+
+
             return render_template('partner_wishes.html', user=user, partner=partner, answers=answers)
         
         else:
@@ -335,12 +336,23 @@ def view_partner_wishes():
         flash('Please log in or register for an account.')
         return redirect('/login')
 
+@app.route('/checked_wishes')
+def delete_wish_accomplished():
+    """When user marks as done, wish is deleted"""
+
+    partner_id = crud.get_partner_by_user(session['user_id'])
+
+    delete_wish = request.args.get("wish")
+    print('*******', wish, '********')
+    
+    #delete_wish = Answer.query.filter(Answer.wishes_checked).delete()
+        #return redirect('/welcome')
 
 @app.route('/logout')
 def logout():
     """Log out user in session"""
 
-    # session.clear()
+    
     del session['user_id']
     print(session)
     flash("You have been logged out")

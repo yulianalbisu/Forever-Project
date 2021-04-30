@@ -1,19 +1,35 @@
 {% extends "base.html" %}
 {% block title %}All Wishes{% endblock %}
 
-{% block body %} 
-<h1> {{ partner.name.title() }} !!!</h1>
-<h2>Would love: </h2>
-
-<a href="/wishes_partner"></a>
-<p class="message"><ul><a href="/welcome">Take me to My Forever</ul></a></p>
-
-{% for answer in answers %}
+<script src="https://code.jquery.com/jquery-3.6.0.js" 
+integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     
+      <a href="/wishes_partner">Wishes from partner</a>
+{% block body %}
 
-<p>{{ answer.wish.capitalize() }} </p>
+
+<h1>Wishes</h1> 
+    
+    <p class="message"><ul><a href="/welcome">Take me to My Forever</ul></a></p>
 
 
+
+<h2>{{ partner.name.title() }}</h2>
+
+
+<h3>This is what would love: </h3>
+<!-- <form action="/checked_wishes" method="POST"> -->
+    <label>{% for answer in answers %}</label>
+    
+<input class="delete_wish" id="wishes" type="checkbox" name="wish" value="{{ answer.wish }}">{{ answer.wish.capitalize() }}<br>
+
+<button id="love-button" class="love" type="submit" value="detete">Done</button>
+<br>
 {% endfor %}
 
+</class>
+</form>
+
+    
+    <script src="/static/checkboxes.js"></script>
 {% endblock body %}
