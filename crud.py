@@ -208,6 +208,12 @@ def get_user_wishes(user_id):
     #wish_userid1 = db.session.query(Answer.wish, Link.user_id1).filter(Answer.wish.isnot(None)).first()
     return db.session.query(Answer.wish).filter_by(user_id=user_id).all()
 
+def delete_wish(wish):
+    """delete wishes from partner"""
+
+    deleted_wish = Answer.query.filter_by(wish=wish).delete()
+
+    db.session.commit()
 
 def get_both_partners_id():
     """Returns user's pairs"""

@@ -341,20 +341,18 @@ def delete_wish_accomplished():
     """When user marks as done, wish is deleted"""
 
     partner_id = crud.get_partner_by_user(session['user_id'])
-    msg = "Brownie Points!!"
+    
     
     checked_wish = request.form.get('checkbox')
-    #model.db.session.delete(checked_wish)
-    #model.db.session.commit()
+    
     print('*****', checked_wish, '********')
-    return redirect('/welcome')
+    
         
 
-    #if checked_wish:
-        #model.db.session.delete(checked_wish)
-        #model.db.session.commit()
-
-        #return redirect('/welcome')
+    if checked_wish:
+        crud.delete_wish(checked_wish)
+        flash('Brownie Points')
+        return redirect('/welcome')
 
 
 
