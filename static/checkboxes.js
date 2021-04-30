@@ -11,4 +11,9 @@ $("#mywishes #checked").submit(function () {
         });
     }
     });
+    
+    const button = $('#love-button');
+        button.on('submit', () => {
+            alert('Brownie Points!');
+        });
 

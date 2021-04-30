@@ -27,13 +27,26 @@ integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="ano
 
 <button id="love-button" class="love" type="submit" value="detete">Done</button>
 <br>
+<script>
+    const loveBtn = document.querySelector('#love-button');
+        loveBtn.addEventListener("submit", (evt) => {
+        evt.preventDefault();
+            alert('Brownie Points!');
+    });
+</script>
+
 {% endfor %}
 
 </class>
 
+
 </form>
+
+
 </table><input type="submit" value="Delete selected" class="btn btn-primary">
 
     
-    <script src="/static/checkboxes.js"></script>
+    <!-- <script src="/static/checkboxes.js"></script> -->
+    
+
 {% endblock body %}

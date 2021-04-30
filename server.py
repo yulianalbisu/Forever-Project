@@ -294,6 +294,7 @@ def view_partner_answers():
         return redirect('/login')
 
     return jsonify([answers, qids])
+    
 
 @app.route('/wishes')
 def view_user_wishes():

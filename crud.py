@@ -76,11 +76,6 @@ def update_partner_link(link_id, user_id):
     return link
 
 
-def get_user_by_password(password):
-    """Return a user by password"""
-
-    return User.query.filter(User.password == password).first()
-
 
 def create_question(category, question, description):
     """Create a question"""
