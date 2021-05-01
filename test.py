@@ -1,15 +1,26 @@
-"""testing-demo/test.py"""
+import server
+import unittest
+
+class MyAppIntegrationTestCase(unittest.TestCase):
+    """Integration test"""
+
+    def test_homepage(self):
+        user = server.app
+        result = client.get('/')
+        self.assertIn(b'<h2>Register User</2>', result.data)
+
+    
 
 
-def adder(x, y):
-    """Adds two numbers together.
 
-    For example:
 
-    >>> adder(1, 1)
-    2
-    >>> adder(-1, 1)
-    0
-    """
 
-    return x + y
+
+
+
+
+
+if __name__ == '__main__':
+    from doctest import testmod
+    if testmod().failed == 0:
+        app.run(debug=True)

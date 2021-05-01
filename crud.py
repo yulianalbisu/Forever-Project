@@ -4,16 +4,21 @@ from model import db, User, Link, Question, Answer, connect_to_db
 
 
 
-def create_user(email, password, name):
+def create_user(email, password, name, nickname):
     """Create a new user"""
 
-    user = User(email=email, password=password, name=name)
+    user = User(email=email, password=password, name=name, nickname=nickname)
 
     
     db.session.add(user)
     db.session.commit()
 
     return user
+
+def get_nickname():
+    """Get nickname of user"""
+
+    return User.query.get(nickname)
 
 def get_users():
     """Return all users"""

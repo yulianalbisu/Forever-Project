@@ -6,9 +6,14 @@
         <li>
             <a href="/tips">         
         </a>
-        <p>{{ question.description }} </p>
+        <p> {{ question.question }}</p><p>{{ question.description }} </p>
     </li>
         {% endfor %}
-        
     </ul>
+    <script>
+        $.get('/tips', (res) => {
+            $('#question.description').text(response);
+        });
+
+    </script>
 {% endblock %}
