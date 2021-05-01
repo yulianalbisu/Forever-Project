@@ -1,8 +1,37 @@
 {% extends 'base.html' %}
 {% block title %}My Forever{% endblock %}
+{% block head %} 
+<div class="container-fluid">
+<div class="col-12 col-md-6 col-lg-9">
+</div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Make my LOGO!</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="users/{{user.user_id}}">My Profile <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/questions">Cuestionary</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/show_answers">About Me</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 
-{% block body %}
+  {% endblock %}
 
+{% block body %}  
+    <img src="/static/SplitShire-0080.jpg.webp">
+    </div>
 <ol>
   <a href="/wishes_partner">Partner Wishes</a>
 </ol>
@@ -24,16 +53,9 @@
   <ol>
     <a href="/wishes">My Wishes</a>
   </ol>
-  <ol>
-    <a href="/questions">My Questions</a>
-  </ol>
-  <ol>
-    <a href="/show_answers">My Answers</a>
-  </ol>
+  
 
-  <ol>
-    <a href="/users/{{user.user_id}}">My Profile</a></li>
-  </ol>
+ 
 </ol>
 
 
