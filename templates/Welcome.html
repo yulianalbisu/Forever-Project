@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block title %}My Forever{% endblock %}
 {% block head %} 
-<div class="container-fluid">
-<div class="col-12 col-md-6 col-lg-9">
-</div>
+<link rel="stylesheet" href="/static/css/estilos.css">
+<link rel="stylesheet" href="/static/mystryles.css">
+
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">Make my LOGO!</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,10 +15,10 @@
           <a class="nav-link" href="users/{{user.user_id}}">My Profile <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/questions">Cuestionary</a>
+          <a class="nav-link" href="/answers_partner">Partner Answers</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/show_answers">About Me</a>
+          <a class="nav-link" href="/wishes_partner">Partner Wishes</a>
         </li>
         <li class="nav-item">
           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
@@ -26,37 +26,44 @@
       </ul>
     </div>
   </nav>
-
+  <div>
+  <ul class="breadcrumb">
+<li class="breadcrumb-item"><a href="/welcome">Home</a>
+</li>
+<li class="breadcrumb-item"><a href="/users/{{user.user_id}}">About Me</a>
+</li>
+<li class="breadcrumb-item"><a href="/questions">Cuestionary</a>
+</li>
+<li class="breadcrumb-item"><a href="/show_answers">My Ansers</a>
+</li>
+<li class="breadcrumb-item"><a href="/wish">Make a Wish</a>
+</li>
+</li>
+<li class="breadcrumb-item"><a href="/wishes">My Wishes</a>
+</li>
+<li class="breadcrumb-item"><a href="/tips">Tips</a>
+</li>
+</div>
   {% endblock %}
 
-{% block body %}  
-    <img src="/static/SplitShire-0080.jpg.webp">
-    </div>
-<ol>
-  <a href="/wishes_partner">Partner Wishes</a>
-</ol>
-<ol>
-  <a href="/answers_partner">Partner Answers</a>
-</ol>
-<ol>
-  <a href="/tips">Tips</a>
-</ol>
+{% block body %}
+
+
+
+
+
 
 <h1>Welcome!</h1>
 
 <ol>
   <h2>Navigation</h2>
 </ol>
-  <ol>
-    <a href="/wish">Make a Wish</a>
-  </ol>
-  <ol>
-    <a href="/wishes">My Wishes</a>
-  </ol>
   
-
- 
-</ol>
+  
+  </div>
+</div>
+</div>
+</body>
 
 
   {% endblock %}

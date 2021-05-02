@@ -8,33 +8,52 @@
     columns: -3px;
     columns: -2px;
 } 
-.row{
 
-}
-.small-column{
-    columns: -3px;
 
+
+
+.form-gradient .header {
+  border-top-left-radius: .3rem;
+  border-top-right-radius: .3rem;
 }
-.large-column{
-    columns: -9px;
+.form-gradient input[type=text]:focus:not([readonly]) {
+  border-bottom: 1px solid #fd9267;
+  box-shadow: 0 1px 0 0 #fd9267;
 }
-.xl-column{
-    columns: -12px;
+.form-gradient input[type=text]:focus:not([readonly]) + label {
+  color: #4f4f4f;
 }
-.medium-column{
-    columns: -6px;
+.form-gradient textarea.md-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid #fd9267;
+  box-shadow: 0 1px 0 0 #fd9267;
 }
-.xs-column{
-    columns: -1px;
+.form-gradient .md-form textarea.md-textarea:focus:not([readonly])+label {
+  color: #4f4f4f;
 }
-.center{
-    columns: -6px;
-    offset: -6px;
+
+
+.form-dark .md-form label {
+  color: #fff;
 }
-.left{
-    columns: -1px;
-    offset: -1px;
+.form-dark input[type=text]:focus:not([readonly]) {
+  border-bottom: 1px solid #00C851;
+  -webkit-box-shadow: 0 1px 0 0 #00C851;
+  box-shadow: 0 1px 0 0 #00C851;
 }
-.heart{
-<i class="fad fa-heart"></i>
+.form-dark input[type=text]:focus:not([readonly]) + label {
+  color: #fff;
+}
+.form-dark textarea.md-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid #00C851;
+  box-shadow: 0 1px 0 0 #00C851;
+  color: rgb(245, 240, 240);
+}
+.form-dark textarea.md-textarea  {
+  color: rgb(238, 234, 234);
+}
+.form-dark .form-control, .form-dark .form-control:focus {
+  color: rgb(243, 235, 235);
+}
+.form-dark .md-form textarea.md-textarea:focus:not([readonly])+label {
+  color: rgb(247, 244, 244);
 }

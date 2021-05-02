@@ -1,27 +1,61 @@
 {% extends 'base.html' %}
 
-{% block title %}My Forever{% endblock %}
-<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-{% block body %}
-<h1>I wish for</h1>
-<h2>It would be nice if:</h2>
+{% block head %}
+<link rel="stylesheet" href="/static/mystryles.css">
+{% block title %}Forever{% endblock %}
 
+{% endblock %} 
+{% block body %}
 
 <form id="wishes" action="/wish" method="POST" enctype="multipart/form-data">
-<li>
-  <input type="text" name="wish" placeholder="write wish here">
-</li>
-<p>
-<input type="submit">
+  <!-- Form Entire -->
+  <section class="form-dark mb-5">
+
+  <div class="card card-image" style="background-image: url('https://www.splitshire.com/wp-content/uploads/2017/08/SplitShire-03651.jpg');">
+    <div class="text-white rgba-stylish-strong py-5 px-5 z-depth-4">
+    <!-- Header -->
+  <div class="text-center">
+    <div class="row d-flex justify-content-center">
+      <h3 class= "white-text mb-5 mt-4 font-weight-bold text-uppercase"><strong>My Wishes</strong></a></h3>
+    </div>
+
+    
+  <!-- <i class="fas fa-user prefix grey-text"></i> I didnt find the icons -->
+  <div class="md-form">
+    <label for="wishForm"><p>I really would like:</p></label>
+    <textarea id="wishForm" style="background-color: transparent;" class="md-textarea form-control" rows="5" name="wish"></textarea>
+    
+  
+
+<div class="row d-flex align-items-center">
+
+  <div class="text-center col-md-12 mt-3 mb-2">    
+            
+<button  type="submit" class="btn btn-success btn-block btn-rounded z-depth-1">Make a Wish</button>
+
+</div>
+</div> 
+</div>
+</div>
+
+</form>
+</section>
+<!-- <p>
+<input type="submit"> -->
 <script>
   $('#wishes').on('submit', () => {
     alert('You have made a wish!');
   })
 </script>
 
-</p>
-</form>
 
-<img src="En llaves va a aparecer algo">
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" 
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" 
+    crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" 
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" 
+    crossorigin="anonymous"></script>
+
 
 {% endblock %}
