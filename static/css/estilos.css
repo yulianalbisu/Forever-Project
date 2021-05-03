@@ -31,8 +31,8 @@
     background: #ddd;
     color: black;
   }
-#fired {
-    background-image: linear-gradient(black, black), url(SplitShire-3651.jpg.webp) no-repeat center center;
+#fire {
+    background-image: url(SplitShire-3651.jpg.webp) no-repeat center center;
     -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

@@ -1,14 +1,43 @@
-{% extends "my_wishes.html" %}
+{% extends "base.html" %}
+
+{% block head %}
+
 {% block title %}Wishes{% endblock %}
+
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+<script src="https://kit.fontawesome.com/181ca4fa2e.js" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="/static/mystyles.css">
+
+
+
+{% endblock %}
 {% block body %}
 
-<h1>{{user.name.capitalize()}}</h1>
+
+<button class="btn" ><a href="/welcome"><i class="fas fa-heart pr-2 aria-hidden=true"></i></a></button>
+
+<div class="container">
+    <section class="form-dark mb-5">
+        
+    
+        <div id="deseos" class="card card-image" style="background-color: rgba(160, 153, 144, 0.445);">
+            <div class="text-white rgba-stylish-strong py-5 px-5 z-depth-4">
+    
+                <div class="text-center">
+                    <div class="row d-flex justify-content-center">
+                      <h2 class= "white-text mb-5 mt-4 font-weight-bold text-uppercase"><strong>{{user.name.capitalize()}}</strong></a></h2>
+                    </div>
+
+
+
+<!-- <h1>{{user.name.capitalize()}}</h1> -->
 <p>Really wish for</p>
 <h2>{{ wish.wish.capitalize() }}</h2>
 
 <p class="message"><ul><a href="/wish">Make another wish</a></ul></p>
- <p class="message"><ul><a href="/welcome">Take me to My Forever</ul></a></p>
+ 
 
 {% endblock body %}
 

@@ -1,19 +1,22 @@
 {% extends "base.html" %}
 {%block head %} 
 
-{% block title %}My Forever{% endblock %}
+{% block title %}{% endblock %}
 
-<link rel="stylesheet" href="/static/mystryles.css">
+<link rel="stylesheet" href="/static/mystyles.css">
 
-<nav class="navbar navbar-light" style="background-color: #918e8b5b;">
-    <a class="navbar-brand" href="#">Make my LOGO!</a>
+<nav class="navbar navbar-light" style="background-color: #f3eee9a8;">
+    <a class="navbar-brand" href=""></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" href="users/{{user.user_id}}">My Profile <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/welcome">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/users/{{user.user_id}}">My Profile</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/answers_partner">Partner Answers</a>
@@ -22,7 +25,7 @@
           <a class="nav-link" href="/wishes_partner">Partner Wishes</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" href="/wishes" tabindex="-1" aria-disabled="true">My</a>
+          <a class="nav-link disabled" href="/wishes" tabindex="-1" aria-disabled="true">My Wishes</a>
         </li>
       </ul>
     </div>
@@ -40,9 +43,10 @@
 {% block body %}
 <div class="container">
 <section class="form-dark mb-5">
-    <p class="message"><ul><a href="/welcome">Take me to My Forever</ul></a></p> 
-
-    <div id="deseos" class="card card-image" style="background-color: rgba(214, 203, 178, 0.356);">
+  
+</div>
+  <div class="container">
+    <div id="deseos" class="card card-image" style="background-color: rgba(129, 118, 96, 0.356);">
         <div class="text-white rgba-stylish-strong py-5 px-5 z-depth-4">
 
             <div class="text-center">
@@ -62,6 +66,7 @@
 {% endfor %}
 
 </section>
+</div>
 </div>
 {% endblock body %}
 

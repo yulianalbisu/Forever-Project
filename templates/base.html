@@ -23,10 +23,26 @@
     integrity="sha384-wESLQ85D6gbsF459vf1CiZ2+rr+CsxRY0RpiF1tLlQpDnAgg6rwdsUF1+Ics2bni" 
     crossorigin="anonymous">
 
-    {% if "user_id" in session %}
+    <script src="https://kit.fontawesome.com/181ca4fa2e.js" crossorigin="anonymous"></script>
+
+    <!-- {% if "user_id" in session %}
       <a href="/logout">Logout</a>
-    {% endif %}
+    {% endif %} -->
+
+    {% if "user_id" in session %}
   
+    <button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm" style="background-color: rgba(243, 147, 21, 0.568); border-color: black;">Logout</button>
+
+<div class="modal bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header"><h4>Logout <i class="fa fa-lock"></i></h4></div>
+      <div class="modal-body"><i class="fa fa-question-circle"></i> Are you sure you want to log-off?</div>
+      <div class="modal-footer"><a href="/logout" class="btn btn-primary btn-block" style="background-color: red;">Logout</a></div>
+    </div>
+  </div>
+</div>
+{% endif %}
   
     {% block head %}{% endblock %}
 
@@ -35,7 +51,7 @@
 
   <body>
     <div class="container-fluid">
-      <body id="fired" style="background-image: url('https://www.splitshire.com/wp-content/uploads/2015/12/SplitShire-0080.jpg');">
+      <body id="fire" style="background-image: url('https://www.splitshire.com/wp-content/uploads/2015/12/SplitShire-0080.jpg');">
     
       <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" 
@@ -75,7 +91,7 @@
     
     {% block after_body %}{% endblock %}
   </div>
-  <!-- </body>    -->
+   </body>   
   </body>
   
 </html>
