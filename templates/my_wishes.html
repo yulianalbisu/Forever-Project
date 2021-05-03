@@ -4,14 +4,20 @@
 <link rel="stylesheet" href="/static/mystryles.css">
 {% block title %}Forever{% endblock %}
 
+
+
 {% endblock %} 
 {% block body %}
+<div class="container-fluid">
+
+  <div id="bg-image" class="card card-image" style="background-color: rgba(199, 196, 188, 0.356);">
+
 
 <form id="wishes" action="/wish" method="POST" enctype="multipart/form-data">
   <!-- Form Entire -->
   <section class="form-dark mb-5">
 
-  <div class="card card-image" style="background-image: url('https://www.splitshire.com/wp-content/uploads/2017/08/SplitShire-03651.jpg');">
+  <div id="deseos" class="card card-image" style="background-image: url('https://www.splitshire.com/wp-content/uploads/2017/08/SplitShire-03651.jpg');">
     <div class="text-white rgba-stylish-strong py-5 px-5 z-depth-4">
     <!-- Header -->
   <div class="text-center">
@@ -40,6 +46,8 @@
 
 </form>
 </section>
+</div>
+</body>
 <!-- <p>
 <input type="submit"> -->
 <script>

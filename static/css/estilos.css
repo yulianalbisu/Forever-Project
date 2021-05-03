@@ -32,11 +32,13 @@
     color: black;
   }
 #fired {
-    background-image: linear-gradient(black, black), url(SplitShire-0080.jpg.webp) no-repeat center center;
+    background-image: linear-gradient(black, black), url(SplitShire-3651.jpg.webp) no-repeat center center;
     -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  background-blend-mode: darken;
+  opacity: initial;
 }
 
 .shadow-textarea textarea.form-control::placeholder {

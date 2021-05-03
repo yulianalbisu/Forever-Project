@@ -1,27 +1,53 @@
 
 {% extends 'base.html' %}
+
+{%block head %}
+
+<!-- <link rel="stylesheet" href="/static/mystryles.css"> -->
+
 {% block title %}My Forever{% endblock %}
 
+{% endblock %}
 {% block body%}
-
-    <h1>My Questions</h1>
-
-    <form id="cuestionary" action="/handle_answers" method="POST" enctype="multipart/form-data">
+<div class="container">
     
-        <ul>
+    
+    <form id="cuestionary" action="/handle_answers" method="POST" enctype="multipart/form-data">
+        
+        <section class="form-dark mb-5">
 
-        {% for q in questions %}
+            <div id="deseos" class="card card-image" style="background-image: url('https://www.splitshire.com/wp-content/uploads/2017/08/SplitShire-03651.jpg');">
+              <div class="text-white rgba-stylish-strong py-5 px-5 z-depth-4">
+              <!-- Header -->
+            <div class="text-center">
+              <div class="row d-flex justify-content-center">
+                <h2 class= "white-text mb-5 mt-4 font-weight-bold text-uppercase"><strong>Questionary</strong></a></h2>
+              </div>
+
+
+
+        <div class="md-form">
+            {% for q in questions %}
+                
+            <p>{{q.question_id}}) {{q.question}}</p>
+                
+            <input type="text" name="question_id" value={{q.question_id}} hidden>
+                
+            <input type="text" id="questionsForm" name="answer" style="background-color: transparent;" class="md-textarea form-control" rows="5" placeholder="{{ ph[q.question_id] }}">
+                
+                
         
-        <p>{{q.question_id}}) {{q.question}}</p>
-        <input type="text" name="question_id" value={{q.question_id}} hidden>
-        <ul>
-        <input type="text" name="answer" placeholder="{{ ph[q.question_id] }}">  
-        </ul>
-        {% endfor %}
+            {% endfor %}
         
-        <p>
-        <input type="submit">
-        </p>
+        
+        <div class="row d-flex align-items-center">
+
+            <div class="text-center col-md-12 mt-3 mb-2">    
+                      
+          <button  type="submit" class="btn btn-success btn-block btn-rounded z-depth-1">I'm ready</button>
+
     
 </form>
+</div>
+</body>
 {% endblock %}

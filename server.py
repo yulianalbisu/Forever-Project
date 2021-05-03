@@ -259,8 +259,6 @@ def view_partner_answers():
     else:
         return redirect('/login')
 
-    return jsonify([answers, qids])
-
 
 @app.route('/wish')
 def wishes_form():
