@@ -1,40 +1,112 @@
 {% extends 'base.html' %}
 {% block title %}My Forever{% endblock %}
 {% block head %} 
+
+<link rel="stylesheet" href="/static/mystyles.css">
 <link rel="stylesheet" href="/static/style.css">
 <link rel="stylesheet" href="/static/media-queries.css">
 
 
-
 <div class="mt-5 mb-5"></div>
-<h3>{{ user.name.capitalize() }}</h3>
+
 
 {% endblock %}
 {% block body %}
-<section id="profile">
-<!-- <div class="row"> -->
-    <!-- <div class="col-md-3 col-sm-6">
-        <div class="card">
-            <img src="/static/SplitShire-00941.jpg.webp" alt="" class="img-fluid"> -->
-
-            <!-- <div class="card-title">
-                <h2>{{ user.name.capitalize() }}</h2>
-            </div>
-            <div class="card-text">
-                <p>
-                <li>Here is your love link: {{ link.link_id }}</li>
-            <li>My nickname: {{ user.nickname }}</li>
-            <li>Anniversary Date: {{ link.anniversary }}</li>
-            <li>Email: {{ user.email }}</li>
-            <li>ID: {{ user.user_id }}</li>
-        </p>
-            <a href="/welcome" class="btn-btn-success"></a>
-
-            </div>
-        </div>
-
+<div class="wrapper">
+    <!-- Sidebar -->
+    <nav class="sidebar">
+     
+      <!-- close sidebar menu -->
+      <div class="dismiss">
+          <i class="fas fa-arrow-left"></i>
+      </div>
+    
+      <div class="logo">
+    
+          <h3><a href="/index.html">Poner Logo Aqui</a></h3>
+      </div>
+    
+      <ul class="list-unstyled menu-elements">
+          <li class="active">
+              <a class="scroll-link" href="/welcome"><i class="fas fa-home"></i> Home</a>
+          </li>
+          <li>
+            <a id="profile" class="scroll-link" href="/users/{{user.user_id}}"><i class="fas fa-user"></i> My Profile</a>
+        </li>
+          <li>
+              <a class="scroll-link" href="/questions"><i class="fas fa-cog"></i> Questionary</a>
+          </li>
+          
+          <li>
+              <a class="scroll-link" href="/wish"><i class="fas fa-pencil-alt"></i> Make a Wish</a>
+          </li>
+          <li>
+              <a class="scroll-link" href="/show_answers"><i class="fas fa-envelope"></i> Answers</a>
+          </li>
+          <li>
+            <a class="scroll-link" href="/wishes"><i class="fas fa-envelope"></i> Wishes</a>
+        </li>
+        <li>
+          <a class="scroll-link" href="/logout"><i class="fas fa-envelope"></i> Logout</a>
+      </li>
+          <li>
+              <a href="#otherSections" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" role="button" aria-controls="otherSections">
+                  <i class="fas fa-sync"></i>About My Partner
+              </a>
+              <ul class="collapse list-unstyled" id="otherSections">
+                  <li>
+                      <a class="scroll-link" href="/answers_partner">My Partner Answers</a>
+                  </li>
+                  <li>
+                      <a class="scroll-link" href="/wishes_partner">My Partner Wish for...</a>
+                  </li>
+                  
+              </ul>
+          </li>
+      </ul>
+    
+      <div class="to-top">
+          <a class="btn btn-primary btn-customized-3" href="#" role="button">
+              <i class="fas fa-arrow-up"></i> Top
+          </a>
+      </div>
+    
+      <div class="dark-light-buttons">
+          <a class="btn btn-primary btn-customized-4 btn-customized-dark" href="/tips" role="button">Dark</a>
+          <a class="btn btn-primary btn-customized-4 btn-customized-light" href="#" role="button">Light</a>
+      </div>
+    
+    </nav>
+    <div class="overlay"></div>
+    
+    <div class="content">
+    
+      <a class="btn btn-primary btn-customized open-menu" href="#" role="button">
+        <i class="fas fa-align-left"></i> <span>Menu</span>
+    </a>
+    
     </div>
-</div> -->
+    </div>
+    
+    
+    
+    
+      
+      
+      </div>
+    </div>
+    </div>
+
+
+
+
+
+
+
+<body class="container-fluid" id="my-bootstrap-row" style="background-image: url('https://www.splitshire.com/wp-content/uploads/2015/12/SplitShire-0080.jpg');">
+    <div class="col-12">
+<section id="profile">
+
 <div class="container">
     
         
@@ -68,6 +140,6 @@
 
 </section>
 
-<!-- <script src="/static/sidebar.js"></script> -->
+<script src="/static/sidebar.js"></script>
  
 {% endblock %}

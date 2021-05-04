@@ -42,14 +42,17 @@
 <!-- </li>
 <li class="breadcrumb-item"><a href="/wishes">My Wishes</a>
 </li> -->
-<li class="breadcrumb-item"><a href="/users/{{user.user_id}}">Profile</a>
-</li>
+<!-- <li class="breadcrumb-item"><a href="/users/{{user.user_id}}">Profile</a>
+</li> -->
 
 
 <!-- </div> -->
   {% endblock %}
 
 {% block body %}
+<body class="container-fluid" id="my-bootstrap-row" style="background-image: url('https://www.splitshire.com/wp-content/uploads/2015/12/SplitShire-0080.jpg');">
+  <div class="col-12">
+
 <!-- <h1 class="animate__animated animate__bounce">Salta solo!</h1>  -->
 
 <div class="wrapper">
@@ -86,6 +89,9 @@
       <li>
         <a class="scroll-link" href="/wishes"><i class="fas fa-envelope"></i> Wishes</a>
     </li>
+    <li>
+      <a class="scroll-link" href="/logout"><i class="fas fa-envelope"></i> Logout</a>
+  </li>
       <li>
           <a href="#otherSections" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" role="button" aria-controls="otherSections">
               <i class="fas fa-sync"></i>About My Partner
@@ -97,6 +103,7 @@
               <li>
                   <a class="scroll-link" href="/wishes_partner">My Partner Wish for...</a>
               </li>
+              
           </ul>
       </li>
   </ul>
