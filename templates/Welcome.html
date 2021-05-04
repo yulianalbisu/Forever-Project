@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 {% block title %}My Forever{% endblock %}
 {% block head %} 
+
 <link rel="stylesheet" href="/static/mystyles.css">
-
-
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<link rel="stylesheet" href="/static/style.css">
+<link rel="stylesheet" href="/static/media-queries.css">
+  <!-- <nav class="navbar navbar-dark bg-dark">
     <a class="navbar-brand" href="#">Make my LOGO!</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -26,43 +27,113 @@
       </ul>
     </div>
   </nav>
-  <div>
-  <ul class="breadcrumb">
+  <div> -->
+  <!-- <ul class="breadcrumb">
 <li class="breadcrumb-item"><a href="/welcome">Home</a>
 </li>
-<li class="breadcrumb-item"><a href="/users/{{user.user_id}}">About Me</a>
-</li>
+<li class="breadcrumb-item"><a href="/users/{{user.user_id}}">About Me</a> -->
+<!-- </li>
 <li class="breadcrumb-item"><a href="/questions">Questionary</a>
-</li>
-<li class="breadcrumb-item"><a href="/show_answers">My Answers</a>
-</li>
-<li class="breadcrumb-item"><a href="/wish">Make a Wish</a>
-</li>
-</li>
+</li> -->
+<!-- <li class="breadcrumb-item"><a href="/show_answers">My Answers</a>
+</li> -->
+<!-- <li class="breadcrumb-item"><a href="/wish">Make a Wish</a>
+</li> -->
+<!-- </li>
 <li class="breadcrumb-item"><a href="/wishes">My Wishes</a>
-</li>
+</li> -->
 <li class="breadcrumb-item"><a href="/tips">Tips</a>
 </li>
+
 </div>
   {% endblock %}
 
 {% block body %}
+<!-- <h1 class="animate__animated animate__bounce">Salta solo!</h1>  -->
+
+<div class="wrapper">
+<!-- Sidebar -->
+<nav class="sidebar">
+ 
+  <!-- close sidebar menu -->
+  <div class="dismiss">
+      <i class="fas fa-arrow-left"></i>
+  </div>
+
+  <div class="logo">
+
+      <h3><a href="index.html">Poner Logo Aqui</a></h3>
+  </div>
+
+  <ul class="list-unstyled menu-elements">
+      <li class="active">
+          <a class="scroll-link" href="/welcome"><i class="fas fa-home"></i> Home</a>
+      </li>
+      <li>
+        <a class="scroll-link" href="/users/{{user.user_id}}"><i class="fas fa-user"></i> My Profile</a>
+    </li>
+      <li>
+          <a class="scroll-link" href="/questions"><i class="fas fa-cog"></i> Questionary</a>
+      </li>
+      
+      <li>
+          <a class="scroll-link" href="/wish"><i class="fas fa-pencil-alt"></i> Make a Wish</a>
+      </li>
+      <li>
+          <a class="scroll-link" href="/show_answers"><i class="fas fa-envelope"></i> Answers</a>
+      </li>
+      <li>
+        <a class="scroll-link" href="/wishes"><i class="fas fa-envelope"></i> Wishes</a>
+    </li>
+      <li>
+          <a href="#otherSections" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" role="button" aria-controls="otherSections">
+              <i class="fas fa-sync"></i>About My Partner
+          </a>
+          <ul class="collapse list-unstyled" id="otherSections">
+              <li>
+                  <a class="scroll-link" href="/answers_partner">My Partner Answers</a>
+              </li>
+              <li>
+                  <a class="scroll-link" href="/wishes_partner">My Partner Wish for...</a>
+              </li>
+          </ul>
+      </li>
+  </ul>
+
+  <div class="to-top">
+      <a class="btn btn-primary btn-customized-3" href="#" role="button">
+          <i class="fas fa-arrow-up"></i> Top
+      </a>
+  </div>
+
+  <div class="dark-light-buttons">
+      <a class="btn btn-primary btn-customized-4 btn-customized-dark" href="#" role="button">Dark</a>
+      <a class="btn btn-primary btn-customized-4 btn-customized-light" href="#" role="button">Light</a>
+  </div>
+
+</nav>
+<div class="overlay"></div>
+
+<div class="content">
+
+  <a class="btn btn-primary btn-customized open-menu" href="#" role="button">
+    <i class="fas fa-align-left"></i> <span>Menu</span>
+</a>
+
+</div>
+</div>
 
 
 
 
-
-
-<h1>Welcome!</h1>
-
-<ol>
-  <h2>Navigation</h2>
-</ol>
   
   
   </div>
 </div>
 </div>
+
+<script src="/static/sidebar.js"></script>
+
 </body>
 
 

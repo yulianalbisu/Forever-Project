@@ -31,8 +31,8 @@
     background: #ddd;
     color: black;
   }
-#fire {
-    background-image: url(SplitShire-3651.jpg.webp) no-repeat center center;
+body.container {
+    background-image: url(SplitShire-0080.jpg.webp) no-repeat center center;
     -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
