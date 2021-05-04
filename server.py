@@ -336,7 +336,6 @@ def delete_wish_accomplished():
     
     if checked_wish:
         crud.delete_wish(checked_wish)
-        flash('Brownie Points')
         return redirect('/welcome')
 
 

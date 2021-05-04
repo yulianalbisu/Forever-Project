@@ -4,63 +4,63 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js" 
 integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     
-      <a href="/wishes_partner">Wishes from partner</a>
+      
 <link rel="stylesheet" href="/static/mystyles.css">
+<link rel="stylesheet" href="/static/heartAnimation.css">
 
-<nav class="navbar navbar-light" style="background-color: #f3eee9a8;">
-    <a class="navbar-brand" href=""></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item active">
-          <a class="nav-link" href="/welcome">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/users/{{user.user_id}}">My Profile</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/answers_partner">Partner Answers</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/wishes_partner">Partner Wishes</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="/wishes" tabindex="-1" aria-disabled="true">My Wishes</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+<!-- Font family -->
+
+<link rel="preconnect" href="https://fonts.gstatic.com"> 
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
 
 
 {% endblock %}
 {% block body %}
-<div class="container">
+
+<!-- PLEASE PUT A HOME BUTTON HERE -->
+<div>
+<p class="message"><ul><a href="/welcome">Take me to My Forever</ul></a></p>
+</div>
+
 <body class="cold-before">
+<div class="container-fluid">
 
 
-<h1>Wishes</h1> 
+<form id="wishes" action="/checked_wishes" method="POST" enctype="multipart/form-data">
+
+  <section class="form-dark mb-5">
+
+    <div id="deseos" class="card card-image" style="background-image: url('https://www.splitshire.com/wp-content/uploads/2019/11/Keep-Calm-BW-SplitShire-3D-0005.jpg');">
+    <div class="text-white rgba-stylish-strong py-5 px-5 z-depth-4">
+
+      <!-- Header -->
+  <div class="text-center">
+    <div class="row d-flex justify-content-center">
+      <!-- <h3 class= "white-text mb-5 mt-4 font-weight-bold text-uppercase"><strong>{{ partner.name }}</strong></a></h3> -->
+    </div>
+
+
+
+
+    <h5 style="font-family: 'Dancing Script', cursive; font-size: 35px;">"To my dear: {{ user.name.title() }} , this is what I would love" </h5>
+
+
+
+  <div class="md-form">  
+  <table id="mywishes">
+    <label ><p>{% for answer in answers %}</p></label>
     
-    <p class="message"><ul><a href="/welcome">Take me to My Forever</ul></a></p>
-
-
-
-<h2>{{ partner.name.title() }}</h2>
-
-
-<h3>This is what would love: </h3>
-<form action="/checked_wishes" method="POST">
-    <table id="mywishes">
-    <label>{% for answer in answers %}</label>
-    
-<input type="checkbox" id="checked" name="checkbox" value="{{ answer.wish }}">
+<div style="font-family: 'Dancing Script', cursive; font-size: 28px;" class="heartbox"><input type="checkbox" class="checkbox" id="checked" name="checkbox" value="{{ answer.wish }}">
 {{ answer.wish.capitalize() }}<br>
-
-<button id="love-button" class="love" type="submit" value="detete">Done</button>
+</div>
+<div>
+<button id="swapHeart" ><i class="fas fa-heart" type="submit" value="detete" style="color: red;"></i></button>
 <br>
+</div>
+</div>
+
 <script>
-    const loveBtn = document.querySelector('#love-button');
+    const loveBtn = document.querySelector('#swapHeart');
         loveBtn.addEventListener("submit", (evt) => {
         evt.preventDefault();
             alert('Brownie Points!');
@@ -75,10 +75,12 @@ integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="ano
 </form>
 
 
-</table><input type="submit" value="Delete selected" class="btn btn-primary">
+</table>
 
     
     <!-- <script src="/static/checkboxes.js"></script> -->
-</div>
+  </section>
+  </div>
+  
 </body>
 {% endblock %}
