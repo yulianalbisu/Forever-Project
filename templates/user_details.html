@@ -1,25 +1,73 @@
 {% extends 'base.html' %}
 {% block title %}My Forever{% endblock %}
 {% block head %} 
+<link rel="stylesheet" href="/static/style.css">
+<link rel="stylesheet" href="/static/media-queries.css">
+
+
+
 <div class="mt-5 mb-5"></div>
 <h3>{{ user.name.capitalize() }}</h3>
 
 {% endblock %}
 {% block body %}
-<div class="card" style="width: 25em">
-    <img src="https://placehold.it/100x100" alt="">
-    <div class="card-body">
-        <p class="card-text">
-            <li>Here is your love link: {{ link.link_id }}</li>
+<section id="profile">
+<!-- <div class="row"> -->
+    <!-- <div class="col-md-3 col-sm-6">
+        <div class="card">
+            <img src="/static/SplitShire-00941.jpg.webp" alt="" class="img-fluid"> -->
+
+            <!-- <div class="card-title">
+                <h2>{{ user.name.capitalize() }}</h2>
+            </div>
+            <div class="card-text">
+                <p>
+                <li>Here is your love link: {{ link.link_id }}</li>
             <li>My nickname: {{ user.nickname }}</li>
             <li>Anniversary Date: {{ link.anniversary }}</li>
             <li>Email: {{ user.email }}</li>
             <li>ID: {{ user.user_id }}</li>
         </p>
-        <a href="/welcome" class="btn btn-primary">Home</a>
+            <a href="/welcome" class="btn-btn-success"></a>
+
+            </div>
+        </div>
+
+    </div>
+</div> -->
+<div class="container">
+    
+        
+<section class="form-dar mb-5" style="width: 25em">
+
+<img src="https://www.splitshire.com/wp-content/uploads/2015/05/SplitShire-2257.jpg" alt="" class="img-fluid">
+<div id="deseos" class="card-title" style="text-align: center; background-color: rgba(160. 153, 144, 0.445);">
+    <div id="deseos" class="card card-image" style="background-color: rgba(7, 6, 5, 0.753);">
+        <div class="text-white rgba-stylish-strong py-5 px-5 z-depth-4">
+
+            <div class="text-center">
+                <div class="row d-flex justify-content-center">
+                  <h2 class= "white-text mb-5 mt-4 font-weight-bold text-uppercase"><strong>{{user.name.capitalize()}}</strong></a></h2>
+                </div>
+            
+
+
+            <p>Here is your love link: {{ link.link_id }}</p>
+            <p>My nickname: {{ user.nickname }}</p>
+            <p>Anniversary Date: {{ link.anniversary }}</p>
+            <p>Email: {{ user.email }}</p>
+            <p>ID: {{ user.user_id }}</p>
+        </p>
+        <a href="/welcome" class="btn btn-success btn-block btn-rounded z-depth-1">Home</a>
     </div>
 </div>
+</div>
+</div>
+</div>
+</div>
 
+</section>
 
+<!-- <script src="/static/sidebar.js"></script> -->
  
 {% endblock %}
