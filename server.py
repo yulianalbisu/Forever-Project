@@ -14,6 +14,18 @@ app.secret_key = "dev"
 app.jinja_env.undefined = StrictUndefined
 
 
+QUOTES = [
+        "Pretty",
+        "Powerful",
+        "Aromatic",
+        "Inteligent",
+        "Kind",
+        "Awesome",
+        "Incredible",
+]
+
+
+
 
 @app.route('/') 
 def homepage(): 
@@ -156,6 +168,11 @@ def tips_for_user():
     
     return render_template('tips.html', questions=questions)
 
+@app.route('/quotes')
+def quotes_user():
+    """Give user some words of love"""
+
+    return random.choice(QUOTES)
 
 @app.route('/questions')
 def all_questions():
@@ -295,7 +312,7 @@ def view_user_wishes():
     if answers:
         return render_template('all_wishes.html', answers=answers, user=user)
     else:
-        flash("No wishes yet, let's make some wishes!")
+        
         return redirect('/wish')
 
 
@@ -319,7 +336,7 @@ def view_partner_wishes():
             return render_template('partner_wishes.html', user=user, partner=partner, answers=answers)
         
         else:
-            flash("You don't have a partner yet.")
+            
             return redirect('/connecting')
     else:
         flash('Please log in or register for an account.')

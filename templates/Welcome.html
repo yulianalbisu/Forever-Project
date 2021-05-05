@@ -6,13 +6,22 @@
 <link rel="stylesheet" href="/static/style.css">
 <link rel="stylesheet" href="/static/media-queries.css">
  
+
+<script src="https://kit.fontawesome.com/181ca4fa2e.js" crossorigin="anonymous"></script>
+
+<!-- Font family -->
+
+<link rel="preconnect" href="https://fonts.gstatic.com"> 
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+
+
+
+
+
   {% endblock %}
 
 {% block body %}
-<body>
 
- <div class="container-fluid">
-  <div class="col-12">
 
 <!-- <h1 class="animate__animated animate__bounce">Salta solo!</h1>  -->
 
@@ -51,7 +60,7 @@
         <a class="scroll-link" href="/wishes"><i class="fas fa-envelope"></i> Wishes</a>
     </li>
     <li>
-      <a class="scroll-link" href="/logout"><i class="fas fa-envelope"></i> Logout</a>
+      <a class="scroll-link" href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
   </li>
       <li>
           <a href="#otherSections" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" role="button" aria-controls="otherSections">
@@ -71,7 +80,7 @@
 
   <div class="to-top">
       <a class="btn btn-primary btn-customized-3" href="#" role="button">
-          <i class="fas fa-arrow-up"></i> Top
+          <i class="fas fa-heart"></i> Tips
       </a>
   </div>
 
@@ -91,17 +100,64 @@
 
 </div>
 </div>
-
-
-
-
-  
   
   </div>
 </div>
 </div>
 
+<body class="container-fluid" style="background-image: url('https://www.splitshire.com/wp-content/uploads/2015/12/SplitShire-0080.jpg');">
+  <div class="col-12">
+
+  
+        <div class="container" style="padding-top: 150px;">
+            <div class="col-10 offset-1">
+   
+        
+      
+        <section class="form-dark mb-5">
+
+            <div class="card card-image" style="background-color: rgba(0, 0, 0, 0.781);">
+              <div class="text-white rgba-stylish-strong py-5 px-5 z-depth-4">
+              <!-- Header -->
+            <div class="text-center">
+              <div class="row d-flex justify-content-center">
+
+                <img class="animate__animated animate__bounce" style="max-width: 50px;" src="static/css/img/klipartz.com.png" alt="logo">
+                <h1 style="font-family: 'Dancing Script', cursive; font-size: 50px; color:rgb(252, 250, 249)">Forever</h1>
+
+                <div style="text-shadow: rgb(102, 98, 97); text-align: justify;">
+                  <p>Welcome to Forever!
+                  A site to express yourself and enjoy life
+                  together enhancing more communication.
+                </p>
+                  Do you want to know more about your partner?
+                  Would you like to express yourself?
+                  Relationships can be hard, but also can be 
+                  enjoyable.
+                <p>
+                  Fill the questionary, let your partner get to 
+                  know you; look at your parnter answers.
+                </p>
+                
+                  Plan together, surprise each other!
+                <p>
+                  Ready to start? 
+                </p>
+                Click on the menu.
+              </div>
+          </div>
+        </div>
+</div>
+<img id="quote" class="animate__animated animate__swing" style="max-width: 75px; position: relative; left: 25px; " src="static/css/img/pngegg.png">
+
 <script src="/static/sidebar.js"></script>
+
+<script>
+  $('#quote').on('click', () => {
+   alert('You are awesome!');
+  })
+  
+</script>
 
 
 </body>
