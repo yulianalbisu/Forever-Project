@@ -1,52 +1,121 @@
 {% extends 'base.html' %}
 {% block head %}
-{% block title %}My Forever{% endblock %}
+{% block title %}{% endblock %}
 
 <a href="/show_answers"></a>
 
+<link rel="stylesheet" href="/static/mystyles.css">
+<link rel="stylesheet" href="/static/heartAnimation.css">
 
-<nav class="navbar navbar-light" style="background-color: #918e8b5b;">
-  <a class="navbar-brand" href="#">Make my LOGO!</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="users/{{user.user_id}}">My Profile <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/answers_partner">Partner Answers</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/wishes_partner">Partner Wishes</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="/show_answers" tabindex="-1" aria-disabled="true">My</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+
+<link rel="stylesheet" href="/static/style.css">
+<link rel="stylesheet" href="/static/media-queries.css">
 
 
 
 {% endblock %}
 
  {% block body %}
-<div class="container">
-  <section class="form-dark mb-5">
-      <p class="message"><ul><a href="/welcome">Take me to My Forever</ul></a></p> 
+
+ <div class="wrapper">
+  <!-- Sidebar -->
+  <nav class="sidebar">
+   
+    <!-- close sidebar menu -->
+    <div class="dismiss">
+        <i class="fas fa-arrow-left"></i>
+    </div>
   
-      <div id="deseos" class="card card-image" style="background-color: rgba(214, 203, 178, 0.356);">
-          <div class="text-white rgba-stylish-strong py-5 px-5 z-depth-4">
+    <div class="logo">
   
-              <div class="text-center">
-                  <div class="row d-flex justify-content-center">
-                    <h2 class= "white-text mb-5 mt-4 font-weight-bold text-uppercase"><strong>My Answers</strong></a></h2>
-                  </div>
+        <h3><a href="/index.html">Poner Logo Aqui</a></h3>
+    </div>
   
+    <ul class="list-unstyled menu-elements">
+        <li class="active">
+            <a class="scroll-link" href="/welcome"><i class="fas fa-home"></i> Home</a>
+        </li>
+        <li>
+            <a class="scroll-link" href="/questions"><i class="fas fa-cog"></i> Questionary</a>
+        </li>
+        
+        <li>
+            <a class="scroll-link" href="/wish"><i class="fas fa-pencil-alt"></i> Make a Wish</a>
+        </li>
+        <li>
+            <a class="scroll-link" href="/show_answers"><i class="fas fa-envelope"></i> Answers</a>
+        </li>
+        <li>
+          <a class="scroll-link" href="/wishes"><i class="fas fa-envelope"></i> Wishes</a>
+      </li>
+      <li>
+        <a class="scroll-link" href="/logout"><i class="fas fa-envelope"></i> Logout</a>
+    </li>
+        <li>
+            <a href="#otherSections" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" role="button" aria-controls="otherSections">
+                <i class="fas fa-sync"></i>About My Partner
+            </a>
+            <ul class="collapse list-unstyled" id="otherSections">
+                <li>
+                    <a class="scroll-link" href="/answers_partner">My Partner Answers</a>
+                </li>
+                <li>
+                    <a class="scroll-link" href="/wishes_partner">My Partner Wish for...</a>
+                </li>
+                
+            </ul>
+        </li>
+    </ul>
+  
+    <div class="to-top">
+        <a class="btn btn-primary btn-customized-3" href="#" role="button">
+            <i class="fas fa-arrow-up"></i> Top
+        </a>
+    </div>
+  
+    <div class="dark-light-buttons">
+        <a class="btn btn-primary btn-customized-4 btn-customized-dark" href="/tips" role="button">Dark</a>
+        <a class="btn btn-primary btn-customized-4 btn-customized-light" href="#" role="button">Light</a>
+    </div>
+  
+  </nav>
+  <div class="overlay"></div>
+  
+  <div class="content">
+  
+    <a class="btn btn-primary btn-customized open-menu" href="#" role="button">
+      <i class="fas fa-align-left"></i> <span>Menu</span>
+  </a>
+  
+  </div>
+  </div>
+  
+    
+    </div>
+  </div>
+  </div>
 
 
+
+
+
+
+
+ <body class="cold-before">
+
+  <div class="container" style="padding-top: 75px;">
+    <div class="row">
+      <div class="col-10 offset-1">
+
+        <section class="form-dark mb-5">
+
+          <div class="card card-image" style="background-color: rgba(0, 0, 0, 0.781);">
+            <div class="text-white rgba-stylish-strong py-5 px-5 z-depth-4">
+            <!-- Header -->
+          <div class="text-center">
+            <div class="row d-flex justify-content-center">
+              <h2 class= "white-text mb-5 mt-4 font-weight-bold text-uppercase"><strong>My Answers</strong></a></h2>
+            </div>
 
 <p>
 {% for answer in answers %}
@@ -55,8 +124,13 @@
 
 {% endfor %}
 </p>
+  </div>
+  </div>
+  </div>
+  </div>
 
-</div>
-</div>
+  <script src="/static/sidebar.js"></script>
+
+</body>
 
 {% endblock %}

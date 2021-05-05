@@ -1,13 +1,4 @@
-.container-fluid{
-    columns: -12px;
-    columns: md -6px;
-    columns: lg -3px;
-} /* } no white space */
-.uneven-container{
-    columns: -12px;
-    columns: -3px;
-    columns: -2px;
-} 
+
 
 
 body, html {
@@ -107,7 +98,7 @@ body:before {
   top:0;
   left:0;
 
-  background: linear-gradient(90deg, rgb(163, 114, 9), rgb(4, 30, 65));
+  background: linear-gradient( rgb(163, 114, 9), rgb(4, 30, 65));
   opacity: 0.5;
   z-index: -1;
 }
@@ -118,7 +109,7 @@ body:before {
 
 
 #deseos {
-background-image: url('SplitShire-0080.jpg.webp') no-repeat center center;
+background-image: url('SplitShire-03651.jpg.webp') no-repeat center center;
 -webkit-background-size: cover;
 -moz-background-size: cover;
 -o-background-size: cover;
@@ -144,4 +135,7 @@ background-position: relative;
 
 .navbar-brand {
   color:#fff;
+}
+a:link{
+  color:white
 }
