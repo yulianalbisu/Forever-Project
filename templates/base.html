@@ -7,9 +7,7 @@
     
     <link rel="stylesheet" href="/static/css/estilos.css">
 
-    <!-- <link rel="stylesheet" href="/static/style.css">
-    <link rel="stylesheet" href="/static/media-queries.css"> -->
-
+    
     <title>
       {% block title %}{% endblock %}
     </title>
@@ -52,20 +50,7 @@
       <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
       <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">  
 
-    <!-- {% if "user_id" in session %} -->
-  
-    <!-- <button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm" style="background-color: rgba(243, 147, 21, 0.568); border-color: black; position: fixed; left:75%;">Logout</button>
-
-<div class="modal bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header"><h4>Logout <i class="fa fa-lock"></i></h4></div>
-      <div class="modal-body"><i class="fa fa-question-circle"></i> Are you sure you want to log-off?</div>
-      <div class="modal-footer"><a href="/logout" class="btn btn-primary btn-block" style="background-color: red;">Logout</a></div>
-    </div>
-  </div>
-</div>
-{% endif %} -->
+    
 
 {% if "user_id" in session %}
        <a href="/logout">Logout</a>
@@ -78,7 +63,7 @@
 
   </head>
 
-  <!-- <body> -->
+  <body>
     <!-- <body class="container-fluid" id="my-bootstrap-row" style="background-image: url('https://www.splitshire.com/wp-content/uploads/2015/12/SplitShire-0080.jpg');">
     <div class="col-12"> -->
 
@@ -90,17 +75,14 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" 
     crossorigin="anonymous"></script>
     
-    
-    <!-- <div class="container-fluid">
-    <div class="row">
-      <div class="col"> -->
+  
 
     {% for msg in get_flashed_messages() %}
       <p class="flash-msg">
         {{ msg }}
       </p>
 
-    </div>
+    
       {% endfor %}
   
       <script src="assets/js/jquery-3.3.1.min.js"></script>
@@ -131,9 +113,7 @@
       {% block body %}{% endblock %}
     
     {% block after_body %}{% endblock %}
-  </div>
-
-   </body>   
+    
   </body>
   
 </html>

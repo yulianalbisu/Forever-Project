@@ -4,28 +4,117 @@
   
     <link rel="stylesheet"
           href="/static/plantilla.css">
-        </head>
+
+    <link rel="stylesheet" href="/static/heartAnimation.css">
+
+    <link rel="stylesheet"
+          href="/static/css/animations.css">
+
+
+    <link rel="stylesheet" 
+    href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" 
+    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" 
+    crossorigin="anonymous">
+
     
-        <body>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css" 
+    integrity="sha384-wESLQ85D6gbsF459vf1CiZ2+rr+CsxRY0RpiF1tLlQpDnAgg6rwdsUF1+Ics2bni" 
+    crossorigin="anonymous">
+
+    <script src="https://kit.fontawesome.com/181ca4fa2e.js" crossorigin="anonymous"></script>
+
+    <!-- Font family -->
+
+<link rel="preconnect" href="https://fonts.gstatic.com"> 
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+
+    <!-- Extra stuff -->
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500&display=swap">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+         
+        <link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
+        <link rel="stylesheet" href="assets/css/animate.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="assets/css/media-queries.css">
+        <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+      />
+      <!-- animations -->
+      <link rel="stylesheet" href="css/animate.css">
+
+      <!-- Favicon and touch icons -->
+      <link rel="shortcut icon" href="assets/ico/favicon.png">
+      <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">  
+
+  
+  
+  </head>
+    
+<body>
 
   <div class="login-page">
   <div class="form">
 
-<h1>Welcome!</h1>
+    <img class="animate__animated animate__bounce" style="max-width: 50px;" src="static/css/img/klipartz.com.png" alt="logo">
+    <h1 style="font-family: 'Dancing Script', cursive; font-size: 50px; color:rgb(90, 81, 78)">Welcome!</h1>
 
 
-<form action="/handle_login" method="POST">
+    <form action="/handle_login" method="POST" style=>
+    <p>
+      <input type="text" name="email" placeholder="email" style="font-family: 'Dancing Script', cursive; font-size: 20px; color:rgb(121, 111, 107)">
 
-  <input type="text" name="email" placeholder="email">
-
-  <input type="password" name="password" placeholder="password"> 
-
+      <input type="password" name="password" placeholder="password" style="font-family: 'Dancing Script', cursive; font-size: 20px; color:rgb(121, 111, 107)"> 
+    </p>
   
-  <input type="submit">
+  <button id="swapHeart" style="background-color: rgb(99, 95, 95);"><i class="fas fa-heart" type="submit" style="color: red;"></i></button>
  
   </form>
   </form>
   </div>
   </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" 
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" 
+  crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" 
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" 
+  crossorigin="anonymous"></script>
+
+
+
+
+
+  <script src="assets/js/jquery-3.3.1.min.js"></script>
+  <script src="assets/js/jquery-migrate-3.0.0.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="assets/js/jquery.backstretch.min.js"></script>
+  <script src="assets/js/wow.min.js"></script>
+  <script src="assets/js/jquery.waypoints.min.js"></script>
+  <script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+  <script src="assets/js/scripts.js"></script>
+  
+
+  <!-- animations -->
+
+  <script src="js/wow.min.js"></script>
+          <script>
+          new WOW().init();
+          </script>
+
+
+
+
+
+
 </body>
   </html>

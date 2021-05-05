@@ -13,7 +13,7 @@
   margin: 0 auto 100px;
   padding: 45px;
   text-align: center;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  box-shadow: 0 0 40px 0 rgba(218, 198, 198, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 .form input {
   font-family: "Roboto", sans-serif;
@@ -46,7 +46,7 @@
 .form .message {
   margin: 15px 0 0;
   color: #b3b3b3;
-  font-size: 12px;
+  font-size: 14px;
 }
 .form .message a {
   color: #4CAF50;
@@ -89,12 +89,38 @@
   color: #EF3B3A;
 }
 body {
-  background: #76b852; /* fallback for old browsers */
-  background: -webkit-linear-gradient(right, #76b852, #8DC26F);
-  background: -moz-linear-gradient(right, #76b852, #8DC26F);
-  background: -o-linear-gradient(right, #76b852, #8DC26F);
-  background: linear-gradient(to left, #76b852, #8DC26F);
-  font-family: "Roboto", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;      
+  margin: 0;
+  min-height: 100vh;
+  background-image: url('https://www.splitshire.com/wp-content/uploads/2019/11/Keep-Calm-BW-SplitShire-3D-0005.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+
+
+}
+body:before {
+  content:"";
+  width: 100%;
+  min-height: 100vh;
+  position: absolute;
+  top:0;
+  left:0;
+
+  background: linear-gradient( rgb(163, 114, 9), rgb(4, 30, 65));
+  opacity: 0.5;
+  z-index: -1;
+}
+
+.cursiva {
+  font-size: 16px;
+  color: rgb(72, 75, 69);
+}
+.detalles {
+  font-size: 50px;
+  color: rgb(249, 252, 247);
+}
+.nivel {
+  background-color: rgb(187, 175, 175);
+
 }
