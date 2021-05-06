@@ -113,7 +113,8 @@ integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="ano
 
 
 
-  <div class="container-fluid"> 
+  <div class="container"> 
+    <div class="col-10 offset-1" style="padding-bottom: 150px; position:relative; top:150px;">
 
 
 
@@ -133,7 +134,7 @@ integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="ano
 
 
 
-    <h5 style="font-family: 'Dancing Script', cursive; font-size: 35px;">"To my dear: {{ user.name.title() }} , this is what I would love" </h5>
+    <p style="font-family: 'Dancing Script', cursive; font-size: 35px;">"To my dear: {{ user.name.title() }} , this is what I would love" </p>
 
 
 
@@ -149,6 +150,8 @@ integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="ano
 <br>
 </div>
 </div>
+</div>
+
 
 <script>
     const loveBtn = document.querySelector('#swapHeart');

@@ -94,7 +94,7 @@ def register_user():
     else:
         new_user = crud.create_user(email, password, name, nickname)
         new_link = crud.create_link(anniversary, new_user.user_id) 
-        flash('Account created! Please log in') 
+         
 
         return redirect('/login') 
 
@@ -111,7 +111,7 @@ def login():
         session['user_id'] = user.user_id
         return redirect(f'/users/{user.user_id}') 
     else:
-        flash('Wrong password')
+        
         return redirect('/login') 
 
 
@@ -143,7 +143,7 @@ def register_partner():
         return redirect(f'/users/{user.user_id}')
         
     else: 
-        new_user = crud.create_user(email, password, name)
+        new_user = crud.create_user(email, password, name, nickname)
         flash('Account created! Please log in') 
 
         link = crud.get_link_by_link_id(link_id)
