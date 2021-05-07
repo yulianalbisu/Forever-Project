@@ -222,7 +222,7 @@ def register_answers():
                 
                 model.db.session.commit()
 
-    flash("Your answers have been added")
+    
     
 
     return redirect('/show_answers') 
@@ -270,7 +270,7 @@ def view_partner_answers():
             return render_template('partner_answers.html', user=user, partner=partner, answers=answers)
 
         else:
-            ("Your partner has not answered yet")   
+               
             return redirect('/connecting')
 
     else:

@@ -18,6 +18,7 @@
 
 
 {% block body %}
+<body class="cold-before">
 
 <div class="wrapper">
   <!-- Sidebar -->
@@ -41,7 +42,7 @@
           <a id="profile" class="scroll-link" href="/users/{{user.user_id}}"><i class="fas fa-user"></i> My Profile</a>
       </li>
         <li>
-            <a class="scroll-link" href="/questions"><i class="fas fa-cog"></i> Questionary</a>
+            <a class="scroll-link" href="/questions"><i class="fas fa-cog"></i> Love Quiz</a>
         </li>
         
         <li>
@@ -141,6 +142,8 @@
 </div>
 <script src="/static/sidebar.js"></script>
 
+
+</body>
 {% endblock body %}
 
  
