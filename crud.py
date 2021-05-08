@@ -61,7 +61,6 @@ def create_link(anniversary, user_id):
 def get_links():
     """get a link and can be share with user"""
 
-    #joining table users and links
 
     links = db.session.query(Link.link_id, Link.user_id1, Link.partner).all()
     return links

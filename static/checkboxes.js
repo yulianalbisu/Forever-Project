@@ -16,4 +16,4 @@ $("#mywishes #checked").submit(function () {
         button.on('submit', () => {
             alert('Brownie Points!');
         });
-
+    })
