@@ -24,7 +24,6 @@ Application was made from web scrapping to fill the data. And for learning purpo
 
 Database: [dbdiagram.io](https://dbdiagram.io/d/606b32b8ecb54e10c33ec030)
 
-[![MIT License](https://raw.githubusercontent.com/graingert/WOW/master/LICENSE)]
   
   
 ## Documentation
@@ -35,7 +34,7 @@ Database: [dbdiagram.io](https://dbdiagram.io/d/606b32b8ecb54e10c33ec030)
 
 ### Landing Page
 User can register, login or register a partner on the landing page, also get a little description of the app. The information is collected for the database, store in tables that get a query, using SQLAlchemy, then is sent and post using a jinja template, the animation was made usign the Dom Manipulation and AJAX.
-![App Screenshot](/static/css/img/feature1-intro.gif)
+![caption](/static/css/img/feature1-intro.gif)
 
 ### User's Link
 First user is provided with a link to share with the partner and be connected, to do this SQLAlchemy was needed to query from the database, PostgreSQL to build the tables and send a response using a jinja template.
@@ -55,7 +54,7 @@ When "Menu" is clicked, it opens a sidebar and makes visible an overlay layer, i
 
 ### Love Quiz
 Users filled a form about personal questions, when submitted partner can view the loved one information and know about the favorite stuff, answer can be updated anytime and user can come back later and view which questions need to be answered. I used SQLAlchemy querying the database and  be able to update the answers, this is sent in a Jinja template on a form of post request.
-![App Screenshot](/static/css/img/questions-answers.gif)
+![caption](/static/css/img/questions-answers.gif)
 
 ### Make a Wish
 Couple can write something they would like to do or have and their partner can view on dashboard the wish and when wish comes true can be marked as done and deleted, getting ready for the next one. Boxes mark as checked using JavaScript, request made with Jinja and event handling with jQuery.
