@@ -34,7 +34,7 @@ Database: [dbdiagram.io](https://dbdiagram.io/d/606b32b8ecb54e10c33ec030)
 ## Features
 
 ### Landing Page
-User can register, login or register partner on the landing page, also get a little description of the app. Animation made with AJAX.
+User can register, login or register partner on the landing page, also get a little description of the app. The information is collected for the database, store in tables that get a query, using SQLAlchemy, then is sent and post using a jinja template, the animation was made usign the Dom Manipulation and AJAX.
 ![App Screenshot](/static/css/img/landingPage.png)
 
 ### User's Link
@@ -47,23 +47,27 @@ Partner can register, following the same steps as first user. Users now are usin
 
 ### Welcome Page
 Users get a view description about relationships. The pin note has been animated and targeted using CSS.animation, AJAX and DOM manipulation, when clicked  displays a pop-up containing a compliment for the users.
-![caption](/static/css/img/welcomePage/GIF)
+![caption](/static/css/img/welcomePage.gif)
 
 ### Menu Display Effect
 When "Menu" is clicked, it opens a sidebar and makes visible an overlay layer, includes a collapsible part where user can navigate to the different content of Forever App. Using Bootstrap component, animate.css, wow.js, Backstrectch, CSS Media Queries, jQuery and Javascript to target the objects. 
 ![App Screenshot](/static/css/img/sideBar.png)
 
 ### Love Quiz
-Users filled a form about personal questions, when submitted partner can view the loved one information and know about the favorite stuff, answer can be updated anytime and user can come back later and view which questions need to be answered. I used SQLAlchemy querying the database, together with  to be able to update the database, this sent in a Jinja template.
+Users filled a form about personal questions, when submitted partner can view the loved one information and know about the favorite stuff, answer can be updated anytime and user can come back later and view which questions need to be answered. I used SQLAlchemy querying the database and  be able to update the answers, this is sent in a Jinja template on a form of post request.
 ![App Screenshot](/static/css/img/questions.png)
 
 ### Make a Wish
-Couple can write something they would like to do or have and their partner can view on dashboard the wish and when wish comes true can be marked as done and deleted, getting ready for the next one. Request made with Jinja and event handling with jQuery.
+Couple can write something they would like to do or have and their partner can view on dashboard the wish and when wish comes true can be marked as done and deleted, getting ready for the next one. Boxes mark as checked using JavaScript, request made with Jinja and event handling with jQuery.
 ![App Screenshot](/static/css/img/wishes.png)
+
+### Checking a Wish
+Information from the database is collected using SQLAlchemy, a checkbox form is checked using JavaScript, sending the information back in a Jinja template and a wish is deleted, querying for it in the database. 
+![caption](/static/css/img/checkingWish/GIF)
 
 ### View Answers and Wishes
 After users finish the Love Quiz or Make a Wish they get a response of the recent data filed. An inner join is made as well as a left join. After the love quiz, answers appeared and this effect is handling with querySelector, manipulation of the DOM
-![App Screenshot](/static/css/img/wishes.png)
+![App Screenshot](/static/css/img/answers.png)
 
 ### Tips
 Users can click on circle buttons and get tips of how to get closer to partner and why knowing about partner favorite things are useful to grow together in the relationship. Request made with Jinja on a data scrapping json file. 
@@ -71,7 +75,7 @@ Users can click on circle buttons and get tips of how to get closer to partner a
 
 ## Feedback
 
-If you have any feedback, please reach out to us at linkedIn: Yuliana Aldrich
+If you have any feedback, please reach out via linkedIn: Yuliana Aldrich
   
 ## Lessons Learned
 
@@ -146,8 +150,6 @@ Technologies used on this project:
 To apply some new features using:
 * REACT
   
-## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
 
   
