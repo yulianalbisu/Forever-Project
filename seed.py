@@ -41,9 +41,9 @@ for user in range(10):
     email = fake.email()
     password = fake.password()
     name = fake.name()
-    
+    nickname = fake.name()
 
-    user = crud.create_user(email, password, name)
+    user = crud.create_user(email, password, name, nickname)
 
     #creating an answer from users
     for _ in range(10):
